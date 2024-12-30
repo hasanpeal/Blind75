@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
 
-    def encode(strs: List[str]) -> str:
+    def encode(self, strs: List[str]) -> str:
         res = ""
         # Numerical length + '#' + string itself
         for s in strs:
@@ -11,7 +11,7 @@ class Solution:
         return res
 
     # Ex. 3#abc4#abcd
-    def decode(s: str) -> List[str]:
+    def decode(self, s: str) -> List[str]:
         res = []
         i = 0
         # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
