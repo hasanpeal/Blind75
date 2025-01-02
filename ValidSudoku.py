@@ -9,7 +9,7 @@ def isValidSudoku(board: List[List[str]]) -> bool:
                 if curr != ".":
                     row = f"{curr} in row {i}"
                     col = f"{curr} in col {j}"
-                    box = f"{curr} in between {i//3} - {j//3}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
                     print(box)
                     if row in seen or col in seen or box in seen:
                         return False
