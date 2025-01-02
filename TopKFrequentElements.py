@@ -1,6 +1,5 @@
 from typing import List
 
-
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         map = {}
@@ -14,7 +13,7 @@ class Solution:
         for key, val in map.items():
             count[val].append(key)
         res = []
-        for i in range(len(count) - 1, 0, -1): # Loop depends on len of count not nums!
+        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
             for n in count[i]:
                 res.append(n)
                 if len(res) == k:
