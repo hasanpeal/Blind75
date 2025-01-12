@@ -1,12 +1,18 @@
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
-        mapS = {}
-        mapT = {}
-        for i in range(len(s)):
-            mapS[s[i]] = 1 + mapS.get(s[i], 0)
-            mapT[t[i]] = 1 + mapT.get(t[i], 0)
-        return mapS == mapT
-        
-        
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
