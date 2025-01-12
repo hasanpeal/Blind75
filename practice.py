@@ -1,21 +1,39 @@
 from typing import Optional
 
-class ListNode:
-    def __init__(self, val=0, next=None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.next = next
+        self.left = left
+        self.right = right
 
-class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()
-        curr = dummy
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
-            else:
-                curr.next = list2
-                list2 = list2.next
-            curr = curr.next
-        curr.next = list1 or list2
-        return dummy.next
+class Codec:
+    
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        res = []
+        def preorder(node):
+            if not node:
+                res.append("N")
+                return
+            res.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+        preorder(root)
+        return ",".join(res)
+        
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        nodes = data.split(",")
+        index = 0
+        def preorder():
+            nonlocal index
+            if nodes[index] == "N":
+                index += 1
+                return None
+            node = TreeNode(int(nodes[index]))
+            index += 1
+            node.left = preorder()
+            node.right = preorder()
+            return node
+        return preorder()
+            
