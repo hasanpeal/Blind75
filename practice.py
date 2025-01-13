@@ -1,23 +1,20 @@
 from typing import Optional
 
-class Node:
-    def __init__(self, val = 0, neighbors = None):
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+        self.next = next
 
 class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
-            
-        oldToNew = {}
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
+        while n > 0 and right:
+            right = right.next
+            n -= 1
+        while right:
+            left = left.next
+            right = right.next
+        left.next = left.next.next
+        return dummy.next
