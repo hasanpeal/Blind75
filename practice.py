@@ -1,25 +1,13 @@
-from typing import List
-
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
-
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
+def isValid(self, s: str) -> bool:
+        stack = []
+        close = { ')':'(', '}':'{', ']':'['}
+        for c in s:
+            if c in close:
+                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
+                if stack and stack[-1] == close[c]:
+                    stack.pop()
+                else:
                     return False
-            visited.remove(c)
-            preq[c] = []
-            return True
-        
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+            else:
+                stack.append(c)
+        return True if not stack else False
