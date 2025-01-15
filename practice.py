@@ -1,19 +1,14 @@
 from typing import List
 
-def threeSum(nums: List[int]) -> List[List[int]]:
-        res = []
-        has = {}
-        for i, v in enumerate(nums):
-            has[v] = i
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums), 1):
-                key = -nums[i] - nums[j]
-                if key in has and has.get(key) != i and has.get(key) != j:
-                    triplet = [nums[i], nums[j], key]
-                    triplet.sort()
-                    if triplet not in res:
-                        res.append(triplet)
-                        
-        print(has)
-        return res
-print(threeSum([-1,0,1,2,-1,-4]))
+def maxArea(self, heights: List[int]) -> int:
+        left, right = 0, len(heights) - 1
+        maximum = 0
+
+        while (left < right):
+            currMax = (right - left) * min(heights[left], heights[right])
+            maximum = max(currMax, maximum)
+            if(heights[left] <= heights[right]):
+                left += 1
+            else:
+                right -= 1
+        return maximum
