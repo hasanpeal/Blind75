@@ -1,13 +1,14 @@
-def isValid(self, s: str) -> bool:
-        stack = []
-        close = { ')':'(', '}':'{', ']':'['}
-        for c in s:
-            if c in close:
-                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
-                if stack and stack[-1] == close[c]:
-                    stack.pop()
-                else:
-                    return False
+from typing import List
+
+def maxArea(self, heights: List[int]) -> int:
+        left, right = 0, len(heights) - 1
+        maximum = 0
+
+        while (left < right):
+            currMax = (right - left) * min(heights[left], heights[right])
+            maximum = max(currMax, maximum)
+            if(heights[left] <= heights[right]):
+                left += 1
             else:
-                stack.append(c)
-        return True if not stack else False
+                right -= 1
+        return maximum
