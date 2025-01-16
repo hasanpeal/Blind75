@@ -1,31 +1,25 @@
-from typing import List
+from typing import Optional
 
-def isValidSudoku(board: List[List[str]]) -> bool:
-        seen = set()
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                curr = board[i][j]
-                if curr != ".":
-                    row = f"{curr} in row {i}"
-                    col = f"{curr} in col {j}"
-                    box = f"{curr} in box {(i//3 * 3) + j//3}"
-                    print(box)
-                    if row in seen or col in seen or box in seen:
-                        return False
-                    else:
-                        seen.add(row)
-                        seen.add(col)
-                        seen.add(box)
-        return True
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-board = [["1","2",".",".","3",".",".",".","."],
-        ["4",".",".","5",".",".",".",".","."],
-        [".","9","8",".",".",".",".",".","3"],
-        ["5",".",".",".","6",".",".",".","4"],
-        [".",".",".","8",".","3",".",".","5"],
-        ["7",".",".",".","2",".",".",".","6"],
-        [".",".",".",".",".",".","2",".","."],
-        [".",".",".","4","1","9",".",".","8"],
-        [".",".",".",".","8",".",".","7","9"]]
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
 
-isValidSudoku(board)
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
