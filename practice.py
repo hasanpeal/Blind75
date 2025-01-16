@@ -1,26 +1,28 @@
-from typing import Optional
+from typing import List, Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.next = next
 
-class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        res = float("-inf")
-        def postorder(root):
-            # Use nonlocal to access global variable res
-            nonlocal res
-            if not root:
-                return 0
-            # Max in left sub tree, if negative then 0
-            leftMax = max(postorder(root.left), 0)
-            # Max in right sub tree, if negative then 0
-            rightMax = max(postorder(root.right), 0)
-            # Adjacent node check if max then update global res
-            res = max(res, root.val + leftMax + rightMax)
-            # Pass single path max sum for each recursive call
-            return root.val + max(leftMax, rightMax)
-        postorder(root)
-        return res
+class Solution:    
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0:
+            return None
+        for i in range(1, len(lists)):
+            lists[i] = self.merge(lists[i-1], lists[i])
+        return lists[-1]
+
+    def merge(self, list1, list2):
+        dummy = ListNode()
+        curr = dummy
+        while list1 and list2:
+            if list1.val < list2.val:
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            curr = curr.next
+        curr.next = list1 or list2
+        return dummy.next
