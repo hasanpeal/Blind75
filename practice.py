@@ -1,5 +1,4 @@
-import collections
-from typing import List, Optional
+from typing import Optional
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -8,20 +7,10 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        res = []
-        q = collections.deque()
-        q.append(root)
-
-        while q:
-            length = len(q)
-            nodes = []
-            for i in range(length):
-                node = q.popleft()
-                if node:
-                    nodes.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if nodes:
-                res.append(nodes)
-        return res
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        elif ((p and q) and (p.val == q.val)):
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        else:
+            return False
