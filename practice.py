@@ -1,12 +1,22 @@
+from typing import List
+
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
-        mapS = {}
-        mapT = {}
-        for i in range(len(s)):
-            mapS[s[i]] = 1 + mapS.get(s[i], 0)
-            mapT[t[i]] = 1 + mapT.get(t[i], 0)
-        return mapS == mapT
-        
-        
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        map = {}
+        for i in range(len(nums)):
+            map[nums[i]] = 1 + map.get(nums[i], 0)
+        # Creating [[],[],[],[]........]
+        # Where each index represent the occurence and each [] holds the values with that occurence
+        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
+        # is the occurence
+        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
+        for key, val in map.items():
+            count[val].append(key)
+        res = []
+        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
+            for n in count[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
+                
