@@ -1,23 +1,19 @@
-from typing import List
+from typing import List, Optional
 
-def numIslands(self, grid: List[List[str]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        count = 0
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-        def dfs(r,c):
-            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
-                return
-            grid[r][c] = "0"
-            dfs(r + 1, c)
-            dfs(r - 1, c)
-            dfs(r, c + 1)
-            dfs(r, c - 1)
-        
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1":
-                    count += 1
-                    dfs(r,c)
-                    
-        return count
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            return None
+        # Root is always in preorder[0]
+        root = TreeNode(preorder[0])
+        # Finding root in inorder array
+        mid = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        return root
