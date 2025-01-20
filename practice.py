@@ -1,13 +1,12 @@
-def isValid(self, s: str) -> bool:
-        stack = []
-        close = { ')':'(', '}':'{', ']':'['}
-        for c in s:
-            if c in close:
-                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
-                if stack and stack[-1] == close[c]:
-                    stack.pop()
-                else:
-                    return False
+def lengthOfLongestSubstring(s: str) -> int:
+        seen = set()
+        left, right, longest = 0, 0, 0
+        while(right < len(s)):
+            if s[right] not in seen:
+                seen.add(s[right])
+                longest = max(longest, len(seen))
+                right += 1
             else:
-                stack.append(c)
-        return True if not stack else False
+                seen.remove(s[left])
+                left += 1
+        return longest
