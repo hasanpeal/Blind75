@@ -1,13 +1,19 @@
 from typing import List
 
-
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+def threeSum(nums: List[int]) -> List[List[int]]:
+        res = []
         has = {}
+        for i, v in enumerate(nums):
+            has[v] = i
         for i in range(len(nums)):
-            has[nums[i]] = i
-        for i in range(len(nums)):
-            diff = target - nums[i]
-            if diff in has and has.get(diff) != i:
-                return [i, has.get(diff)]
-        return []
+            for j in range(i + 1, len(nums), 1):
+                key = -nums[i] - nums[j]
+                if key in has and has.get(key) != i and has.get(key) != j:
+                    triplet = [nums[i], nums[j], key]
+                    triplet.sort()
+                    if triplet not in res:
+                        res.append(triplet)
+                        
+        print(has)
+        return res
+print(threeSum([-1,0,1,2,-1,-4]))
