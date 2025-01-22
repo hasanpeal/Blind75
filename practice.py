@@ -1,30 +1,61 @@
-def minWindow(self, s: str, t: str) -> str:
-        if t == "":
-            return ""
-        haveMap, needMap = {}, {}
-        # res stores the indices of l, f for substring
-        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
-        for c in t:
-            needMap[c] = 1 + needMap.get(c, 0)
-        have = 0
-        # Need here is the total character. We only increment have if total count of a character is meet
-        need = len(needMap)
-        while r < len(s):
-            curr = s[r]
-            # Adding character on right to the hashmap
-            haveMap[curr] = 1 + haveMap.get(curr, 0)
-            # If we meet the total required number of certain character, we increment have
-            if curr in needMap and haveMap[curr] == needMap[curr]:
-                have += 1
-            while have == need:
-                if (r - l + 1) < resLength:
-                    res = [l, r]
-                    resLength = r - l + 1
-                haveMap[s[l]] -= 1
-                # If character of left is in need map and doesn't meet the total occurence then have -1
-                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
-                    have -= 1
-                l += 1
-            r += 1
-        l, r = res
-        return s[l:r+1] if resLength != float("inf") else ""
+from typing import List
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        """
+        Return all unique combinations of 'candidates' that sum up to 'target'.
+        Each candidate may be chosen multiple times.
+        
+        We'll use a DP array 'dp' of length (target + 1).
+        dp[i] will be a list of *all* combinations that sum up to i.
+        """
+        
+        # Step 1: Create the DP array.
+        # Initially, dp = [ [], [], [], ..., [] ] (target+1 empty lists).
+        dp = [[] for _ in range(target + 1)]
+        
+        # VISUAL (initial state):
+        #
+        #    Index:   0     1     2     3     4     5     6     7
+        #    dp:    [  ]   [  ]   [  ]   [  ]   [  ]   [  ]   [  ]   [  ]
+        #
+        # dp[0], dp[1], dp[2], ..., dp[7] are all empty lists right now.
+
+        # Step 2: Process each candidate in the list.
+        for c in candidates:
+            # We'll try to form sums from 1 up to 'target' using candidate c.
+            for i in range(1, target + 1):
+                
+                # If i is smaller than c, c can't be used to form i,
+                # so we skip to the next i.
+                if i < c:
+                    continue
+                
+                # If i exactly equals c, that means a single combo [c] forms i.
+                if i == c:
+                    dp[i].append([c])
+                    #
+                    # VISUAL: for i == c,
+                    #   dp[i] += [ [c] ]
+                    # Example: if c=2 and i=2, dp[2] = [ [2] ].
+                    #
+                    # Over time, you might see dp (for the example c=2, i=2):
+                    #   dp[2] = [[2]]
+                    
+                else:
+                    # i > c, so we check dp[i - c].
+                    # dp[i - c] holds all combos that sum to i-c.
+                    # By appending c to each of those combos,
+                    # we get new combos that sum to i.
+                    for combo in dp[i - c]:
+                        dp[i].append(combo + [c])
+                        #
+                        # VISUAL:
+                        #   dp[i] += [ combo + [c] for each combo in dp[i - c] ]
+                        #
+                        # Example: if i=5, c=2, then we look at dp[3].
+                        # if dp[3] = [[3]], then we form [[3] + [2]] = [[3, 2]] 
+                        # and append that to dp[5].
+        
+        # Step 3: At the end, dp[target] has all unique combos summing to 'target'.
+        return dp[target]
