@@ -1,39 +1,22 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Codec:
-    
-    # Encodes a tree to a single string.
-    def serialize(self, root: Optional[TreeNode]) -> str:
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        map = {}
+        for i in range(len(nums)):
+            map[nums[i]] = 1 + map.get(nums[i], 0)
+        # Creating [[],[],[],[]........]
+        # Where each index represent the occurence and each [] holds the values with that occurence
+        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
+        # is the occurence
+        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
+        for key, val in map.items():
+            count[val].append(key)
         res = []
-        def preorder(node):
-            if not node:
-                res.append("N")
-                return
-            res.append(str(node.val))
-            preorder(node.left)
-            preorder(node.right)
-        preorder(root)
-        return ",".join(res)
-        
-    # Decodes your encoded data to tree.
-    def deserialize(self, data: str) -> Optional[TreeNode]:
-        nodes = data.split(",")
-        index = 0
-        def preorder():
-            nonlocal index
-            if nodes[index] == "N":
-                index += 1
-                return None
-            node = TreeNode(int(nodes[index]))
-            index += 1
-            node.left = preorder()
-            node.right = preorder()
-            return node
-        return preorder()
-            
+        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
+            for n in count[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
+                
