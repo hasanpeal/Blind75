@@ -1,21 +1,30 @@
 from typing import Optional
+from LinkedListCycle import ListNode
 
-class ListNode:
-    def __init__(self, val=0, next=None):
+def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()
-        curr = dummy
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
-            else:
-                curr.next = list2
-                list2 = list2.next
-            curr = curr.next
-        curr.next = list1 or list2
-        return dummy.next
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        curr = slow.next
+        slow.next = None
+        prev = None
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        slow = head
+        fast = prev
+        while fast:
+            temp1 = slow.next
+            temp2 = fast.next
+            slow.next = fast
+            fast.next = temp1
+            slow = temp1
+            fast = temp2
