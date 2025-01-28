@@ -1,13 +1,18 @@
-def isValid(self, s: str) -> bool:
-        stack = []
-        close = { ')':'(', '}':'{', ']':'['}
-        for c in s:
-            if c in close:
-                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
-                if stack and stack[-1] == close[c]:
-                    stack.pop()
-                else:
-                    return False
-            else:
-                stack.append(c)
-        return True if not stack else False
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
