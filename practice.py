@@ -1,25 +1,20 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.valid(root, float("-inf"), float("inf"))
-
-    def valid(self, node, left, right):
-        if not node:
-            return True
-        if not (left < node.val < right):
-            return False
-        #                            5
-        #                           / \
-        #        -inf < 3 < 5      3   7     5 < 7 < inf
-        #                             / \
-        #                            4   8
-        # For left child our low bound is alway -inf, upper bound is the parents value
-        # For right child low bound parents value, upper bound is +inf
-        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
+def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        res = 1
+        has = set()
+        for num in nums:
+            has.add(num)
+        for i in range(len(nums)):
+            curr = nums[i]
+            longest = 1
+            if curr - 1 in has:
+                continue
+            while curr + 1 in has:
+                curr += 1
+                longest += 1
+            res = max(res, longest)
+        return res
+            
