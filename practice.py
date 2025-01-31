@@ -1,18 +1,11 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from typing import List
 
-class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
-            else:
-                return curr
+def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        has = {}
+        for i, v in enumerate(numbers):
+            has[v] = i
+        for i in range(len(numbers)):
+            key = target - numbers[i]
+            if key in has and has.get(key) != i:
+                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
+        
