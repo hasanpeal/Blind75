@@ -1,11 +1,20 @@
-def characterReplacement(self, s: str, k: int) -> int:
-        seen = {}
-        l,r,m = 0, 0, 0
-        while r < len(s):
-            seen[s[r]] = 1 + seen.get(s[r], 0)
-            while ((r - l + 1) - max(seen.values())) > k:
-                seen[s[l]] -= 1
-                l += 1
-            m = max(m, r - l + 1)
-            r += 1
-        return m
+from typing import Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        nodes = []
+        # Inorder traversal sorted the BST
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            nodes.append(node.val)
+            dfs(node.right)
+        dfs(root)
+        return nodes[k - 1]
