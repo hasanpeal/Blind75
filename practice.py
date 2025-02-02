@@ -1,11 +1,13 @@
 from typing import List
 
-def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        has = {}
-        for i, v in enumerate(numbers):
-            has[v] = i
-        for i in range(len(numbers)):
-            key = target - numbers[i]
-            if key in has and has.get(key) != i:
-                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
-        
+def maxProfit(self, prices: List[int]) -> int:
+        pointer1, pointer2, res = 0, 1, 0
+        while(pointer2 < len(prices)):
+            profit = prices[pointer2] - prices[pointer1]
+            res = max(res, profit)
+            if(pointer2 == len(prices) - 1):
+                pointer1 += 1
+                pointer2 = pointer1 + 1
+            else:
+                pointer2 += 1
+        return res
