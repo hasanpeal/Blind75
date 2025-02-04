@@ -1,11 +1,22 @@
-def characterReplacement(self, s: str, k: int) -> int:
-        seen = {}
-        l,r,m = 0, 0, 0
-        while r < len(s):
-            seen[s[r]] = 1 + seen.get(s[r], 0)
-            while ((r - l + 1) - max(seen.values())) > k:
-                seen[s[l]] -= 1
-                l += 1
-            m = max(m, r - l + 1)
-            r += 1
-        return m
+from typing import List
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        map = {}
+        for i in range(len(nums)):
+            map[nums[i]] = 1 + map.get(nums[i], 0)
+        # Creating [[],[],[],[]........]
+        # Where each index represent the occurence and each [] holds the values with that occurence
+        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
+        # is the occurence
+        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
+        for key, val in map.items():
+            count[val].append(key)
+        res = []
+        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
+            for n in count[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
+                
