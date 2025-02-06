@@ -1,20 +1,27 @@
-from typing import List
+import collections
+from typing import List, Optional
 
-def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
-        res = 1
-        has = set()
-        for num in nums:
-            has.add(num)
-        for i in range(len(nums)):
-            curr = nums[i]
-            longest = 1
-            if curr - 1 in has:
-                continue
-            while curr + 1 in has:
-                curr += 1
-                longest += 1
-            res = max(res, longest)
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        q = collections.deque()
+        q.append(root)
+
+        while q:
+            length = len(q)
+            nodes = []
+            for i in range(length):
+                node = q.popleft()
+                if node:
+                    nodes.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if nodes:
+                res.append(nodes)
         return res
-            
