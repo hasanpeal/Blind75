@@ -1,14 +1,25 @@
 from typing import List
 
-def maxArea(self, heights: List[int]) -> int:
-        left, right = 0, len(heights) - 1
-        maximum = 0
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        preq = {i : [] for i in range(numCourses)}
+        for c, p in prerequisites:
+            preq[c].append(p)
+        visited = set()
 
-        while (left < right):
-            currMax = (right - left) * min(heights[left], heights[right])
-            maximum = max(currMax, maximum)
-            if(heights[left] <= heights[right]):
-                left += 1
-            else:
-                right -= 1
-        return maximum
+        def dfsCycleDetect(c):
+            if c in visited:
+                return False
+            if preq[c] == []:
+                return True
+            visited.add(c)
+            for pre in preq[c]:
+                if not dfsCycleDetect(pre):
+                    return False
+            visited.remove(c)
+            preq[c] = []
+            return True
+        
+        for p in range(numCourses):
+            if not dfsCycleDetect(p):
+                return False
+        return True
