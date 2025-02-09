@@ -1,23 +1,25 @@
-from typing import Optional
+from typing import List
 
-class Node:
-    def __init__(self, val = 0, neighbors = None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        preq = {i : [] for i in range(numCourses)}
+        for c, p in prerequisites:
+            preq[c].append(p)
+        visited = set()
 
-class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
-            
-        oldToNew = {}
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
+        def dfsCycleDetect(c):
+            if c in visited:
+                return False
+            if preq[c] == []:
+                return True
+            visited.add(c)
+            for pre in preq[c]:
+                if not dfsCycleDetect(pre):
+                    return False
+            visited.remove(c)
+            preq[c] = []
+            return True
+        
+        for p in range(numCourses):
+            if not dfsCycleDetect(p):
+                return False
+        return True
