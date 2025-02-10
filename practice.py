@@ -1,30 +1,27 @@
-from typing import List
+import collections
+from typing import List, Optional
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-
-    def encode(self, strs: List[str]) -> str:
-        res = ""
-        # Numerical length + '#' + string itself
-        for s in strs:
-            res += str(len(s)) + '#' + s
-        return res
-
-    # Ex. 3#abc4#abcd
-    def decode(self, s: str) -> List[str]:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         res = []
-        i = 0
-        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
-        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
-        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
-        while i < len(s):
-            j = i
-            while s[j] != '#':
-                j += 1
-            length = int(s[i:j])
-            i = j + 1
-            j = i + length
-            res.append(s[i:j])
-            i = j
+        q = collections.deque()
+        q.append(root)
+
+        while q:
+            length = len(q)
+            nodes = []
+            for i in range(length):
+                node = q.popleft()
+                if node:
+                    nodes.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if nodes:
+                res.append(nodes)
         return res
-    print(decode(s='3#abc4#abcd'))
