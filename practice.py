@@ -1,21 +1,13 @@
 from typing import List
 
-
-class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [0] * len(nums)
-        left = [0] * len(nums)
-        right = [0] * len(nums)
-
-        left[0] = 1
-        right[len(nums) - 1] = 1
-
-
-        for i in range(1, len(nums)):
-            left[i] = nums[i-1] * left[i-1]
-        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
-            right[i] = nums[i+1] * right[i+1]
-        for i in range(len(nums)):
-            res[i] = left[i] * right[i]
-
+def maxProfit(self, prices: List[int]) -> int:
+        pointer1, pointer2, res = 0, 1, 0
+        while(pointer2 < len(prices)):
+            profit = prices[pointer2] - prices[pointer1]
+            res = max(res, profit)
+            if(pointer2 == len(prices) - 1):
+                pointer1 += 1
+                pointer2 = pointer1 + 1
+            else:
+                pointer2 += 1
         return res
