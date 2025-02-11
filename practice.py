@@ -1,12 +1,20 @@
-def lengthOfLongestSubstring(s: str) -> int:
-        seen = set()
-        left, right, longest = 0, 0, 0
-        while(right < len(s)):
-            if s[right] not in seen:
-                seen.add(s[right])
-                longest = max(longest, len(seen))
-                right += 1
-            else:
-                seen.remove(s[left])
-                left += 1
-        return longest
+from typing import List
+
+def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        res = 1
+        has = set()
+        for num in nums:
+            has.add(num)
+        for i in range(len(nums)):
+            curr = nums[i]
+            longest = 1
+            if curr - 1 in has:
+                continue
+            while curr + 1 in has:
+                curr += 1
+                longest += 1
+            res = max(res, longest)
+        return res
+            
