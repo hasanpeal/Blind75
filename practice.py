@@ -1,19 +1,14 @@
-from typing import List, Optional
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+from typing import Optional
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.next = next
 
-class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        if not preorder or not inorder:
-            return None
-        # Root is always in preorder[0]
-        root = TreeNode(preorder[0])
-        # Finding root in inorder array
-        mid = inorder.index(preorder[0])
-        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
-        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
-        return root
+def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev, curr = None, head
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        return prev
