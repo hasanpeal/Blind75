@@ -1,4 +1,3 @@
-import collections
 from typing import List, Optional
 
 class TreeNode:
@@ -8,20 +7,13 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        res = []
-        q = collections.deque()
-        q.append(root)
-
-        while q:
-            length = len(q)
-            nodes = []
-            for i in range(length):
-                node = q.popleft()
-                if node:
-                    nodes.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if nodes:
-                res.append(nodes)
-        return res
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            return None
+        # Root is always in preorder[0]
+        root = TreeNode(preorder[0])
+        # Finding root in inorder array
+        mid = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        return root
