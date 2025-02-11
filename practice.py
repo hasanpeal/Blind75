@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -7,13 +7,12 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        if not preorder or not inorder:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
             return None
-        # Root is always in preorder[0]
-        root = TreeNode(preorder[0])
-        # Finding root in inorder array
-        mid = inorder.index(preorder[0])
-        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
-        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        temp = root.left
+        root.left = root.right
+        root.right = temp
+        self.invertTree(root.left)
+        self.invertTree(root.right)
         return root
