@@ -1,13 +1,13 @@
-from typing import List
-
-def maxProfit(self, prices: List[int]) -> int:
-        pointer1, pointer2, res = 0, 1, 0
-        while(pointer2 < len(prices)):
-            profit = prices[pointer2] - prices[pointer1]
-            res = max(res, profit)
-            if(pointer2 == len(prices) - 1):
-                pointer1 += 1
-                pointer2 = pointer1 + 1
+def isValid(self, s: str) -> bool:
+        stack = []
+        close = { ')':'(', '}':'{', ']':'['}
+        for c in s:
+            if c in close:
+                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
+                if stack and stack[-1] == close[c]:
+                    stack.pop()
+                else:
+                    return False
             else:
-                pointer2 += 1
-        return res
+                stack.append(c)
+        return True if not stack else False
