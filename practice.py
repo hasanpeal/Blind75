@@ -1,19 +1,12 @@
-from typing import List, Optional
+from typing import Optional
 
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
-class Solution:    
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if len(lists) == 0:
-            return None
-        for i in range(1, len(lists)):
-            lists[i] = self.merge(lists[i-1], lists[i])
-        return lists[-1]
-
-    def merge(self, list1, list2):
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
         curr = dummy
         while list1 and list2:
