@@ -1,20 +1,31 @@
 from typing import List
 
-def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
-        res = 1
-        has = set()
-        for num in nums:
-            has.add(num)
-        for i in range(len(nums)):
-            curr = nums[i]
-            longest = 1
-            if curr - 1 in has:
-                continue
-            while curr + 1 in has:
-                curr += 1
-                longest += 1
-            res = max(res, longest)
-        return res
-            
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
+
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
+
+isValidSudoku(board)
