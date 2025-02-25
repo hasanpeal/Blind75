@@ -1,23 +1,20 @@
-from typing import Optional
+from typing import List
 
-class Node:
-    def __init__(self, val = 0, neighbors = None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
-
-class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
+def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        res = 1
+        has = set()
+        for num in nums:
+            has.add(num)
+        for i in range(len(nums)):
+            curr = nums[i]
+            longest = 1
+            if curr - 1 in has:
+                continue
+            while curr + 1 in has:
+                curr += 1
+                longest += 1
+            res = max(res, longest)
+        return res
             
-        oldToNew = {}
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
