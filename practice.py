@@ -1,39 +1,23 @@
 from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class Node:
+    def __init__(self, val = 0, neighbors = None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.neighbors = neighbors if neighbors is not None else []
 
-class Codec:
-    
-    # Encodes a tree to a single string.
-    def serialize(self, root: Optional[TreeNode]) -> str:
-        res = []
-        def preorder(node):
-            if not node:
-                res.append("N")
-                return
-            res.append(str(node.val))
-            preorder(node.left)
-            preorder(node.right)
-        preorder(root)
-        return ",".join(res)
-        
-    # Decodes your encoded data to tree.
-    def deserialize(self, data: str) -> Optional[TreeNode]:
-        nodes = data.split(",")
-        index = 0
-        def preorder():
-            nonlocal index
-            if nodes[index] == "N":
-                index += 1
-                return None
-            node = TreeNode(int(nodes[index]))
-            index += 1
-            node.left = preorder()
-            node.right = preorder()
-            return node
-        return preorder()
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
             
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
