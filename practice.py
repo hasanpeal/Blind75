@@ -1,22 +1,25 @@
-from typing import List
+from typing import Optional
 
-def search(nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
-        res = -1
-        while l <= r:
-            m = (l+r)//2
-            if nums[m] == target:
-                return m
-            if nums[m] >= nums[l]:
-                if target > nums[m] or target < nums[l]:
-                    l = m + 1
-                else:
-                    r = m - 1
-            else:
-                if target < nums[m] or target > nums[r]:
-                    r = m - 1
-                else:
-                    l = m + 1
-        return -1
-    
-print(search([3,4,5,6,1,2], 1))
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
+
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
