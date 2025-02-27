@@ -1,22 +1,18 @@
+from collections import defaultdict
 from typing import List
 
+
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        map = {}
-        for i in range(len(nums)):
-            map[nums[i]] = 1 + map.get(nums[i], 0)
-        # Creating [[],[],[],[]........]
-        # Where each index represent the occurence and each [] holds the values with that occurence
-        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
-        # is the occurence
-        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
-        for key, val in map.items():
-            count[val].append(key)
-        res = []
-        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
-            for n in count[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
-        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
-                
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # We need this instead of {} because if we directly use res[count].append(s)
+        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
+        # initialize an empty list key first then appends so no key error !!
+        res = defaultdict(list) 
+        for s in strs:
+            count = [0] * 26 # Array of length 26, initialized each index's value to 0
+            for c in s:
+                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
+            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
+            res[tuple(count)].append(s) 
+        return list(res.values()) # map.values() returns group of values in list form
+            
