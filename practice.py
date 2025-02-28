@@ -1,30 +1,25 @@
-def minWindow(self, s: str, t: str) -> str:
-        if t == "":
-            return ""
-        haveMap, needMap = {}, {}
-        # res stores the indices of l, f for substring
-        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
-        for c in t:
-            needMap[c] = 1 + needMap.get(c, 0)
-        have = 0
-        # Need here is the total character. We only increment have if total count of a character is meet
-        need = len(needMap)
-        while r < len(s):
-            curr = s[r]
-            # Adding character on right to the hashmap
-            haveMap[curr] = 1 + haveMap.get(curr, 0)
-            # If we meet the total required number of certain character, we increment have
-            if curr in needMap and haveMap[curr] == needMap[curr]:
-                have += 1
-            while have == need:
-                if (r - l + 1) < resLength:
-                    res = [l, r]
-                    resLength = r - l + 1
-                haveMap[s[l]] -= 1
-                # If character of left is in need map and doesn't meet the total occurence then have -1
-                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
-                    have -= 1
-                l += 1
-            r += 1
-        l, r = res
-        return s[l:r+1] if resLength != float("inf") else ""
+from typing import Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
+
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
