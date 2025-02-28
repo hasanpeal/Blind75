@@ -1,25 +1,23 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        count = 0
 
-class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.valid(root, float("-inf"), float("inf"))
-
-    def valid(self, node, left, right):
-        if not node:
-            return True
-        if not (left < node.val < right):
-            return False
-        #                            5
-        #                           / \
-        #        -inf < 3 < 5      3   7     5 < 7 < inf
-        #                             / \
-        #                            4   8
-        # For left child our low bound is alway -inf, upper bound is the parents value
-        # For right child low bound parents value, upper bound is +inf
-        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
+        def dfs(r,c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(r,c)
+                    
+        return count
