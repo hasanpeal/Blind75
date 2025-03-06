@@ -1,31 +1,39 @@
-from typing import List
+from typing import Optional
 
-def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        rows = len(heights)
-        cols = len(heights[0])
-        pac, atl = set(), set()
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Codec:
+    
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
         res = []
-
-        def dfs(r, c, visited, minFlow):
-            if r < 0 or c < 0 or r >= rows or c >= cols or heights[r][c] < minFlow or (r,c) in visited:
+        def preorder(node):
+            if not node:
+                res.append("N")
                 return
-            visited.add((r,c))
-            dfs(r + 1, c, visited, heights[r][c])
-            dfs(r - 1, c, visited, heights[r][c])
-            dfs(r, c + 1, visited, heights[r][c])
-            dfs(r, c - 1, visited, heights[r][c])
+            res.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+        preorder(root)
+        return ",".join(res)
         
-        for c in range(cols):
-            dfs(0, c, pac, heights[0][c])
-            dfs(rows - 1, c, atl, heights[rows - 1][c])
-        
-        for r in range(rows):
-            dfs(r, 0, pac, heights[r][0])
-            dfs(r, cols - 1, atl, heights[r][cols-1])
-        
-        for r in range(rows):
-            for c in range(cols):
-                if (r,c) in pac and (r,c) in atl:
-                    res.append([r,c])
-        
-        return res
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        nodes = data.split(",")
+        index = 0
+        def preorder():
+            nonlocal index
+            if nodes[index] == "N":
+                index += 1
+                return None
+            node = TreeNode(int(nodes[index]))
+            index += 1
+            node.left = preorder()
+            node.right = preorder()
+            return node
+        return preorder()
+            
