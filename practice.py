@@ -1,13 +1,14 @@
-from typing import List
+from typing import Optional
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-def maxProfit(self, prices: List[int]) -> int:
-        pointer1, pointer2, res = 0, 1, 0
-        while(pointer2 < len(prices)):
-            profit = prices[pointer2] - prices[pointer1]
-            res = max(res, profit)
-            if(pointer2 == len(prices) - 1):
-                pointer1 += 1
-                pointer2 = pointer1 + 1
-            else:
-                pointer2 += 1
-        return res
+def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev, curr = None, head
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        return prev
