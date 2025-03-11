@@ -1,22 +1,13 @@
 from typing import List
 
-def search(nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
-        res = -1
-        while l <= r:
-            m = (l+r)//2
-            if nums[m] == target:
-                return m
-            if nums[m] >= nums[l]:
-                if target > nums[m] or target < nums[l]:
-                    l = m + 1
-                else:
-                    r = m - 1
+def maxProfit(self, prices: List[int]) -> int:
+        pointer1, pointer2, res = 0, 1, 0
+        while(pointer2 < len(prices)):
+            profit = prices[pointer2] - prices[pointer1]
+            res = max(res, profit)
+            if(pointer2 == len(prices) - 1):
+                pointer1 += 1
+                pointer2 = pointer1 + 1
             else:
-                if target < nums[m] or target > nums[r]:
-                    r = m - 1
-                else:
-                    l = m + 1
-        return -1
-    
-print(search([3,4,5,6,1,2], 1))
+                pointer2 += 1
+        return res
