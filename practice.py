@@ -7,10 +7,8 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        if not p and not q:
-            return True
-        elif ((p and q) and (p.val == q.val)):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else:
-            return False
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
+        
