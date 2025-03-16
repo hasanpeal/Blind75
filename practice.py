@@ -1,20 +1,11 @@
-from typing import Optional
+from typing import List
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        left = dummy
-        right = head
-        while n > 0 and right:
-            right = right.next
-            n -= 1
-        while right:
-            left = left.next
-            right = right.next
-        left.next = left.next.next
-        return dummy.next
+def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        has = {}
+        for i, v in enumerate(numbers):
+            has[v] = i
+        for i in range(len(numbers)):
+            key = target - numbers[i]
+            if key in has and has.get(key) != i:
+                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
+        
