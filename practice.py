@@ -7,19 +7,10 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.valid(root, float("-inf"), float("inf"))
-
-    def valid(self, node, left, right):
-        if not node:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
             return True
-        if not (left < node.val < right):
+        elif ((p and q) and (p.val == q.val)):
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        else:
             return False
-        #                            5
-        #                           / \
-        #        -inf < 3 < 5      3   7     5 < 7 < inf
-        #                             / \
-        #                            4   8
-        # For left child our low bound is alway -inf, upper bound is the parents value
-        # For right child low bound parents value, upper bound is +inf
-        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
