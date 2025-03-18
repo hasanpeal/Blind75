@@ -1,12 +1,12 @@
-def lengthOfLongestSubstring(s: str) -> int:
+from typing import List
+
+
+class Solution:
+    def hasDuplicate(self, nums: List[int]) -> bool:
         seen = set()
-        left, right, longest = 0, 0, 0
-        while(right < len(s)):
-            if s[right] not in seen:
-                seen.add(s[right])
-                longest = max(longest, len(seen))
-                right += 1
+        for num in nums:
+            if num in seen:
+                return True
             else:
-                seen.remove(s[left])
-                left += 1
-        return longest
+                seen.add(num)
+        return False
