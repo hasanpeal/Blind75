@@ -1,30 +1,21 @@
-from typing import Optional
-from LinkedListCycle import ListNode
+from typing import List
 
-def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
 
 class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        curr = slow.next
-        slow.next = None
-        prev = None
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        slow = head
-        fast = prev
-        while fast:
-            temp1 = slow.next
-            temp2 = fast.next
-            slow.next = fast
-            fast.next = temp1
-            slow = temp1
-            fast = temp2
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [0] * len(nums)
+        left = [0] * len(nums)
+        right = [0] * len(nums)
+
+        left[0] = 1
+        right[len(nums) - 1] = 1
+
+
+        for i in range(1, len(nums)):
+            left[i] = nums[i-1] * left[i-1]
+        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
+            right[i] = nums[i+1] * right[i+1]
+        for i in range(len(nums)):
+            res[i] = left[i] * right[i]
+
+        return res
