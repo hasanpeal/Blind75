@@ -1,23 +1,12 @@
-from typing import Optional
-
-class Node:
-    def __init__(self, val = 0, neighbors = None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
-
-class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
-            
-        oldToNew = {}
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
+def lengthOfLongestSubstring(s: str) -> int:
+        seen = set()
+        left, right, longest = 0, 0, 0
+        while(right < len(s)):
+            if s[right] not in seen:
+                seen.add(s[right])
+                longest = max(longest, len(seen))
+                right += 1
+            else:
+                seen.remove(s[left])
+                left += 1
+        return longest
