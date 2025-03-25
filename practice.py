@@ -1,30 +1,18 @@
-from typing import Optional
-from LinkedListCycle import ListNode
+from collections import defaultdict
+from typing import List
 
-def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
 
 class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        curr = slow.next
-        slow.next = None
-        prev = None
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        slow = head
-        fast = prev
-        while fast:
-            temp1 = slow.next
-            temp2 = fast.next
-            slow.next = fast
-            fast.next = temp1
-            slow = temp1
-            fast = temp2
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # We need this instead of {} because if we directly use res[count].append(s)
+        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
+        # initialize an empty list key first then appends so no key error !!
+        res = defaultdict(list) 
+        for s in strs:
+            count = [0] * 26 # Array of length 26, initialized each index's value to 0
+            for c in s:
+                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
+            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
+            res[tuple(count)].append(s) 
+        return list(res.values()) # map.values() returns group of values in list form
+            
