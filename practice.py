@@ -1,25 +1,19 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.valid(root, float("-inf"), float("inf"))
-
-    def valid(self, node, left, right):
-        if not node:
-            return True
-        if not (left < node.val < right):
-            return False
-        #                            5
-        #                           / \
-        #        -inf < 3 < 5      3   7     5 < 7 < inf
-        #                             / \
-        #                            4   8
-        # For left child our low bound is alway -inf, upper bound is the parents value
-        # For right child low bound parents value, upper bound is +inf
-        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
+def threeSum(nums: List[int]) -> List[List[int]]:
+        res = []
+        has = {}
+        for i, v in enumerate(nums):
+            has[v] = i
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums), 1):
+                key = -nums[i] - nums[j]
+                if key in has and has.get(key) != i and has.get(key) != j:
+                    triplet = [nums[i], nums[j], key]
+                    triplet.sort()
+                    if triplet not in res:
+                        res.append(triplet)
+                        
+        print(has)
+        return res
+print(threeSum([-1,0,1,2,-1,-4]))
