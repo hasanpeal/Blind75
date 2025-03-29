@@ -1,18 +1,27 @@
-from collections import defaultdict
-from typing import List
+import collections
+from typing import List, Optional
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # We need this instead of {} because if we directly use res[count].append(s)
-        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
-        # initialize an empty list key first then appends so no key error !!
-        res = defaultdict(list) 
-        for s in strs:
-            count = [0] * 26 # Array of length 26, initialized each index's value to 0
-            for c in s:
-                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
-            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
-            res[tuple(count)].append(s) 
-        return list(res.values()) # map.values() returns group of values in list form
-            
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        q = collections.deque()
+        q.append(root)
+
+        while q:
+            length = len(q)
+            nodes = []
+            for i in range(length):
+                node = q.popleft()
+                if node:
+                    nodes.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if nodes:
+                res.append(nodes)
+        return res
