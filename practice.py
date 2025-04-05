@@ -1,11 +1,39 @@
-def characterReplacement(self, s: str, k: int) -> int:
-        seen = {}
-        l,r,m = 0, 0, 0
-        while r < len(s):
-            seen[s[r]] = 1 + seen.get(s[r], 0)
-            while ((r - l + 1) - max(seen.values())) > k:
-                seen[s[l]] -= 1
-                l += 1
-            m = max(m, r - l + 1)
-            r += 1
-        return m
+from typing import Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Codec:
+    
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        res = []
+        def preorder(node):
+            if not node:
+                res.append("N")
+                return
+            res.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+        preorder(root)
+        return ",".join(res)
+        
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        nodes = data.split(",")
+        index = 0
+        def preorder():
+            nonlocal index
+            if nodes[index] == "N":
+                index += 1
+                return None
+            node = TreeNode(int(nodes[index]))
+            index += 1
+            node.left = preorder()
+            node.right = preorder()
+            return node
+        return preorder()
+            
