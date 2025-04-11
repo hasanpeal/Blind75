@@ -1,12 +1,19 @@
-from typing import List
+from typing import List, Optional
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def hasDuplicate(self, nums: List[int]) -> bool:
-        seen = set()
-        for num in nums:
-            if num in seen:
-                return True
-            else:
-                seen.add(num)
-        return False
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            return None
+        # Root is always in preorder[0]
+        root = TreeNode(preorder[0])
+        # Finding root in inorder array
+        mid = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        return root
