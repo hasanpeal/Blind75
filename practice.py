@@ -1,22 +1,38 @@
+from collections import defaultdict
 from typing import List
 
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        map = {}
-        for i in range(len(nums)):
-            map[nums[i]] = 1 + map.get(nums[i], 0)
-        # Creating [[],[],[],[]........]
-        # Where each index represent the occurence and each [] holds the values with that occurence
-        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
-        # is the occurence
-        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
-        for key, val in map.items():
-            count[val].append(key)
-        res = []
-        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
-            for n in count[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
-        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
-                
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        # Step 1: Build the adjacency list to represent the graph
+        # The graph is represented as a dictionary where each node maps to a list of its neighbors
+        adj = defaultdict(list)
+        for a, b in edges:
+            # Add both directions for the undirected graph
+            adj[a].append(b)
+            adj[b].append(a)
+        
+        # Step 2: Initialize a set to keep track of visited nodes
+        visited = set()
+
+        # Step 3: Define a DFS function to traverse the graph
+        def dfs(node):
+            # Mark the current node as visited
+            visited.add(node)
+            # Traverse all unvisited neighbors of the current node
+            for nei in adj[node]:
+                if nei not in visited:
+                    dfs(nei)
+        
+        # Step 4: Initialize a counter for the number of connected components
+        count = 0
+        
+        # Step 5: Iterate through all nodes
+        for i in range(n):
+            # If a node is not visited, it's part of a new connected component
+            if i not in visited:
+                count += 1  # Increment the count for a new component
+                # Perform DFS to mark all nodes in this component as visited
+                dfs(i)
+        
+        # Step 6: Return the total number of connected components
+        return count
