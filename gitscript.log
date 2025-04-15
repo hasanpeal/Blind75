@@ -77,3 +77,6 @@
 2025-04-15 11:08:58,249 - INFO - Git operations completed successfully
 2025-04-15 11:08:58,249 - INFO - Selected file: .gitignore at 2025-04-15 11:08:58
 2025-04-15 11:08:58,249 - INFO - Successfully copied content from .gitignore to practice.py
+2025-04-15 11:08:58,901 - INFO - Git operations completed successfully
+2025-04-15 11:08:58,901 - INFO - Selected file: MergeK-SortedLinkedList.py at 2025-04-15 11:08:58
+2025-04-15 11:08:58,902 - INFO - Successfully copied content from MergeK-SortedLinkedList.py to practice.py
