@@ -1,26 +1,11 @@
-from typing import Optional
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        res = float("-inf")
-        def postorder(root):
-            # Use nonlocal to access global variable res
-            nonlocal res
-            if not root:
-                return 0
-            # Max in left sub tree, if negative then 0
-            leftMax = max(postorder(root.left), 0)
-            # Max in right sub tree, if negative then 0
-            rightMax = max(postorder(root.right), 0)
-            # Adjacent node check if max then update global res
-            res = max(res, root.val + leftMax + rightMax)
-            # Pass single path max sum for each recursive call
-            return root.val + max(leftMax, rightMax)
-        postorder(root)
-        return res
+def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l,r,m = 0, 0, 0
+        while r < len(s):
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            while ((r - l + 1) - max(seen.values())) > k:
+                seen[s[l]] -= 1
+                l += 1
+            m = max(m, r - l + 1)
+            r += 1
+        return m
