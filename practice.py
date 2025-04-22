@@ -1,25 +1,20 @@
-from typing import List
+from typing import Optional
 
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
-                    return False
-            visited.remove(c)
-            preq[c] = []
-            return True
-        
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
+        while n > 0 and right:
+            right = right.next
+            n -= 1
+        while right:
+            left = left.next
+            right = right.next
+        left.next = left.next.next
+        return dummy.next
