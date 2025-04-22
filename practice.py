@@ -1,19 +1,31 @@
 from typing import List
 
-def threeSum(nums: List[int]) -> List[List[int]]:
-        res = []
-        has = {}
-        for i, v in enumerate(nums):
-            has[v] = i
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums), 1):
-                key = -nums[i] - nums[j]
-                if key in has and has.get(key) != i and has.get(key) != j:
-                    triplet = [nums[i], nums[j], key]
-                    triplet.sort()
-                    if triplet not in res:
-                        res.append(triplet)
-                        
-        print(has)
-        return res
-print(threeSum([-1,0,1,2,-1,-4]))
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
+
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
+
+isValidSudoku(board)
