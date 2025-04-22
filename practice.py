@@ -1,30 +1,31 @@
-from typing import Optional
-from LinkedListCycle import ListNode
+from typing import List
 
-def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
 
-class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        curr = slow.next
-        slow.next = None
-        prev = None
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        slow = head
-        fast = prev
-        while fast:
-            temp1 = slow.next
-            temp2 = fast.next
-            slow.next = fast
-            fast.next = temp1
-            slow = temp1
-            fast = temp2
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
+
+isValidSudoku(board)
