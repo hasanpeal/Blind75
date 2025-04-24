@@ -1,28 +1,25 @@
-import heapq
+from typing import Optional
 
-class MedianFinder:
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-    def __init__(self):
-        # Store approximate equal values in 2 heap for accessing max and min in O(1)
-        self.maxHeap, self.minHeap =[], []
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
 
-    def addNum(self, num: int) -> None:
-        heapq.heappush(self.maxHeap, -1 * num)
-        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
-        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
-        if len(self.maxHeap) > len(self.minHeap) + 1:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > len(self.maxHeap) + 1:
-            val = 1 * heapq.heappop(self.minHeap)
-            heapq.heappush(self.maxHeap, -1 * val)
-
-    def findMedian(self) -> float:
-        if len(self.maxHeap) > len(self.minHeap):
-            return -1 * self.maxHeap[0]
-        if len(self.minHeap) > len(self.maxHeap):
-            return self.minHeap[0]
-        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
