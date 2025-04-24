@@ -1,28 +1,31 @@
-import heapq
+from typing import List
 
-class MedianFinder:
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
 
-    def __init__(self):
-        # Store approximate equal values in 2 heap for accessing max and min in O(1)
-        self.maxHeap, self.minHeap =[], []
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
 
-    def addNum(self, num: int) -> None:
-        heapq.heappush(self.maxHeap, -1 * num)
-        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
-        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
-        if len(self.maxHeap) > len(self.minHeap) + 1:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > len(self.maxHeap) + 1:
-            val = 1 * heapq.heappop(self.minHeap)
-            heapq.heappush(self.maxHeap, -1 * val)
-
-    def findMedian(self) -> float:
-        if len(self.maxHeap) > len(self.minHeap):
-            return -1 * self.maxHeap[0]
-        if len(self.minHeap) > len(self.maxHeap):
-            return self.minHeap[0]
-        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
+isValidSudoku(board)
