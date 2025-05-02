@@ -1,18 +1,12 @@
-from typing import Optional
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        slow = head
-        fast = head.next
-
-        while fast and fast.next:
-            if slow == fast:
-                return True
-            slow = slow.next
-            fast = fast.next.next
-        return False
+def lengthOfLongestSubstring(s: str) -> int:
+        seen = set()
+        left, right, longest = 0, 0, 0
+        while(right < len(s)):
+            if s[right] not in seen:
+                seen.add(s[right])
+                longest = max(longest, len(seen))
+                right += 1
+            else:
+                seen.remove(s[left])
+                left += 1
+        return longest
