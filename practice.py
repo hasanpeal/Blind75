@@ -1,20 +1,14 @@
-from typing import List
+from typing import Optional
 
-def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
             return 0
-        res = 1
-        has = set()
-        for num in nums:
-            has.add(num)
-        for i in range(len(nums)):
-            curr = nums[i]
-            longest = 1
-            if curr - 1 in has:
-                continue
-            while curr + 1 in has:
-                curr += 1
-                longest += 1
-            res = max(res, longest)
-        return res
-            
+        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
+        
