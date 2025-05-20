@@ -1,21 +1,25 @@
-from typing import List
+from typing import Optional
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [0] * len(nums)
-        left = [0] * len(nums)
-        right = [0] * len(nums)
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
 
-        left[0] = 1
-        right[len(nums) - 1] = 1
-
-
-        for i in range(1, len(nums)):
-            left[i] = nums[i-1] * left[i-1]
-        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
-            right[i] = nums[i+1] * right[i+1]
-        for i in range(len(nums)):
-            res[i] = left[i] * right[i]
-
-        return res
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
