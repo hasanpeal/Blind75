@@ -1,21 +1,19 @@
 from typing import List
 
-
-class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [0] * len(nums)
-        left = [0] * len(nums)
-        right = [0] * len(nums)
-
-        left[0] = 1
-        right[len(nums) - 1] = 1
-
-
-        for i in range(1, len(nums)):
-            left[i] = nums[i-1] * left[i-1]
-        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
-            right[i] = nums[i+1] * right[i+1]
+def threeSum(nums: List[int]) -> List[List[int]]:
+        res = []
+        has = {}
+        for i, v in enumerate(nums):
+            has[v] = i
         for i in range(len(nums)):
-            res[i] = left[i] * right[i]
-
+            for j in range(i + 1, len(nums), 1):
+                key = -nums[i] - nums[j]
+                if key in has and has.get(key) != i and has.get(key) != j:
+                    triplet = [nums[i], nums[j], key]
+                    triplet.sort()
+                    if triplet not in res:
+                        res.append(triplet)
+                        
+        print(has)
         return res
+print(threeSum([-1,0,1,2,-1,-4]))
