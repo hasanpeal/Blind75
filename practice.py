@@ -1,14 +1,21 @@
 from typing import List
 
-def maxArea(self, heights: List[int]) -> int:
-        left, right = 0, len(heights) - 1
-        maximum = 0
 
-        while (left < right):
-            currMax = (right - left) * min(heights[left], heights[right])
-            maximum = max(currMax, maximum)
-            if(heights[left] <= heights[right]):
-                left += 1
-            else:
-                right -= 1
-        return maximum
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [0] * len(nums)
+        left = [0] * len(nums)
+        right = [0] * len(nums)
+
+        left[0] = 1
+        right[len(nums) - 1] = 1
+
+
+        for i in range(1, len(nums)):
+            left[i] = nums[i-1] * left[i-1]
+        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
+            right[i] = nums[i+1] * right[i+1]
+        for i in range(len(nums)):
+            res[i] = left[i] * right[i]
+
+        return res
