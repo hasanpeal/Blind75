@@ -1,25 +1,23 @@
 from typing import List
 
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
+def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        count = 0
 
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
-                    return False
-            visited.remove(c)
-            preq[c] = []
-            return True
+        def dfs(r,c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
         
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(r,c)
+                    
+        return count
