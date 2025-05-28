@@ -9,4 +9,5 @@ class Solution:
                 return True
             else:
                 seen.add(num)
+                
         return False
