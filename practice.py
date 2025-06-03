@@ -1,31 +1,23 @@
 from typing import List
 
-def isValidSudoku(board: List[List[str]]) -> bool:
-        seen = set()
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                curr = board[i][j]
-                if curr != ".":
-                    row = f"{curr} in row {i}"
-                    col = f"{curr} in col {j}"
-                    box = f"{curr} in box {(i//3 * 3) + j//3}"
-                    print(box)
-                    if row in seen or col in seen or box in seen:
-                        return False
-                    else:
-                        seen.add(row)
-                        seen.add(col)
-                        seen.add(box)
-        return True
+def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        count = 0
 
-board = [["1","2",".",".","3",".",".",".","."],
-        ["4",".",".","5",".",".",".",".","."],
-        [".","9","8",".",".",".",".",".","3"],
-        ["5",".",".",".","6",".",".",".","4"],
-        [".",".",".","8",".","3",".",".","5"],
-        ["7",".",".",".","2",".",".",".","6"],
-        [".",".",".",".",".",".","2",".","."],
-        [".",".",".","4","1","9",".",".","8"],
-        [".",".",".",".","8",".",".","7","9"]]
-
-isValidSudoku(board)
+        def dfs(r,c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(r,c)
+                    
+        return count
