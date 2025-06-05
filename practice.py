@@ -1,20 +1,20 @@
-from typing import Optional
+from typing import List
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        left = dummy
-        right = head
-        while n > 0 and right:
-            right = right.next
-            n -= 1
-        while right:
-            left = left.next
-            right = right.next
-        left.next = left.next.next
-        return dummy.next
+def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        res = 1
+        has = set()
+        for num in nums:
+            has.add(num)
+        for i in range(len(nums)):
+            curr = nums[i]
+            longest = 1
+            if curr - 1 in has:
+                continue
+            while curr + 1 in has:
+                curr += 1
+                longest += 1
+            res = max(res, longest)
+        return res
+            
