@@ -1,27 +1,11 @@
-import collections
-from typing import List, Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        res = []
-        q = collections.deque()
-        q.append(root)
-
-        while q:
-            length = len(q)
-            nodes = []
-            for i in range(length):
-                node = q.popleft()
-                if node:
-                    nodes.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if nodes:
-                res.append(nodes)
-        return res
+def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        has = {}
+        for i, v in enumerate(numbers):
+            has[v] = i
+        for i in range(len(numbers)):
+            key = target - numbers[i]
+            if key in has and has.get(key) != i:
+                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
+        
