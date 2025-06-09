@@ -1,3 +1,5 @@
+from typing import Optional
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -5,14 +7,14 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
-            else:
-                return curr
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        nodes = []
+        # Inorder traversal sorted the BST
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            nodes.append(node.val)
+            dfs(node.right)
+        dfs(root)
+        return nodes[k - 1]
