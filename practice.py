@@ -1,30 +1,13 @@
-from typing import Optional
-from LinkedListCycle import ListNode
-
-def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        curr = slow.next
-        slow.next = None
-        prev = None
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        slow = head
-        fast = prev
-        while fast:
-            temp1 = slow.next
-            temp2 = fast.next
-            slow.next = fast
-            fast.next = temp1
-            slow = temp1
-            fast = temp2
+def isValid(self, s: str) -> bool:
+        stack = []
+        close = { ')':'(', '}':'{', ']':'['}
+        for c in s:
+            if c in close:
+                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
+                if stack and stack[-1] == close[c]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(c)
+        return True if not stack else False
