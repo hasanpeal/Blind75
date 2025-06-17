@@ -9,6 +9,9 @@ class TreeNode:
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         if not preorder or not inorder:
+            
+            
+            
             return None
         # Root is always in preorder[0]
         root = TreeNode(preorder[0])
