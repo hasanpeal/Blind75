@@ -1,31 +1,22 @@
 from typing import List
 
-def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        rows = len(heights)
-        cols = len(heights[0])
-        pac, atl = set(), set()
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        map = {}
+        for i in range(len(nums)):
+            map[nums[i]] = 1 + map.get(nums[i], 0)
+        # Creating [[],[],[],[]........]
+        # Where each index represent the occurence and each [] holds the values with that occurence
+        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
+        # is the occurence
+        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
+        for key, val in map.items():
+            count[val].append(key)
         res = []
-
-        def dfs(r, c, visited, minFlow):
-            if r < 0 or c < 0 or r >= rows or c >= cols or heights[r][c] < minFlow or (r,c) in visited:
-                return
-            visited.add((r,c))
-            dfs(r + 1, c, visited, heights[r][c])
-            dfs(r - 1, c, visited, heights[r][c])
-            dfs(r, c + 1, visited, heights[r][c])
-            dfs(r, c - 1, visited, heights[r][c])
-        
-        for c in range(cols):
-            dfs(0, c, pac, heights[0][c])
-            dfs(rows - 1, c, atl, heights[rows - 1][c])
-        
-        for r in range(rows):
-            dfs(r, 0, pac, heights[r][0])
-            dfs(r, cols - 1, atl, heights[r][cols-1])
-        
-        for r in range(rows):
-            for c in range(cols):
-                if (r,c) in pac and (r,c) in atl:
-                    res.append([r,c])
-        
-        return res
+        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
+            for n in count[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
+                
