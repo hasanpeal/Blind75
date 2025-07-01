@@ -1,22 +1,30 @@
-from typing import List
-
-def search(nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
-        res = -1
-        while l <= r:
-            m = (l+r)//2
-            if nums[m] == target:
-                return m
-            if nums[m] >= nums[l]:
-                if target > nums[m] or target < nums[l]:
-                    l = m + 1
-                else:
-                    r = m - 1
-            else:
-                if target < nums[m] or target > nums[r]:
-                    r = m - 1
-                else:
-                    l = m + 1
-        return -1
-    
-print(search([3,4,5,6,1,2], 1))
+def minWindow(self, s: str, t: str) -> str:
+        if t == "":
+            return ""
+        haveMap, needMap = {}, {}
+        # res stores the indices of l, f for substring
+        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
+        for c in t:
+            needMap[c] = 1 + needMap.get(c, 0)
+        have = 0
+        # Need here is the total character. We only increment have if total count of a character is meet
+        need = len(needMap)
+        while r < len(s):
+            curr = s[r]
+            # Adding character on right to the hashmap
+            haveMap[curr] = 1 + haveMap.get(curr, 0)
+            # If we meet the total required number of certain character, we increment have
+            if curr in needMap and haveMap[curr] == needMap[curr]:
+                have += 1
+            while have == need:
+                if (r - l + 1) < resLength:
+                    res = [l, r]
+                    resLength = r - l + 1
+                haveMap[s[l]] -= 1
+                # If character of left is in need map and doesn't meet the total occurence then have -1
+                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
+                    have -= 1
+                l += 1
+            r += 1
+        l, r = res
+        return s[l:r+1] if resLength != float("inf") else ""
