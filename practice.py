@@ -1,28 +1,52 @@
-import heapq
+from collections import defaultdict
+from typing import List
 
-class MedianFinder:
+def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        # Step 1: Handle edge cases
+        # If there are no nodes, the graph is trivially a valid tree
+        if not n:
+            return True
 
-    def __init__(self):
-        # Store approximate equal values in 2 heap for accessing max and min in O(1)
-        self.maxHeap, self.minHeap =[], []
+        # If there are more edges than (n - 1), the graph cannot be a tree
+        # A valid tree with n nodes must have exactly (n - 1) edges
+        if len(edges) > (n - 1):
+            return False
 
-    def addNum(self, num: int) -> None:
-        heapq.heappush(self.maxHeap, -1 * num)
-        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
-        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
-        if len(self.maxHeap) > len(self.minHeap) + 1:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > len(self.maxHeap) + 1:
-            val = 1 * heapq.heappop(self.minHeap)
-            heapq.heappush(self.maxHeap, -1 * val)
+        # Step 2: Build the adjacency list to represent the graph
+        # This is a defaultdict of lists where each node points to its neighbors
+        adj = defaultdict(list)
+        for a, b in edges:
+            # Add both directions for an undirected graph
+            adj[a].append(b)
+            adj[b].append(a)
 
-    def findMedian(self) -> float:
-        if len(self.maxHeap) > len(self.minHeap):
-            return -1 * self.maxHeap[0]
-        if len(self.minHeap) > len(self.maxHeap):
-            return self.minHeap[0]
-        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
+        # Step 3: Initialize a set to track visited nodes
+        visited = set()
+
+        # Step 4: Define a recursive DFS function to detect cycles and ensure connectivity
+        def dfs(node, prevNode):
+            # If the current node has already been visited, a cycle is detected
+            if node in visited:
+                return False
+            
+            # Mark the current node as visited
+            visited.add(node)
+
+            # Explore all the neighbors of the current node
+            for nei in adj[node]:
+                # Skip the neighbor that is the previous node (parent) in the DFS traversal
+                if nei == prevNode:
+                    continue
+
+                # If the neighbor cannot be processed without a cycle, return False
+                if not dfs(nei, node):
+                    return False
+
+            # If all neighbors are processed without detecting a cycle, return True
+            return True
+
+        # Step 5: Start DFS from node 0 and ensure the graph is connected and acyclic
+        # The graph is valid if:
+        # 1. DFS traversal from node 0 completes without detecting a cycle
+        # 2. All nodes are visited (ensuring connectivity)
+        return dfs(0, -1) and len(visited) == n
