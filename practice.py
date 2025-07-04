@@ -1,14 +1,18 @@
 from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.next = next
 
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
-        
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
