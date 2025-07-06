@@ -1,30 +1,30 @@
-from typing import List
-
-
-class Solution:
-
-    def encode(self, strs: List[str]) -> str:
-        res = ""
-        # Numerical length + '#' + string itself
-        for s in strs:
-            res += str(len(s)) + '#' + s
-        return res
-
-    # Ex. 3#abc4#abcd
-    def decode(self, s: str) -> List[str]:
-        res = []
-        i = 0
-        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
-        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
-        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
-        while i < len(s):
-            j = i
-            while s[j] != '#':
-                j += 1
-            length = int(s[i:j])
-            i = j + 1
-            j = i + length
-            res.append(s[i:j])
-            i = j
-        return res
-    print(decode(s='3#abc4#abcd'))
+def minWindow(self, s: str, t: str) -> str:
+        if t == "":
+            return ""
+        haveMap, needMap = {}, {}
+        # res stores the indices of l, f for substring
+        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
+        for c in t:
+            needMap[c] = 1 + needMap.get(c, 0)
+        have = 0
+        # Need here is the total character. We only increment have if total count of a character is meet
+        need = len(needMap)
+        while r < len(s):
+            curr = s[r]
+            # Adding character on right to the hashmap
+            haveMap[curr] = 1 + haveMap.get(curr, 0)
+            # If we meet the total required number of certain character, we increment have
+            if curr in needMap and haveMap[curr] == needMap[curr]:
+                have += 1
+            while have == need:
+                if (r - l + 1) < resLength:
+                    res = [l, r]
+                    resLength = r - l + 1
+                haveMap[s[l]] -= 1
+                # If character of left is in need map and doesn't meet the total occurence then have -1
+                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
+                    have -= 1
+                l += 1
+            r += 1
+        l, r = res
+        return s[l:r+1] if resLength != float("inf") else ""
