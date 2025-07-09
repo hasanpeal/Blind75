@@ -1,13 +1,21 @@
-def isValid(self, s: str) -> bool:
-        stack = []
-        close = { ')':'(', '}':'{', ']':'['}
-        for c in s:
-            if c in close:
-                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
-                if stack and stack[-1] == close[c]:
-                    stack.pop()
-                else:
-                    return False
-            else:
-                stack.append(c)
-        return True if not stack else False
+from typing import List
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [0] * len(nums)
+        left = [0] * len(nums)
+        right = [0] * len(nums)
+
+        left[0] = 1
+        right[len(nums) - 1] = 1
+
+
+        for i in range(1, len(nums)):
+            left[i] = nums[i-1] * left[i-1]
+        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
+            right[i] = nums[i+1] * right[i+1]
+        for i in range(len(nums)):
+            res[i] = left[i] * right[i]
+
+        return res
