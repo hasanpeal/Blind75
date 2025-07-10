@@ -1,13 +1,21 @@
-def isValid(self, s: str) -> bool:
-        stack = []
-        close = { ')':'(', '}':'{', ']':'['}
-        for c in s:
-            if c in close:
-                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
-                if stack and stack[-1] == close[c]:
-                    stack.pop()
-                else:
-                    return False
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        curr = dummy
+        while list1 and list2:
+            if list1.val < list2.val:
+                curr.next = list1
+                list1 = list1.next
             else:
-                stack.append(c)
-        return True if not stack else False
+                curr.next = list2
+                list2 = list2.next
+            curr = curr.next
+        curr.next = list1 or list2
+        return dummy.next
