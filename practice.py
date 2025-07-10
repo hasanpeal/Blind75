@@ -1,16 +1,33 @@
-from typing import Optional
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+class PrefixTree:
+    def __init__(self):
+        self.root = TrieNode()
 
-class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        if not p and not q:
-            return True
-        elif ((p and q) and (p.val == q.val)):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else:
-            return False
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+        curr.endOfWord = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return curr.endOfWord
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for char in prefix:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return True
+        
