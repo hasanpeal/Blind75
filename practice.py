@@ -1,25 +1,28 @@
-from typing import List
+import heapq
 
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
+class MedianFinder:
 
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
-                    return False
-            visited.remove(c)
-            preq[c] = []
-            return True
-        
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+    def __init__(self):
+        # Store approximate equal values in 2 heap for accessing max and min in O(1)
+        self.maxHeap, self.minHeap =[], []
+
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.maxHeap, -1 * num)
+        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
+        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
+            val = -1 * heapq.heappop(self.maxHeap)
+            heapq.heappush(self.minHeap, val)
+        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
+        if len(self.maxHeap) > len(self.minHeap) + 1:
+            val = -1 * heapq.heappop(self.maxHeap)
+            heapq.heappush(self.minHeap, val)
+        if len(self.minHeap) > len(self.maxHeap) + 1:
+            val = 1 * heapq.heappop(self.minHeap)
+            heapq.heappush(self.maxHeap, -1 * val)
+
+    def findMedian(self) -> float:
+        if len(self.maxHeap) > len(self.minHeap):
+            return -1 * self.maxHeap[0]
+        if len(self.minHeap) > len(self.maxHeap):
+            return self.minHeap[0]
+        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
