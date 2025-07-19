@@ -1,39 +1,25 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        preq = {i : [] for i in range(numCourses)}
+        for c, p in prerequisites:
+            preq[c].append(p)
+        visited = set()
 
-class Codec:
-    
-    # Encodes a tree to a single string.
-    def serialize(self, root: Optional[TreeNode]) -> str:
-        res = []
-        def preorder(node):
-            if not node:
-                res.append("N")
-                return
-            res.append(str(node.val))
-            preorder(node.left)
-            preorder(node.right)
-        preorder(root)
-        return ",".join(res)
+        def dfsCycleDetect(c):
+            if c in visited:
+                return False
+            if preq[c] == []:
+                return True
+            visited.add(c)
+            for pre in preq[c]:
+                if not dfsCycleDetect(pre):
+                    return False
+            visited.remove(c)
+            preq[c] = []
+            return True
         
-    # Decodes your encoded data to tree.
-    def deserialize(self, data: str) -> Optional[TreeNode]:
-        nodes = data.split(",")
-        index = 0
-        def preorder():
-            nonlocal index
-            if nodes[index] == "N":
-                index += 1
-                return None
-            node = TreeNode(int(nodes[index]))
-            index += 1
-            node.left = preorder()
-            node.right = preorder()
-            return node
-        return preorder()
-            
+        for p in range(numCourses):
+            if not dfsCycleDetect(p):
+                return False
+        return True
