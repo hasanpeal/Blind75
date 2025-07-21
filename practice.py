@@ -1,18 +1,13 @@
-from typing import Optional
+from typing import List
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
 
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        slow = head
-        fast = head.next
-
-        while fast and fast.next:
-            if slow == fast:
-                return True
-            slow = slow.next
-            fast = fast.next.next
-        return False
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        has = {}
+        for i in range(len(nums)):
+            has[nums[i]] = i
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in has and has.get(diff) != i:
+                return [i, has.get(diff)]
+        return []
