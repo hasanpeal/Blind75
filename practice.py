@@ -1,25 +1,19 @@
 from typing import List
 
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
-
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
-                    return False
-            visited.remove(c)
-            preq[c] = []
-            return True
-        
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+def threeSum(nums: List[int]) -> List[List[int]]:
+        res = []
+        has = {}
+        for i, v in enumerate(nums):
+            has[v] = i
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums), 1):
+                key = -nums[i] - nums[j]
+                if key in has and has.get(key) != i and has.get(key) != j:
+                    triplet = [nums[i], nums[j], key]
+                    triplet.sort()
+                    if triplet not in res:
+                        res.append(triplet)
+                        
+        print(has)
+        return res
+print(threeSum([-1,0,1,2,-1,-4]))
