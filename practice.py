@@ -1,11 +1,21 @@
 from typing import List
 
-def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        has = {}
-        for i, v in enumerate(numbers):
-            has[v] = i
-        for i in range(len(numbers)):
-            key = target - numbers[i]
-            if key in has and has.get(key) != i:
-                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
-        
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [0] * len(nums)
+        left = [0] * len(nums)
+        right = [0] * len(nums)
+
+        left[0] = 1
+        right[len(nums) - 1] = 1
+
+
+        for i in range(1, len(nums)):
+            left[i] = nums[i-1] * left[i-1]
+        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
+            right[i] = nums[i+1] * right[i+1]
+        for i in range(len(nums)):
+            res[i] = left[i] * right[i]
+
+        return res
