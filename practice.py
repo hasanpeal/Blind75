@@ -1,21 +1,18 @@
-from typing import Optional
-
-class ListNode:
-    def __init__(self, val=0, next=None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.next = next
+        self.left = left
+        self.right = right
 
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()
-        curr = dummy
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        curr = root
+        while curr:
+            if p.val < curr.val and q.val < curr.val:
+                curr = curr.left
+            elif p.val > curr.val and q.val > curr.val:
+                curr = curr.right
             else:
-                curr.next = list2
-                list2 = list2.next
-            curr = curr.next
-        curr.next = list1 or list2
-        return dummy.next
+                return curr
