@@ -1,21 +1,16 @@
 from typing import List
 
-
-class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [0] * len(nums)
-        left = [0] * len(nums)
-        right = [0] * len(nums)
-
-        left[0] = 1
-        right[len(nums) - 1] = 1
-
-
-        for i in range(1, len(nums)):
-            left[i] = nums[i-1] * left[i-1]
-        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
-            right[i] = nums[i+1] * right[i+1]
-        for i in range(len(nums)):
-            res[i] = left[i] * right[i]
-
+def findMin(self, nums: List[int]) -> int:
+        l, r, res = 0, len(nums) - 1, nums[0]
+        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
+            else:
+                r = m - 1
         return res
