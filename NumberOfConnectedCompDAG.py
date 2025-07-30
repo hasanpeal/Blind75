@@ -33,6 +33,8 @@ class Solution:
                 count += 1  # Increment the count for a new component
                 # Perform DFS to mark all nodes in this component as visited
                 dfs(i)
+                
+                
         
         # Step 6: Return the total number of connected components
         return count
