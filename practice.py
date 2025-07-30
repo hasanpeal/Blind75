@@ -1,16 +1,23 @@
-from typing import List
+from typing import Optional
 
-def findMin(self, nums: List[int]) -> int:
-        l, r, res = 0, len(nums) - 1, nums[0]
-        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
-        while l <= r:
-            if nums[l] < nums[r]:
-                res = min(res, nums[l])
-                break
-            m = (l + r) // 2
-            res = min(res, nums[m])
-            if nums[m] >= nums[l]:
-                l = m + 1
-            else:
-                r = m - 1
-        return res
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:   
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        if not subRoot or self.isSameTree(root, subRoot):
+            return True
+        if not root:
+            return False
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+         
+    def isSameTree(self, p, q):
+        if not p and not q:
+            return True
+        elif (p and q) and (p.val == q.val):
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        else:
+            return False
