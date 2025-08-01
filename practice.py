@@ -1,18 +1,14 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from typing import List
 
-class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
+def maxArea(self, heights: List[int]) -> int:
+        left, right = 0, len(heights) - 1
+        maximum = 0
+
+        while (left < right):
+            currMax = (right - left) * min(heights[left], heights[right])
+            maximum = max(currMax, maximum)
+            if(heights[left] <= heights[right]):
+                left += 1
             else:
-                return curr
+                right -= 1
+        return maximum
