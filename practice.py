@@ -1,14 +1,18 @@
-from typing import List
+from typing import Optional
 
-def maxArea(self, heights: List[int]) -> int:
-        left, right = 0, len(heights) - 1
-        maximum = 0
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-        while (left < right):
-            currMax = (right - left) * min(heights[left], heights[right])
-            maximum = max(currMax, maximum)
-            if(heights[left] <= heights[right]):
-                left += 1
-            else:
-                right -= 1
-        return maximum
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
