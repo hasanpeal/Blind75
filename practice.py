@@ -1,23 +1,18 @@
-from typing import Optional
-
-class Node:
-    def __init__(self, val = 0, neighbors = None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+        self.left = left
+        self.right = right
 
 class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        if not root:
             return None
-            
-        oldToNew = {}
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
+        curr = root
+        while curr:
+            if p.val < curr.val and q.val < curr.val:
+                curr = curr.left
+            elif p.val > curr.val and q.val > curr.val:
+                curr = curr.right
+            else:
+                return curr
