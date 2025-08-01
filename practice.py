@@ -1,18 +1,22 @@
-from typing import Optional
+from typing import List
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        slow = head
-        fast = head.next
-
-        while fast and fast.next:
-            if slow == fast:
-                return True
-            slow = slow.next
-            fast = fast.next.next
-        return False
+def search(nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        res = -1
+        while l <= r:
+            m = (l+r)//2
+            if nums[m] == target:
+                return m
+            if nums[m] >= nums[l]:
+                if target > nums[m] or target < nums[l]:
+                    l = m + 1
+                else:
+                    r = m - 1
+            else:
+                if target < nums[m] or target > nums[r]:
+                    r = m - 1
+                else:
+                    l = m + 1
+        return -1
+    
+print(search([3,4,5,6,1,2], 1))
