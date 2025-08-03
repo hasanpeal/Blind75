@@ -1,12 +1,23 @@
+from typing import Optional
+
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
-        mapS = {}
-        mapT = {}
-        for i in range(len(s)):
-            mapS[s[i]] = 1 + mapS.get(s[i], 0)
-            mapT[t[i]] = 1 + mapT.get(t[i], 0)
-        return mapS == mapT
-        
-        
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
+            
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
