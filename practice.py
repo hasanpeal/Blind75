@@ -1,20 +1,11 @@
-from typing import List
-
-def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
-        res = 1
-        has = set()
-        for num in nums:
-            has.add(num)
-        for i in range(len(nums)):
-            curr = nums[i]
-            longest = 1
-            if curr - 1 in has:
-                continue
-            while curr + 1 in has:
-                curr += 1
-                longest += 1
-            res = max(res, longest)
-        return res
-            
+def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l,r,m = 0, 0, 0
+        while r < len(s):
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            while ((r - l + 1) - max(seen.values())) > k:
+                seen[s[l]] -= 1
+                l += 1
+            m = max(m, r - l + 1)
+            r += 1
+        return m
