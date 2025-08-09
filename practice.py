@@ -1,18 +1,19 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from typing import List
 
-class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
-            else:
-                return curr
+def threeSum(nums: List[int]) -> List[List[int]]:
+        res = []
+        has = {}
+        for i, v in enumerate(nums):
+            has[v] = i
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums), 1):
+                key = -nums[i] - nums[j]
+                if key in has and has.get(key) != i and has.get(key) != j:
+                    triplet = [nums[i], nums[j], key]
+                    triplet.sort()
+                    if triplet not in res:
+                        res.append(triplet)
+                        
+        print(has)
+        return res
+print(threeSum([-1,0,1,2,-1,-4]))
