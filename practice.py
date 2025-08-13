@@ -1,27 +1,23 @@
-import collections
-from typing import List, Optional
+from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class Node:
+    def __init__(self, val = 0, neighbors = None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.neighbors = neighbors if neighbors is not None else []
 
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        res = []
-        q = collections.deque()
-        q.append(root)
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
+            
+        oldToNew = {}
 
-        while q:
-            length = len(q)
-            nodes = []
-            for i in range(length):
-                node = q.popleft()
-                if node:
-                    nodes.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if nodes:
-                res.append(nodes)
-        return res
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
