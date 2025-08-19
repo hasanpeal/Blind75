@@ -1,14 +1,23 @@
 from typing import List
 
-def maxArea(self, heights: List[int]) -> int:
-        left, right = 0, len(heights) - 1
-        maximum = 0
+def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        count = 0
 
-        while (left < right):
-            currMax = (right - left) * min(heights[left], heights[right])
-            maximum = max(currMax, maximum)
-            if(heights[left] <= heights[right]):
-                left += 1
-            else:
-                right -= 1
-        return maximum
+        def dfs(r,c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(r,c)
+                    
+        return count
