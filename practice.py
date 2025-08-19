@@ -1,12 +1,14 @@
-def lengthOfLongestSubstring(s: str) -> int:
-        seen = set()
-        left, right, longest = 0, 0, 0
-        while(right < len(s)):
-            if s[right] not in seen:
-                seen.add(s[right])
-                longest = max(longest, len(seen))
-                right += 1
-            else:
-                seen.remove(s[left])
+from typing import List
+
+def maxArea(self, heights: List[int]) -> int:
+        left, right = 0, len(heights) - 1
+        maximum = 0
+
+        while (left < right):
+            currMax = (right - left) * min(heights[left], heights[right])
+            maximum = max(currMax, maximum)
+            if(heights[left] <= heights[right]):
                 left += 1
-        return longest
+            else:
+                right -= 1
+        return maximum
