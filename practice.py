@@ -1,26 +1,14 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+def maxArea(self, heights: List[int]) -> int:
+        left, right = 0, len(heights) - 1
+        maximum = 0
 
-class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        res = float("-inf")
-        def postorder(root):
-            # Use nonlocal to access global variable res
-            nonlocal res
-            if not root:
-                return 0
-            # Max in left sub tree, if negative then 0
-            leftMax = max(postorder(root.left), 0)
-            # Max in right sub tree, if negative then 0
-            rightMax = max(postorder(root.right), 0)
-            # Adjacent node check if max then update global res
-            res = max(res, root.val + leftMax + rightMax)
-            # Pass single path max sum for each recursive call
-            return root.val + max(leftMax, rightMax)
-        postorder(root)
-        return res
+        while (left < right):
+            currMax = (right - left) * min(heights[left], heights[right])
+            maximum = max(currMax, maximum)
+            if(heights[left] <= heights[right]):
+                left += 1
+            else:
+                right -= 1
+        return maximum
