@@ -1,12 +1,16 @@
-def lengthOfLongestSubstring(s: str) -> int:
-        seen = set()
-        left, right, longest = 0, 0, 0
-        while(right < len(s)):
-            if s[right] not in seen:
-                seen.add(s[right])
-                longest = max(longest, len(seen))
-                right += 1
-            else:
-                seen.remove(s[left])
-                left += 1
-        return longest
+from typing import Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        elif ((p and q) and (p.val == q.val)):
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        else:
+            return False
