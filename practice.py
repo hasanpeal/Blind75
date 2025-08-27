@@ -1,13 +1,25 @@
 from typing import List
 
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        preq = {i : [] for i in range(numCourses)}
+        for c, p in prerequisites:
+            preq[c].append(p)
+        visited = set()
 
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        has = {}
-        for i in range(len(nums)):
-            has[nums[i]] = i
-        for i in range(len(nums)):
-            diff = target - nums[i]
-            if diff in has and has.get(diff) != i:
-                return [i, has.get(diff)]
-        return []
+        def dfsCycleDetect(c):
+            if c in visited:
+                return False
+            if preq[c] == []:
+                return True
+            visited.add(c)
+            for pre in preq[c]:
+                if not dfsCycleDetect(pre):
+                    return False
+            visited.remove(c)
+            preq[c] = []
+            return True
+        
+        for p in range(numCourses):
+            if not dfsCycleDetect(p):
+                return False
+        return True
