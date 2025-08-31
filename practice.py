@@ -1,30 +1,40 @@
-def minWindow(self, s: str, t: str) -> str:
-        if t == "":
-            return ""
-        haveMap, needMap = {}, {}
-        # res stores the indices of l, f for substring
-        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
-        for c in t:
-            needMap[c] = 1 + needMap.get(c, 0)
-        have = 0
-        # Need here is the total character. We only increment have if total count of a character is meet
-        need = len(needMap)
-        while r < len(s):
-            curr = s[r]
-            # Adding character on right to the hashmap
-            haveMap[curr] = 1 + haveMap.get(curr, 0)
-            # If we meet the total required number of certain character, we increment have
-            if curr in needMap and haveMap[curr] == needMap[curr]:
-                have += 1
-            while have == need:
-                if (r - l + 1) < resLength:
-                    res = [l, r]
-                    resLength = r - l + 1
-                haveMap[s[l]] -= 1
-                # If character of left is in need map and doesn't meet the total occurence then have -1
-                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
-                    have -= 1
-                l += 1
-            r += 1
-        l, r = res
-        return s[l:r+1] if resLength != float("inf") else ""
+from collections import defaultdict
+from typing import List
+
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        # Step 1: Build the adjacency list to represent the graph
+        # The graph is represented as a dictionary where each node maps to a list of its neighbors
+        adj = defaultdict(list)
+        for a, b in edges:
+            # Add both directions for the undirected graph
+            adj[a].append(b)
+            adj[b].append(a)
+        
+        # Step 2: Initialize a set to keep track of visited nodes
+        visited = set()
+
+        # Step 3: Define a DFS function to traverse the graph
+        def dfs(node):
+            # Mark the current node as visited
+            visited.add(node)
+            # Traverse all unvisited neighbors of the current node
+            for nei in adj[node]:
+                if nei not in visited:
+                    dfs(nei)
+        
+        # Step 4: Initialize a counter for the number of connected components
+        count = 0
+        
+        # Step 5: Iterate through all nodes
+        for i in range(n):
+            # If a node is not visited, it's part of a new connected component
+            if i not in visited:
+                count += 1  # Increment the count for a new component
+                # Perform DFS to mark all nodes in this component as visited
+                dfs(i)
+                
+                
+        
+        # Step 6: Return the total number of connected components
+        return count
