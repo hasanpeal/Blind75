@@ -1,25 +1,12 @@
-from typing import List
-
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
-
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
-                    return False
-            visited.remove(c)
-            preq[c] = []
-            return True
-        
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+def lengthOfLongestSubstring(s: str) -> int:
+        seen = set()
+        left, right, longest = 0, 0, 0
+        while(right < len(s)):
+            if s[right] not in seen:
+                seen.add(s[right])
+                longest = max(longest, len(seen))
+                right += 1
+            else:
+                seen.remove(s[left])
+                left += 1
+        return longest
