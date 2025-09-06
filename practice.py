@@ -1,12 +1,22 @@
-def lengthOfLongestSubstring(s: str) -> int:
-        seen = set()
-        left, right, longest = 0, 0, 0
-        while(right < len(s)):
-            if s[right] not in seen:
-                seen.add(s[right])
-                longest = max(longest, len(seen))
-                right += 1
-            else:
-                seen.remove(s[left])
-                left += 1
-        return longest
+from typing import List, Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            
+            
+            
+            return None
+        # Root is always in preorder[0]
+        root = TreeNode(preorder[0])
+        # Finding root in inorder array
+        mid = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        return root
