@@ -1,20 +1,39 @@
 from typing import Optional
 
-class ListNode:
-    def __init__(self, val=0, next=None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.next = next
+        self.left = left
+        self.right = right
 
-class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        left = dummy
-        right = head
-        while n > 0 and right:
-            right = right.next
-            n -= 1
-        while right:
-            left = left.next
-            right = right.next
-        left.next = left.next.next
-        return dummy.next
+class Codec:
+    
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        res = []
+        def preorder(node):
+            if not node:
+                res.append("N")
+                return
+            res.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+        preorder(root)
+        return ",".join(res)
+        
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        nodes = data.split(",")
+        index = 0
+        def preorder():
+            nonlocal index
+            if nodes[index] == "N":
+                index += 1
+                return None
+            node = TreeNode(int(nodes[index]))
+            index += 1
+            node.left = preorder()
+            node.right = preorder()
+            return node
+        return preorder()
+            
