@@ -1,21 +1,11 @@
-from typing import List
-
-
-class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [0] * len(nums)
-        left = [0] * len(nums)
-        right = [0] * len(nums)
-
-        left[0] = 1
-        right[len(nums) - 1] = 1
-
-
-        for i in range(1, len(nums)):
-            left[i] = nums[i-1] * left[i-1]
-        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
-            right[i] = nums[i+1] * right[i+1]
-        for i in range(len(nums)):
-            res[i] = left[i] * right[i]
-
-        return res
+def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l,r,m = 0, 0, 0
+        while r < len(s):
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            while ((r - l + 1) - max(seen.values())) > k:
+                seen[s[l]] -= 1
+                l += 1
+            m = max(m, r - l + 1)
+            r += 1
+        return m
