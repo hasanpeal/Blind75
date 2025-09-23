@@ -1,14 +1,11 @@
-from typing import List
-
-def maxArea(self, heights: List[int]) -> int:
-        left, right = 0, len(heights) - 1
-        maximum = 0
-
-        while (left < right):
-            currMax = (right - left) * min(heights[left], heights[right])
-            maximum = max(currMax, maximum)
-            if(heights[left] <= heights[right]):
-                left += 1
-            else:
-                right -= 1
-        return maximum
+def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l,r,m = 0, 0, 0
+        while r < len(s):
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            while ((r - l + 1) - max(seen.values())) > k:
+                seen[s[l]] -= 1
+                l += 1
+            m = max(m, r - l + 1)
+            r += 1
+        return m
