@@ -1,23 +1,31 @@
-from typing import Optional
+from typing import List
 
-class Node:
-    def __init__(self, val = 0, neighbors = None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
 
-class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
-            
-        oldToNew = {}
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
 
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
+isValidSudoku(board)
