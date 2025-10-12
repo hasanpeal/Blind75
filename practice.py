@@ -1,23 +1,23 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        count = 0
 
-class Solution:   
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if not subRoot or self.isSameTree(root, subRoot):
-            return True
-        if not root:
-            return False
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
-         
-    def isSameTree(self, p, q):
-        if not p and not q:
-            return True
-        elif (p and q) and (p.val == q.val):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else:
-            return False
+        def dfs(r,c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(r,c)
+                    
+        return count
