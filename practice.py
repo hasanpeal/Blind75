@@ -1,22 +1,22 @@
-from typing import List
+from typing import List, Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        map = {}
-        for i in range(len(nums)):
-            map[nums[i]] = 1 + map.get(nums[i], 0)
-        # Creating [[],[],[],[]........]
-        # Where each index represent the occurence and each [] holds the values with that occurence
-        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
-        # is the occurence
-        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
-        for key, val in map.items():
-            count[val].append(key)
-        res = []
-        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
-            for n in count[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
-        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
-                
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            
+            
+            
+            return None
+        # Root is always in preorder[0]
+        root = TreeNode(preorder[0])
+        # Finding root in inorder array
+        mid = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        return root
