@@ -1,19 +1,30 @@
 from typing import List
 
-def threeSum(nums: List[int]) -> List[List[int]]:
-        res = []
-        has = {}
-        for i, v in enumerate(nums):
-            has[v] = i
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums), 1):
-                key = -nums[i] - nums[j]
-                if key in has and has.get(key) != i and has.get(key) != j:
-                    triplet = [nums[i], nums[j], key]
-                    triplet.sort()
-                    if triplet not in res:
-                        res.append(triplet)
-                        
-        print(has)
+
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        res = ""
+        # Numerical length + '#' + string itself
+        for s in strs:
+            res += str(len(s)) + '#' + s
         return res
-print(threeSum([-1,0,1,2,-1,-4]))
+
+    # Ex. 3#abc4#abcd
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
+        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
+        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
+        while i < len(s):
+            j = i
+            while s[j] != '#':
+                j += 1
+            length = int(s[i:j])
+            i = j + 1
+            j = i + length
+            res.append(s[i:j])
+            i = j
+        return res
+    print(decode(s='3#abc4#abcd'))
