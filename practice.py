@@ -1,31 +1,31 @@
 from typing import List
 
-def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        rows = len(heights)
-        cols = len(heights[0])
-        pac, atl = set(), set()
-        res = []
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
 
-        def dfs(r, c, visited, minFlow):
-            if r < 0 or c < 0 or r >= rows or c >= cols or heights[r][c] < minFlow or (r,c) in visited:
-                return
-            visited.add((r,c))
-            dfs(r + 1, c, visited, heights[r][c])
-            dfs(r - 1, c, visited, heights[r][c])
-            dfs(r, c + 1, visited, heights[r][c])
-            dfs(r, c - 1, visited, heights[r][c])
-        
-        for c in range(cols):
-            dfs(0, c, pac, heights[0][c])
-            dfs(rows - 1, c, atl, heights[rows - 1][c])
-        
-        for r in range(rows):
-            dfs(r, 0, pac, heights[r][0])
-            dfs(r, cols - 1, atl, heights[r][cols-1])
-        
-        for r in range(rows):
-            for c in range(cols):
-                if (r,c) in pac and (r,c) in atl:
-                    res.append([r,c])
-        
-        return res
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
+
+isValidSudoku(board)
