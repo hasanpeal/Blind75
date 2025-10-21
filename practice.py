@@ -1,31 +1,18 @@
+from collections import defaultdict
 from typing import List
 
-def isValidSudoku(board: List[List[str]]) -> bool:
-        seen = set()
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                curr = board[i][j]
-                if curr != ".":
-                    row = f"{curr} in row {i}"
-                    col = f"{curr} in col {j}"
-                    box = f"{curr} in box {(i//3 * 3) + j//3}"
-                    print(box)
-                    if row in seen or col in seen or box in seen:
-                        return False
-                    else:
-                        seen.add(row)
-                        seen.add(col)
-                        seen.add(box)
-        return True
 
-board = [["1","2",".",".","3",".",".",".","."],
-        ["4",".",".","5",".",".",".",".","."],
-        [".","9","8",".",".",".",".",".","3"],
-        ["5",".",".",".","6",".",".",".","4"],
-        [".",".",".","8",".","3",".",".","5"],
-        ["7",".",".",".","2",".",".",".","6"],
-        [".",".",".",".",".",".","2",".","."],
-        [".",".",".","4","1","9",".",".","8"],
-        [".",".",".",".","8",".",".","7","9"]]
-
-isValidSudoku(board)
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # We need this instead of {} because if we directly use res[count].append(s)
+        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
+        # initialize an empty list key first then appends so no key error !!
+        res = defaultdict(list) 
+        for s in strs:
+            count = [0] * 26 # Array of length 26, initialized each index's value to 0
+            for c in s:
+                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
+            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
+            res[tuple(count)].append(s) 
+        return list(res.values()) # map.values() returns group of values in list form
+            
