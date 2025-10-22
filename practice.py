@@ -1,18 +1,33 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
 
-class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
-            else:
-                return curr
+class PrefixTree:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+        curr.endOfWord = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return curr.endOfWord
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for char in prefix:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return True
+        
