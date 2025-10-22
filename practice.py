@@ -1,30 +1,16 @@
 from typing import List
 
-
-class Solution:
-
-    def encode(self, strs: List[str]) -> str:
-        res = ""
-        # Numerical length + '#' + string itself
-        for s in strs:
-            res += str(len(s)) + '#' + s
+def findMin(self, nums: List[int]) -> int:
+        l, r, res = 0, len(nums) - 1, nums[0]
+        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
+            else:
+                r = m - 1
         return res
-
-    # Ex. 3#abc4#abcd
-    def decode(self, s: str) -> List[str]:
-        res = []
-        i = 0
-        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
-        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
-        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
-        while i < len(s):
-            j = i
-            while s[j] != '#':
-                j += 1
-            length = int(s[i:j])
-            i = j + 1
-            j = i + length
-            res.append(s[i:j])
-            i = j
-        return res
-    print(decode(s='3#abc4#abcd'))
