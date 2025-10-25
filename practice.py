@@ -1,23 +1,20 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:   
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if not subRoot or self.isSameTree(root, subRoot):
-            return True
-        if not root:
-            return False
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
-         
-    def isSameTree(self, p, q):
-        if not p and not q:
-            return True
-        elif (p and q) and (p.val == q.val):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else:
-            return False
+def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        res = 1
+        has = set()
+        for num in nums:
+            has.add(num)
+        for i in range(len(nums)):
+            curr = nums[i]
+            longest = 1
+            if curr - 1 in has:
+                continue
+            while curr + 1 in has:
+                curr += 1
+                longest += 1
+            res = max(res, longest)
+        return res
+            
