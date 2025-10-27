@@ -1,13 +1,13 @@
-from typing import List
-
-
-class Solution:
-    def hasDuplicate(self, nums: List[int]) -> bool:
-        seen = set()
-        for num in nums:
-            if num in seen:
-                return True
+def isValid(self, s: str) -> bool:
+        stack = []
+        close = { ')':'(', '}':'{', ']':'['}
+        for c in s:
+            if c in close:
+                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
+                if stack and stack[-1] == close[c]:
+                    stack.pop()
+                else:
+                    return False
             else:
-                seen.add(num)
-                
-        return False
+                stack.append(c)
+        return True if not stack else False
