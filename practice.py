@@ -1,22 +1,39 @@
-from typing import List
+from typing import Optional
 
-def search(nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
-        res = -1
-        while l <= r:
-            m = (l+r)//2
-            if nums[m] == target:
-                return m
-            if nums[m] >= nums[l]:
-                if target > nums[m] or target < nums[l]:
-                    l = m + 1
-                else:
-                    r = m - 1
-            else:
-                if target < nums[m] or target > nums[r]:
-                    r = m - 1
-                else:
-                    l = m + 1
-        return -1
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Codec:
     
-print(search([3,4,5,6,1,2], 1))
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        res = []
+        def preorder(node):
+            if not node:
+                res.append("N")
+                return
+            res.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+        preorder(root)
+        return ",".join(res)
+        
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        nodes = data.split(",")
+        index = 0
+        def preorder():
+            nonlocal index
+            if nodes[index] == "N":
+                index += 1
+                return None
+            node = TreeNode(int(nodes[index]))
+            index += 1
+            node.left = preorder()
+            node.right = preorder()
+            return node
+        return preorder()
+            
