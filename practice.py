@@ -1,18 +1,16 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from typing import List
 
-class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
+def findMin(self, nums: List[int]) -> int:
+        l, r, res = 0, len(nums) - 1, nums[0]
+        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
             else:
-                return curr
+                r = m - 1
+        return res
