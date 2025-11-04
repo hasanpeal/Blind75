@@ -1,11 +1,25 @@
-from typing import List
+from typing import Optional
 
-def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        has = {}
-        for i, v in enumerate(numbers):
-            has[v] = i
-        for i in range(len(numbers)):
-            key = target - numbers[i]
-            if key in has and has.get(key) != i:
-                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
-        
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
+
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
