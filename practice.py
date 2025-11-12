@@ -1,23 +1,33 @@
-from typing import List
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
 
-def numIslands(self, grid: List[List[str]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        count = 0
+class PrefixTree:
+    def __init__(self):
+        self.root = TrieNode()
 
-        def dfs(r,c):
-            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
-                return
-            grid[r][c] = "0"
-            dfs(r + 1, c)
-            dfs(r - 1, c)
-            dfs(r, c + 1)
-            dfs(r, c - 1)
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+        curr.endOfWord = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return curr.endOfWord
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for char in prefix:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return True
         
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1":
-                    count += 1
-                    dfs(r,c)
-                    
-        return count
