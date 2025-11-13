@@ -1,20 +1,16 @@
 from typing import List
 
-def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
-        res = 1
-        has = set()
-        for num in nums:
-            has.add(num)
-        for i in range(len(nums)):
-            curr = nums[i]
-            longest = 1
-            if curr - 1 in has:
-                continue
-            while curr + 1 in has:
-                curr += 1
-                longest += 1
-            res = max(res, longest)
+def findMin(self, nums: List[int]) -> int:
+        l, r, res = 0, len(nums) - 1, nums[0]
+        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
+            else:
+                r = m - 1
         return res
-            
