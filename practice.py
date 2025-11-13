@@ -6,18 +6,13 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class Solution:   
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if not subRoot or self.isSameTree(root, subRoot):
-            return True
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
-            return False
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
-         
-    def isSameTree(self, p, q):
-        if not p and not q:
-            return True
-        elif (p and q) and (p.val == q.val):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else:
-            return False
+            return None
+        temp = root.left
+        root.left = root.right
+        root.right = temp
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        return root
