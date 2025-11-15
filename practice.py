@@ -1,25 +1,18 @@
-from typing import Optional
+from collections import defaultdict
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.valid(root, float("-inf"), float("inf"))
-
-    def valid(self, node, left, right):
-        if not node:
-            return True
-        if not (left < node.val < right):
-            return False
-        #                            5
-        #                           / \
-        #        -inf < 3 < 5      3   7     5 < 7 < inf
-        #                             / \
-        #                            4   8
-        # For left child our low bound is alway -inf, upper bound is the parents value
-        # For right child low bound parents value, upper bound is +inf
-        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # We need this instead of {} because if we directly use res[count].append(s)
+        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
+        # initialize an empty list key first then appends so no key error !!
+        res = defaultdict(list) 
+        for s in strs:
+            count = [0] * 26 # Array of length 26, initialized each index's value to 0
+            for c in s:
+                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
+            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
+            res[tuple(count)].append(s) 
+        return list(res.values()) # map.values() returns group of values in list form
+            
