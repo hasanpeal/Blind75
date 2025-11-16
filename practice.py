@@ -1,28 +1,19 @@
-from typing import List, Optional
+from typing import List
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-class Solution:    
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if len(lists) == 0:
-            return None
-        for i in range(1, len(lists)):
-            lists[i] = self.merge(lists[i-1], lists[i])
-        return lists[-1]
-
-    def merge(self, list1, list2):
-        dummy = ListNode()
-        curr = dummy
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
-            else:
-                curr.next = list2
-                list2 = list2.next
-            curr = curr.next
-        curr.next = list1 or list2
-        return dummy.next
+def threeSum(nums: List[int]) -> List[List[int]]:
+        res = []
+        has = {}
+        for i, v in enumerate(nums):
+            has[v] = i
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums), 1):
+                key = -nums[i] - nums[j]
+                if key in has and has.get(key) != i and has.get(key) != j:
+                    triplet = [nums[i], nums[j], key]
+                    triplet.sort()
+                    if triplet not in res:
+                        res.append(triplet)
+                        
+        print(has)
+        return res
+print(threeSum([-1,0,1,2,-1,-4]))
