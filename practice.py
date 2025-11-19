@@ -1,18 +1,18 @@
 from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.next = next
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return None
-        temp = root.left
-        root.left = root.right
-        root.right = temp
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-        return root
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
