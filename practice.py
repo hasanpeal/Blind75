@@ -1,23 +1,22 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:   
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if not subRoot or self.isSameTree(root, subRoot):
-            return True
-        if not root:
-            return False
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
-         
-    def isSameTree(self, p, q):
-        if not p and not q:
-            return True
-        elif (p and q) and (p.val == q.val):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else:
-            return False
+def search(nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        res = -1
+        while l <= r:
+            m = (l+r)//2
+            if nums[m] == target:
+                return m
+            if nums[m] >= nums[l]:
+                if target > nums[m] or target < nums[l]:
+                    l = m + 1
+                else:
+                    r = m - 1
+            else:
+                if target < nums[m] or target > nums[r]:
+                    r = m - 1
+                else:
+                    l = m + 1
+        return -1
+    
+print(search([3,4,5,6,1,2], 1))
