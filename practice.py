@@ -1,23 +1,26 @@
-from typing import List
+from typing import Optional
 
-def numIslands(self, grid: List[List[str]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        count = 0
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-        def dfs(r,c):
-            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
-                return
-            grid[r][c] = "0"
-            dfs(r + 1, c)
-            dfs(r - 1, c)
-            dfs(r, c + 1)
-            dfs(r, c - 1)
-        
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1":
-                    count += 1
-                    dfs(r,c)
-                    
-        return count
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = float("-inf")
+        def postorder(root):
+            # Use nonlocal to access global variable res
+            nonlocal res
+            if not root:
+                return 0
+            # Max in left sub tree, if negative then 0
+            leftMax = max(postorder(root.left), 0)
+            # Max in right sub tree, if negative then 0
+            rightMax = max(postorder(root.right), 0)
+            # Adjacent node check if max then update global res
+            res = max(res, root.val + leftMax + rightMax)
+            # Pass single path max sum for each recursive call
+            return root.val + max(leftMax, rightMax)
+        postorder(root)
+        return res
