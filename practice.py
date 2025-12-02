@@ -1,25 +1,26 @@
-from typing import List
+from typing import Optional
 
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
-                    return False
-            visited.remove(c)
-            preq[c] = []
-            return True
-        
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = float("-inf")
+        def postorder(root):
+            # Use nonlocal to access global variable res
+            nonlocal res
+            if not root:
+                return 0
+            # Max in left sub tree, if negative then 0
+            leftMax = max(postorder(root.left), 0)
+            # Max in right sub tree, if negative then 0
+            rightMax = max(postorder(root.right), 0)
+            # Adjacent node check if max then update global res
+            res = max(res, root.val + leftMax + rightMax)
+            # Pass single path max sum for each recursive call
+            return root.val + max(leftMax, rightMax)
+        postorder(root)
+        return res
