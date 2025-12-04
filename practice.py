@@ -1,33 +1,13 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.endOfWord = False
+from typing import List
 
-class PrefixTree:
-    def __init__(self):
-        self.root = TrieNode()
-
-    def insert(self, word: str) -> None:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                curr.children[char] = TrieNode()
-            curr = curr.children[char]
-        curr.endOfWord = True
-
-    def search(self, word: str) -> bool:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return curr.endOfWord
-
-    def startsWith(self, prefix: str) -> bool:
-        curr = self.root
-        for char in prefix:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return True
-        
+def maxProfit(self, prices: List[int]) -> int:
+        pointer1, pointer2, res = 0, 1, 0
+        while(pointer2 < len(prices)):
+            profit = prices[pointer2] - prices[pointer1]
+            res = max(res, profit)
+            if(pointer2 == len(prices) - 1):
+                pointer1 += 1
+                pointer2 = pointer1 + 1
+            else:
+                pointer2 += 1
+        return res
