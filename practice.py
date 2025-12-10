@@ -1,16 +1,25 @@
-from typing import List
+from typing import Optional
 
-def findMin(self, nums: List[int]) -> int:
-        l, r, res = 0, len(nums) - 1, nums[0]
-        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
-        while l <= r:
-            if nums[l] < nums[r]:
-                res = min(res, nums[l])
-                break
-            m = (l + r) // 2
-            res = min(res, nums[m])
-            if nums[m] >= nums[l]:
-                l = m + 1
-            else:
-                r = m - 1
-        return res
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
+
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
