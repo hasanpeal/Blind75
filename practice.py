@@ -1,16 +1,26 @@
-from typing import List
+from typing import Optional
 
-def findMin(self, nums: List[int]) -> int:
-        l, r, res = 0, len(nums) - 1, nums[0]
-        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
-        while l <= r:
-            if nums[l] < nums[r]:
-                res = min(res, nums[l])
-                break
-            m = (l + r) // 2
-            res = min(res, nums[m])
-            if nums[m] >= nums[l]:
-                l = m + 1
-            else:
-                r = m - 1
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = float("-inf")
+        def postorder(root):
+            # Use nonlocal to access global variable res
+            nonlocal res
+            if not root:
+                return 0
+            # Max in left sub tree, if negative then 0
+            leftMax = max(postorder(root.left), 0)
+            # Max in right sub tree, if negative then 0
+            rightMax = max(postorder(root.right), 0)
+            # Adjacent node check if max then update global res
+            res = max(res, root.val + leftMax + rightMax)
+            # Pass single path max sum for each recursive call
+            return root.val + max(leftMax, rightMax)
+        postorder(root)
         return res
