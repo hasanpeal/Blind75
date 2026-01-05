@@ -1,25 +1,11 @@
-from typing import List
-
-def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preq = {i : [] for i in range(numCourses)}
-        for c, p in prerequisites:
-            preq[c].append(p)
-        visited = set()
-
-        def dfsCycleDetect(c):
-            if c in visited:
-                return False
-            if preq[c] == []:
-                return True
-            visited.add(c)
-            for pre in preq[c]:
-                if not dfsCycleDetect(pre):
-                    return False
-            visited.remove(c)
-            preq[c] = []
-            return True
-        
-        for p in range(numCourses):
-            if not dfsCycleDetect(p):
-                return False
-        return True
+def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l,r,m = 0, 0, 0
+        while r < len(s):
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            while ((r - l + 1) - max(seen.values())) > k:
+                seen[s[l]] -= 1
+                l += 1
+            m = max(m, r - l + 1)
+            r += 1
+        return m
