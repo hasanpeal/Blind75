@@ -1,18 +1,14 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+from typing import Optional
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.next = next
 
-class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
+def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev, curr = None, head
         while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
-            else:
-                return curr
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        return prev
