@@ -1,12 +1,13 @@
+from typing import List
+
+
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
-        mapS = {}
-        mapT = {}
-        for i in range(len(s)):
-            mapS[s[i]] = 1 + mapS.get(s[i], 0)
-            mapT[t[i]] = 1 + mapT.get(t[i], 0)
-        return mapS == mapT
-        
-        
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        has = {}
+        for i in range(len(nums)):
+            has[nums[i]] = i
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in has and has.get(diff) != i:
+                return [i, has.get(diff)]
+        return []
