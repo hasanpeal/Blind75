@@ -7,8 +7,14 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
-        
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        nodes = []
+        # Inorder traversal sorted the BST
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            nodes.append(node.val)
+            dfs(node.right)
+        dfs(root)
+        return nodes[k - 1]
