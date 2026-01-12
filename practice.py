@@ -1,23 +1,14 @@
 from typing import Optional
 
-class Node:
-    def __init__(self, val = 0, neighbors = None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+        self.left = left
+        self.right = right
 
 class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
-            
-        oldToNew = {}
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
+        
