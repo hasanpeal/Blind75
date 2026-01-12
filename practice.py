@@ -1,22 +1,23 @@
-from typing import List
+from typing import Optional
 
-def search(nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
-        res = -1
-        while l <= r:
-            m = (l+r)//2
-            if nums[m] == target:
-                return m
-            if nums[m] >= nums[l]:
-                if target > nums[m] or target < nums[l]:
-                    l = m + 1
-                else:
-                    r = m - 1
-            else:
-                if target < nums[m] or target > nums[r]:
-                    r = m - 1
-                else:
-                    l = m + 1
-        return -1
-    
-print(search([3,4,5,6,1,2], 1))
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
+            
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
