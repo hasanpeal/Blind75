@@ -1,19 +1,23 @@
 from typing import List
 
-def threeSum(nums: List[int]) -> List[List[int]]:
-        res = []
-        has = {}
-        for i, v in enumerate(nums):
-            has[v] = i
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums), 1):
-                key = -nums[i] - nums[j]
-                if key in has and has.get(key) != i and has.get(key) != j:
-                    triplet = [nums[i], nums[j], key]
-                    triplet.sort()
-                    if triplet not in res:
-                        res.append(triplet)
-                        
-        print(has)
-        return res
-print(threeSum([-1,0,1,2,-1,-4]))
+def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        count = 0
+
+        def dfs(r,c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(r,c)
+                    
+        return count
