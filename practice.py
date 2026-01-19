@@ -1,33 +1,11 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.endOfWord = False
-
-class PrefixTree:
-    def __init__(self):
-        self.root = TrieNode()
-
-    def insert(self, word: str) -> None:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                curr.children[char] = TrieNode()
-            curr = curr.children[char]
-        curr.endOfWord = True
-
-    def search(self, word: str) -> bool:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return curr.endOfWord
-
-    def startsWith(self, prefix: str) -> bool:
-        curr = self.root
-        for char in prefix:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return True
-        
+def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l,r,m = 0, 0, 0
+        while r < len(s):
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            while ((r - l + 1) - max(seen.values())) > k:
+                seen[s[l]] -= 1
+                l += 1
+            m = max(m, r - l + 1)
+            r += 1
+        return m
