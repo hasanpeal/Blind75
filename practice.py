@@ -7,20 +7,8 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        res = float("-inf")
-        def postorder(root):
-            # Use nonlocal to access global variable res
-            nonlocal res
-            if not root:
-                return 0
-            # Max in left sub tree, if negative then 0
-            leftMax = max(postorder(root.left), 0)
-            # Max in right sub tree, if negative then 0
-            rightMax = max(postorder(root.right), 0)
-            # Adjacent node check if max then update global res
-            res = max(res, root.val + leftMax + rightMax)
-            # Pass single path max sum for each recursive call
-            return root.val + max(leftMax, rightMax)
-        postorder(root)
-        return res
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
+        
