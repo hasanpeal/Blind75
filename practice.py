@@ -1,18 +1,30 @@
-from collections import defaultdict
 from typing import List
 
 
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # We need this instead of {} because if we directly use res[count].append(s)
-        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
-        # initialize an empty list key first then appends so no key error !!
-        res = defaultdict(list) 
+
+    def encode(self, strs: List[str]) -> str:
+        res = ""
+        # Numerical length + '#' + string itself
         for s in strs:
-            count = [0] * 26 # Array of length 26, initialized each index's value to 0
-            for c in s:
-                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
-            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
-            res[tuple(count)].append(s) 
-        return list(res.values()) # map.values() returns group of values in list form
-            
+            res += str(len(s)) + '#' + s
+        return res
+
+    # Ex. 3#abc4#abcd
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
+        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
+        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
+        while i < len(s):
+            j = i
+            while s[j] != '#':
+                j += 1
+            length = int(s[i:j])
+            i = j + 1
+            j = i + length
+            res.append(s[i:j])
+            i = j
+        return res
+    print(decode(s='3#abc4#abcd'))
