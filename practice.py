@@ -1,18 +1,12 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        if not root:
-            return None
-        curr = root
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
+def lengthOfLongestSubstring(s: str) -> int:
+        seen = set()
+        left, right, longest = 0, 0, 0
+        while(right < len(s)):
+            if s[right] not in seen:
+                seen.add(s[right])
+                longest = max(longest, len(seen))
+                right += 1
             else:
-                return curr
+                seen.remove(s[left])
+                left += 1
+        return longest
