@@ -1,16 +1,39 @@
-from typing import List
+from typing import Optional
 
-def findMin(self, nums: List[int]) -> int:
-        l, r, res = 0, len(nums) - 1, nums[0]
-        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
-        while l <= r:
-            if nums[l] < nums[r]:
-                res = min(res, nums[l])
-                break
-            m = (l + r) // 2
-            res = min(res, nums[m])
-            if nums[m] >= nums[l]:
-                l = m + 1
-            else:
-                r = m - 1
-        return res
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Codec:
+    
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        res = []
+        def preorder(node):
+            if not node:
+                res.append("N")
+                return
+            res.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+        preorder(root)
+        return ",".join(res)
+        
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        nodes = data.split(",")
+        index = 0
+        def preorder():
+            nonlocal index
+            if nodes[index] == "N":
+                index += 1
+                return None
+            node = TreeNode(int(nodes[index]))
+            index += 1
+            node.left = preorder()
+            node.right = preorder()
+            return node
+        return preorder()
+            
