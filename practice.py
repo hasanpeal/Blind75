@@ -1,22 +1,30 @@
-from typing import List
-
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        map = {}
-        for i in range(len(nums)):
-            map[nums[i]] = 1 + map.get(nums[i], 0)
-        # Creating [[],[],[],[]........]
-        # Where each index represent the occurence and each [] holds the values with that occurence
-        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
-        # is the occurence
-        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
-        for key, val in map.items():
-            count[val].append(key)
-        res = []
-        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
-            for n in count[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
-        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
-                
+def minWindow(self, s: str, t: str) -> str:
+        if t == "":
+            return ""
+        haveMap, needMap = {}, {}
+        # res stores the indices of l, f for substring
+        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
+        for c in t:
+            needMap[c] = 1 + needMap.get(c, 0)
+        have = 0
+        # Need here is the total character. We only increment have if total count of a character is meet
+        need = len(needMap)
+        while r < len(s):
+            curr = s[r]
+            # Adding character on right to the hashmap
+            haveMap[curr] = 1 + haveMap.get(curr, 0)
+            # If we meet the total required number of certain character, we increment have
+            if curr in needMap and haveMap[curr] == needMap[curr]:
+                have += 1
+            while have == need:
+                if (r - l + 1) < resLength:
+                    res = [l, r]
+                    resLength = r - l + 1
+                haveMap[s[l]] -= 1
+                # If character of left is in need map and doesn't meet the total occurence then have -1
+                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
+                    have -= 1
+                l += 1
+            r += 1
+        l, r = res
+        return s[l:r+1] if resLength != float("inf") else ""
