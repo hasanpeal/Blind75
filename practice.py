@@ -1,11 +1,11 @@
-from typing import List
-
-def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        has = {}
-        for i, v in enumerate(numbers):
-            has[v] = i
-        for i in range(len(numbers)):
-            key = target - numbers[i]
-            if key in has and has.get(key) != i:
-                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
-        
+def characterReplacement(self, s: str, k: int) -> int:
+        seen = {}
+        l,r,m = 0, 0, 0
+        while r < len(s):
+            seen[s[r]] = 1 + seen.get(s[r], 0)
+            while ((r - l + 1) - max(seen.values())) > k:
+                seen[s[l]] -= 1
+                l += 1
+            m = max(m, r - l + 1)
+            r += 1
+        return m
