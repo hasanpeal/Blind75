@@ -1,20 +1,13 @@
-from typing import Optional
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        left = dummy
-        right = head
-        while n > 0 and right:
-            right = right.next
-            n -= 1
-        while right:
-            left = left.next
-            right = right.next
-        left.next = left.next.next
-        return dummy.next
+def isValid(self, s: str) -> bool:
+        stack = []
+        close = { ')':'(', '}':'{', ']':'['}
+        for c in s:
+            if c in close:
+                # Top of stack: stack[-1], we check first if elements exist in stack to avoid error
+                if stack and stack[-1] == close[c]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(c)
+        return True if not stack else False
