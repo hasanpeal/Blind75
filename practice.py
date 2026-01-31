@@ -1,18 +1,26 @@
-from collections import defaultdict
-from typing import List
+from typing import Optional
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # We need this instead of {} because if we directly use res[count].append(s)
-        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
-        # initialize an empty list key first then appends so no key error !!
-        res = defaultdict(list) 
-        for s in strs:
-            count = [0] * 26 # Array of length 26, initialized each index's value to 0
-            for c in s:
-                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
-            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
-            res[tuple(count)].append(s) 
-        return list(res.values()) # map.values() returns group of values in list form
-            
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = float("-inf")
+        def postorder(root):
+            # Use nonlocal to access global variable res
+            nonlocal res
+            if not root:
+                return 0
+            # Max in left sub tree, if negative then 0
+            leftMax = max(postorder(root.left), 0)
+            # Max in right sub tree, if negative then 0
+            rightMax = max(postorder(root.right), 0)
+            # Adjacent node check if max then update global res
+            res = max(res, root.val + leftMax + rightMax)
+            # Pass single path max sum for each recursive call
+            return root.val + max(leftMax, rightMax)
+        postorder(root)
+        return res
