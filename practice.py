@@ -1,12 +1,14 @@
-def lengthOfLongestSubstring(s: str) -> int:
-        seen = set()
-        left, right, longest = 0, 0, 0
-        while(right < len(s)):
-            if s[right] not in seen:
-                seen.add(s[right])
-                longest = max(longest, len(seen))
-                right += 1
-            else:
-                seen.remove(s[left])
-                left += 1
-        return longest
+from typing import Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
+        
