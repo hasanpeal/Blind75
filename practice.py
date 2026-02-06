@@ -1,20 +1,31 @@
 from typing import List
-class Solution:
-    def max_area(self, heights: List[int]):
-        if not heights:
-            return 0
-        maxArea = 0
-        left = 0
-        right = len(heights) - 1
-        while left < right:
-            height = min(heights[left], heights[right])
-            width = right - left
-            maxArea = max(maxArea, height*width)
-            if heights[right] < heights[left]:
-                right -= 1
-            else:
-                left += 1
-        return maxArea
-    
-    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
-    print("Max area:", max_area(max_area, heights))
+
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
+
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
+
+isValidSudoku(board)
