@@ -1,23 +1,30 @@
 from typing import List
 
-def numIslands(self, grid: List[List[str]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        count = 0
 
-        def dfs(r,c):
-            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
-                return
-            grid[r][c] = "0"
-            dfs(r + 1, c)
-            dfs(r - 1, c)
-            dfs(r, c + 1)
-            dfs(r, c - 1)
-        
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1":
-                    count += 1
-                    dfs(r,c)
-                    
-        return count
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        res = ""
+        # Numerical length + '#' + string itself
+        for s in strs:
+            res += str(len(s)) + '#' + s
+        return res
+
+    # Ex. 3#abc4#abcd
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
+        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
+        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
+        while i < len(s):
+            j = i
+            while s[j] != '#':
+                j += 1
+            length = int(s[i:j])
+            i = j + 1
+            j = i + length
+            res.append(s[i:j])
+            i = j
+        return res
+    print(decode(s='3#abc4#abcd'))
