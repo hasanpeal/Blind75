@@ -1,31 +1,33 @@
-from typing import List
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
 
-def isValidSudoku(board: List[List[str]]) -> bool:
-        seen = set()
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                curr = board[i][j]
-                if curr != ".":
-                    row = f"{curr} in row {i}"
-                    col = f"{curr} in col {j}"
-                    box = f"{curr} in box {(i//3 * 3) + j//3}"
-                    print(box)
-                    if row in seen or col in seen or box in seen:
-                        return False
-                    else:
-                        seen.add(row)
-                        seen.add(col)
-                        seen.add(box)
+class PrefixTree:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+        curr.endOfWord = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return curr.endOfWord
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for char in prefix:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
         return True
-
-board = [["1","2",".",".","3",".",".",".","."],
-        ["4",".",".","5",".",".",".",".","."],
-        [".","9","8",".",".",".",".",".","3"],
-        ["5",".",".",".","6",".",".",".","4"],
-        [".",".",".","8",".","3",".",".","5"],
-        ["7",".",".",".","2",".",".",".","6"],
-        [".",".",".",".",".",".","2",".","."],
-        [".",".",".","4","1","9",".",".","8"],
-        [".",".",".",".","8",".",".","7","9"]]
-
-isValidSudoku(board)
+        
