@@ -1,13 +1,30 @@
-from typing import List
+from typing import Optional
+from LinkedListCycle import ListNode
 
-def maxProfit(self, prices: List[int]) -> int:
-        pointer1, pointer2, res = 0, 1, 0
-        while(pointer2 < len(prices)):
-            profit = prices[pointer2] - prices[pointer1]
-            res = max(res, profit)
-            if(pointer2 == len(prices) - 1):
-                pointer1 += 1
-                pointer2 = pointer1 + 1
-            else:
-                pointer2 += 1
-        return res
+def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        curr = slow.next
+        slow.next = None
+        prev = None
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        slow = head
+        fast = prev
+        while fast:
+            temp1 = slow.next
+            temp2 = fast.next
+            slow.next = fast
+            fast.next = temp1
+            slow = temp1
+            fast = temp2
