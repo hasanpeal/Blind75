@@ -1,28 +1,18 @@
-import heapq
+from collections import defaultdict
+from typing import List
 
-class MedianFinder:
 
-    def __init__(self):
-        # Store approximate equal values in 2 heap for accessing max and min in O(1)
-        self.maxHeap, self.minHeap =[], []
-
-    def addNum(self, num: int) -> None:
-        heapq.heappush(self.maxHeap, -1 * num)
-        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
-        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
-        if len(self.maxHeap) > len(self.minHeap) + 1:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > len(self.maxHeap) + 1:
-            val = 1 * heapq.heappop(self.minHeap)
-            heapq.heappush(self.maxHeap, -1 * val)
-
-    def findMedian(self) -> float:
-        if len(self.maxHeap) > len(self.minHeap):
-            return -1 * self.maxHeap[0]
-        if len(self.minHeap) > len(self.maxHeap):
-            return self.minHeap[0]
-        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # We need this instead of {} because if we directly use res[count].append(s)
+        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
+        # initialize an empty list key first then appends so no key error !!
+        res = defaultdict(list) 
+        for s in strs:
+            count = [0] * 26 # Array of length 26, initialized each index's value to 0
+            for c in s:
+                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
+            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
+            res[tuple(count)].append(s) 
+        return list(res.values()) # map.values() returns group of values in list form
+            
