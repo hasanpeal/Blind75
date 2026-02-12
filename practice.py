@@ -1,33 +1,28 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.endOfWord = False
+from typing import List, Optional
 
-class PrefixTree:
-    def __init__(self):
-        self.root = TrieNode()
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-    def insert(self, word: str) -> None:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                curr.children[char] = TrieNode()
-            curr = curr.children[char]
-        curr.endOfWord = True
+class Solution:    
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0:
+            return None
+        for i in range(1, len(lists)):
+            lists[i] = self.merge(lists[i-1], lists[i])
+        return lists[-1]
 
-    def search(self, word: str) -> bool:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return curr.endOfWord
-
-    def startsWith(self, prefix: str) -> bool:
-        curr = self.root
-        for char in prefix:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return True
-        
+    def merge(self, list1, list2):
+        dummy = ListNode()
+        curr = dummy
+        while list1 and list2:
+            if list1.val < list2.val:
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            curr = curr.next
+        curr.next = list1 or list2
+        return dummy.next
