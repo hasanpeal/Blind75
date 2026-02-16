@@ -1,13 +1,14 @@
-from typing import List
+from typing import Optional
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        has = {}
-        for i in range(len(nums)):
-            has[nums[i]] = i
-        for i in range(len(nums)):
-            diff = target - nums[i]
-            if diff in has and has.get(diff) != i:
-                return [i, has.get(diff)]
-        return []
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
+        
