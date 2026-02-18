@@ -1,23 +1,11 @@
-from typing import Optional
+from typing import List
 
-class Node:
-    def __init__(self, val = 0, neighbors = None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
-
-class Solution:
-    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
-            
-        oldToNew = {}
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        return dfs(node)
+def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        has = {}
+        for i, v in enumerate(numbers):
+            has[v] = i
+        for i in range(len(numbers)):
+            key = target - numbers[i]
+            if key in has and has.get(key) != i:
+                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
+        
