@@ -1,11 +1,20 @@
-from typing import List
+from typing import Optional
 
-def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        has = {}
-        for i, v in enumerate(numbers):
-            has[v] = i
-        for i in range(len(numbers)):
-            key = target - numbers[i]
-            if key in has and has.get(key) != i:
-                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
-        
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        nodes = []
+        # Inorder traversal sorted the BST
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            nodes.append(node.val)
+            dfs(node.right)
+        dfs(root)
+        return nodes[k - 1]
