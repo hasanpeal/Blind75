@@ -1,51 +1,22 @@
 from typing import List
 
 class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
-        # Get the dimensions of the board
-        row = len(board)  # Number of rows
-        col = len(board[0])  # Number of columns
-        
-        # A set to track the cells visited in the current path
-        path = set()
-
-        # Define the recursive Depth-First Search (DFS) function
-        def dfs(r, c, i):
-            # Base case: If the entire word is matched, return True
-            if i == len(word):
-                return True
-            
-            # Check for invalid moves:
-            # 1. Out of bounds (r or c is outside the board)
-            # 2. Current cell does not match the corresponding character in the word
-            # 3. Current cell is already visited in the current path
-            if (r < 0 or c < 0 or r >= row or c >= col or 
-                board[r][c] != word[i] or (r, c) in path):
-                return False
-            
-            # Add the current cell to the path (mark it as visited)
-            path.add((r, c))
-            
-            # Recursively search in all four directions
-            # Must wrap the expression in parentheses to avoid syntax errors
-            res = (dfs(r + 1, c, i + 1) or  # Down
-                   dfs(r - 1, c, i + 1) or  # Up
-                   dfs(r, c - 1, i + 1) or  # Left
-                   dfs(r, c + 1, i + 1))    # Right
-            
-            # Backtrack: Remove the current cell from the path
-            # This ensures other paths can reuse this cell
-            path.remove((r, c))
-            
-            # Return whether any direction found a valid path
-            return res
-        
-        # Iterate through every cell in the board as a starting point
-        for r in range(row):  # Iterate over all rows
-            for c in range(col):  # Iterate over all columns
-                # Start DFS from the current cell
-                if dfs(r, c, 0):  # If DFS finds a valid path for the word, return True
-                    return True
-
-        # If no valid path is found after exploring all cells, return False
-        return False
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        map = {}
+        for i in range(len(nums)):
+            map[nums[i]] = 1 + map.get(nums[i], 0)
+        # Creating [[],[],[],[]........]
+        # Where each index represent the occurence and each [] holds the values with that occurence
+        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
+        # is the occurence
+        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
+        for key, val in map.items():
+            count[val].append(key)
+        res = []
+        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
+            for n in count[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
+                
