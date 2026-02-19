@@ -1,12 +1,13 @@
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
-        mapS = {}
-        mapT = {}
-        for i in range(len(s)):
-            mapS[s[i]] = 1 + mapS.get(s[i], 0)
-            mapT[t[i]] = 1 + mapT.get(t[i], 0)
-        return mapS == mapT
-        
-        
+from typing import List
+
+def maxProfit(self, prices: List[int]) -> int:
+        pointer1, pointer2, res = 0, 1, 0
+        while(pointer2 < len(prices)):
+            profit = prices[pointer2] - prices[pointer1]
+            res = max(res, profit)
+            if(pointer2 == len(prices) - 1):
+                pointer1 += 1
+                pointer2 = pointer1 + 1
+            else:
+                pointer2 += 1
+        return res
