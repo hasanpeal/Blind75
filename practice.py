@@ -1,20 +1,23 @@
-from typing import List
+from typing import Optional
+
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+
 class Solution:
-    def max_area(self, heights: List[int]):
-        if not heights:
-            return 0
-        maxArea = 0
-        left = 0
-        right = len(heights) - 1
-        while left < right:
-            height = min(heights[left], heights[right])
-            width = right - left
-            maxArea = max(maxArea, height*width)
-            if heights[right] < heights[left]:
-                right -= 1
-            else:
-                left += 1
-        return maxArea
-    
-    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
-    print("Max area:", max_area(max_area, heights))
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
+            
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
