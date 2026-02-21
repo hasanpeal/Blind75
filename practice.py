@@ -1,20 +1,18 @@
+from collections import defaultdict
 from typing import List
+
+
 class Solution:
-    def max_area(self, heights: List[int]):
-        if not heights:
-            return 0
-        maxArea = 0
-        left = 0
-        right = len(heights) - 1
-        while left < right:
-            height = min(heights[left], heights[right])
-            width = right - left
-            maxArea = max(maxArea, height*width)
-            if heights[right] < heights[left]:
-                right -= 1
-            else:
-                left += 1
-        return maxArea
-    
-    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
-    print("Max area:", max_area(max_area, heights))
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # We need this instead of {} because if we directly use res[count].append(s)
+        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
+        # initialize an empty list key first then appends so no key error !!
+        res = defaultdict(list) 
+        for s in strs:
+            count = [0] * 26 # Array of length 26, initialized each index's value to 0
+            for c in s:
+                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
+            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
+            res[tuple(count)].append(s) 
+        return list(res.values()) # map.values() returns group of values in list form
+            
