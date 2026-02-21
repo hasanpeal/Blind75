@@ -1,51 +1,61 @@
 from typing import List
 
 class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
-        # Get the dimensions of the board
-        row = len(board)  # Number of rows
-        col = len(board[0])  # Number of columns
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        """
+        Return all unique combinations of 'candidates' that sum up to 'target'.
+        Each candidate may be chosen multiple times.
         
-        # A set to track the cells visited in the current path
-        path = set()
-
-        # Define the recursive Depth-First Search (DFS) function
-        def dfs(r, c, i):
-            # Base case: If the entire word is matched, return True
-            if i == len(word):
-                return True
-            
-            # Check for invalid moves:
-            # 1. Out of bounds (r or c is outside the board)
-            # 2. Current cell does not match the corresponding character in the word
-            # 3. Current cell is already visited in the current path
-            if (r < 0 or c < 0 or r >= row or c >= col or 
-                board[r][c] != word[i] or (r, c) in path):
-                return False
-            
-            # Add the current cell to the path (mark it as visited)
-            path.add((r, c))
-            
-            # Recursively search in all four directions
-            # Must wrap the expression in parentheses to avoid syntax errors
-            res = (dfs(r + 1, c, i + 1) or  # Down
-                   dfs(r - 1, c, i + 1) or  # Up
-                   dfs(r, c - 1, i + 1) or  # Left
-                   dfs(r, c + 1, i + 1))    # Right
-            
-            # Backtrack: Remove the current cell from the path
-            # This ensures other paths can reuse this cell
-            path.remove((r, c))
-            
-            # Return whether any direction found a valid path
-            return res
+        We'll use a DP array 'dp' of length (target + 1).
+        dp[i] will be a list of *all* combinations that sum up to i.
+        """
         
-        # Iterate through every cell in the board as a starting point
-        for r in range(row):  # Iterate over all rows
-            for c in range(col):  # Iterate over all columns
-                # Start DFS from the current cell
-                if dfs(r, c, 0):  # If DFS finds a valid path for the word, return True
-                    return True
+        # Step 1: Create the DP array.
+        # Initially, dp = [ [], [], [], ..., [] ] (target+1 empty lists).
+        dp = [[] for _ in range(target + 1)]
+        
+        # VISUAL (initial state):
+        #
+        #    Index:   0     1     2     3     4     5     6     7
+        #    dp:    [  ]   [  ]   [  ]   [  ]   [  ]   [  ]   [  ]   [  ]
+        #
+        # dp[0], dp[1], dp[2], ..., dp[7] are all empty lists right now.
 
-        # If no valid path is found after exploring all cells, return False
-        return False
+        # Step 2: Process each candidate in the list.
+        for c in candidates:
+            # We'll try to form sums from 1 up to 'target' using candidate c.
+            for i in range(1, target + 1):
+                
+                # If i is smaller than c, c can't be used to form i,
+                # so we skip to the next i.
+                if i < c:
+                    continue
+                
+                # If i exactly equals c, that means a single combo [c] forms i.
+                if i == c:
+                    dp[i].append([c])
+                    #
+                    # VISUAL: for i == c,
+                    #   dp[i] += [ [c] ]
+                    # Example: if c=2 and i=2, dp[2] = [ [2] ].
+                    #
+                    # Over time, you might see dp (for the example c=2, i=2):
+                    #   dp[2] = [[2]]
+                    
+                else:
+                    # i > c, so we check dp[i - c].
+                    # dp[i - c] holds all combos that sum to i-c.
+                    # By appending c to each of those combos,
+                    # we get new combos that sum to i.
+                    for combo in dp[i - c]:
+                        dp[i].append(combo + [c])
+                        #
+                        # VISUAL:
+                        #   dp[i] += [ combo + [c] for each combo in dp[i - c] ]
+                        #
+                        # Example: if i=5, c=2, then we look at dp[3].
+                        # if dp[3] = [[3]], then we form [[3] + [2]] = [[3, 2]] 
+                        # and append that to dp[5].
+        
+        # Step 3: At the end, dp[target] has all unique combos summing to 'target'.
+        return dp[target]
