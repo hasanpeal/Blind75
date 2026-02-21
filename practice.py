@@ -1,19 +1,21 @@
-from typing import List
+from typing import Optional
 
-def threeSum(nums: List[int]) -> List[List[int]]:
-        res = []
-        has = {}
-        for i, v in enumerate(nums):
-            has[v] = i
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums), 1):
-                key = -nums[i] - nums[j]
-                if key in has and has.get(key) != i and has.get(key) != j:
-                    triplet = [nums[i], nums[j], key]
-                    triplet.sort()
-                    if triplet not in res:
-                        res.append(triplet)
-                        
-        print(has)
-        return res
-print(threeSum([-1,0,1,2,-1,-4]))
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        curr = dummy
+        while list1 and list2:
+            if list1.val < list2.val:
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            curr = curr.next
+        curr.next = list1 or list2
+        return dummy.next
