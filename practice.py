@@ -1,30 +1,28 @@
-def minWindow(self, s: str, t: str) -> str:
-        if t == "":
-            return ""
-        haveMap, needMap = {}, {}
-        # res stores the indices of l, f for substring
-        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
-        for c in t:
-            needMap[c] = 1 + needMap.get(c, 0)
-        have = 0
-        # Need here is the total character. We only increment have if total count of a character is meet
-        need = len(needMap)
-        while r < len(s):
-            curr = s[r]
-            # Adding character on right to the hashmap
-            haveMap[curr] = 1 + haveMap.get(curr, 0)
-            # If we meet the total required number of certain character, we increment have
-            if curr in needMap and haveMap[curr] == needMap[curr]:
-                have += 1
-            while have == need:
-                if (r - l + 1) < resLength:
-                    res = [l, r]
-                    resLength = r - l + 1
-                haveMap[s[l]] -= 1
-                # If character of left is in need map and doesn't meet the total occurence then have -1
-                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
-                    have -= 1
-                l += 1
-            r += 1
-        l, r = res
-        return s[l:r+1] if resLength != float("inf") else ""
+import heapq
+
+class MedianFinder:
+
+    def __init__(self):
+        # Store approximate equal values in 2 heap for accessing max and min in O(1)
+        self.maxHeap, self.minHeap =[], []
+
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.maxHeap, -1 * num)
+        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
+        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
+            val = -1 * heapq.heappop(self.maxHeap)
+            heapq.heappush(self.minHeap, val)
+        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
+        if len(self.maxHeap) > len(self.minHeap) + 1:
+            val = -1 * heapq.heappop(self.maxHeap)
+            heapq.heappush(self.minHeap, val)
+        if len(self.minHeap) > len(self.maxHeap) + 1:
+            val = 1 * heapq.heappop(self.minHeap)
+            heapq.heappush(self.maxHeap, -1 * val)
+
+    def findMedian(self) -> float:
+        if len(self.maxHeap) > len(self.minHeap):
+            return -1 * self.maxHeap[0]
+        if len(self.minHeap) > len(self.maxHeap):
+            return self.minHeap[0]
+        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
