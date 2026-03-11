@@ -1,30 +1,31 @@
-def minWindow(self, s: str, t: str) -> str:
-        if t == "":
-            return ""
-        haveMap, needMap = {}, {}
-        # res stores the indices of l, f for substring
-        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
-        for c in t:
-            needMap[c] = 1 + needMap.get(c, 0)
-        have = 0
-        # Need here is the total character. We only increment have if total count of a character is meet
-        need = len(needMap)
-        while r < len(s):
-            curr = s[r]
-            # Adding character on right to the hashmap
-            haveMap[curr] = 1 + haveMap.get(curr, 0)
-            # If we meet the total required number of certain character, we increment have
-            if curr in needMap and haveMap[curr] == needMap[curr]:
-                have += 1
-            while have == need:
-                if (r - l + 1) < resLength:
-                    res = [l, r]
-                    resLength = r - l + 1
-                haveMap[s[l]] -= 1
-                # If character of left is in need map and doesn't meet the total occurence then have -1
-                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
-                    have -= 1
-                l += 1
-            r += 1
-        l, r = res
-        return s[l:r+1] if resLength != float("inf") else ""
+from typing import List
+
+def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        rows = len(heights)
+        cols = len(heights[0])
+        pac, atl = set(), set()
+        res = []
+
+        def dfs(r, c, visited, minFlow):
+            if r < 0 or c < 0 or r >= rows or c >= cols or heights[r][c] < minFlow or (r,c) in visited:
+                return
+            visited.add((r,c))
+            dfs(r + 1, c, visited, heights[r][c])
+            dfs(r - 1, c, visited, heights[r][c])
+            dfs(r, c + 1, visited, heights[r][c])
+            dfs(r, c - 1, visited, heights[r][c])
+        
+        for c in range(cols):
+            dfs(0, c, pac, heights[0][c])
+            dfs(rows - 1, c, atl, heights[rows - 1][c])
+        
+        for r in range(rows):
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, cols - 1, atl, heights[r][cols-1])
+        
+        for r in range(rows):
+            for c in range(cols):
+                if (r,c) in pac and (r,c) in atl:
+                    res.append([r,c])
+        
+        return res
