@@ -1,21 +1,21 @@
-from typing import Optional
+from typing import List
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
 
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()
-        curr = dummy
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
-            else:
-                curr.next = list2
-                list2 = list2.next
-            curr = curr.next
-        curr.next = list1 or list2
-        return dummy.next
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [0] * len(nums)
+        left = [0] * len(nums)
+        right = [0] * len(nums)
+
+        left[0] = 1
+        right[len(nums) - 1] = 1
+
+
+        for i in range(1, len(nums)):
+            left[i] = nums[i-1] * left[i-1]
+        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
+            right[i] = nums[i+1] * right[i+1]
+        for i in range(len(nums)):
+            res[i] = left[i] * right[i]
+
+        return res
