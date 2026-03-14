@@ -1,18 +1,23 @@
 from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class Node:
+    def __init__(self, val = 0, neighbors = None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.neighbors = neighbors if neighbors is not None else []
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
             return None
-        temp = root.left
-        root.left = root.right
-        root.right = temp
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-        return root
+            
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
