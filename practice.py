@@ -1,5 +1,4 @@
-import collections
-from typing import List, Optional
+from typing import Optional
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -8,20 +7,20 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        res = []
-        q = collections.deque()
-        q.append(root)
-
-        while q:
-            length = len(q)
-            nodes = []
-            for i in range(length):
-                node = q.popleft()
-                if node:
-                    nodes.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if nodes:
-                res.append(nodes)
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = float("-inf")
+        def postorder(root):
+            # Use nonlocal to access global variable res
+            nonlocal res
+            if not root:
+                return 0
+            # Max in left sub tree, if negative then 0
+            leftMax = max(postorder(root.left), 0)
+            # Max in right sub tree, if negative then 0
+            rightMax = max(postorder(root.right), 0)
+            # Adjacent node check if max then update global res
+            res = max(res, root.val + leftMax + rightMax)
+            # Pass single path max sum for each recursive call
+            return root.val + max(leftMax, rightMax)
+        postorder(root)
         return res
