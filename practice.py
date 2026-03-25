@@ -1,13 +1,18 @@
-from typing import List
+from typing import Optional
 
-def maxProfit(self, prices: List[int]) -> int:
-        pointer1, pointer2, res = 0, 1, 0
-        while(pointer2 < len(prices)):
-            profit = prices[pointer2] - prices[pointer1]
-            res = max(res, profit)
-            if(pointer2 == len(prices) - 1):
-                pointer1 += 1
-                pointer2 = pointer1 + 1
-            else:
-                pointer2 += 1
-        return res
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return None
+        temp = root.left
+        root.left = root.right
+        root.right = temp
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        return root
