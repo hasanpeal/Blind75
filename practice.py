@@ -6,21 +6,34 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        res = float("-inf")
-        def postorder(root):
-            # Use nonlocal to access global variable res
-            nonlocal res
-            if not root:
-                return 0
-            # Max in left sub tree, if negative then 0
-            leftMax = max(postorder(root.left), 0)
-            # Max in right sub tree, if negative then 0
-            rightMax = max(postorder(root.right), 0)
-            # Adjacent node check if max then update global res
-            res = max(res, root.val + leftMax + rightMax)
-            # Pass single path max sum for each recursive call
-            return root.val + max(leftMax, rightMax)
-        postorder(root)
-        return res
+class Codec:
+    
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        res = []
+        def preorder(node):
+            if not node:
+                res.append("N")
+                return
+            res.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+        preorder(root)
+        return ",".join(res)
+        
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        nodes = data.split(",")
+        index = 0
+        def preorder():
+            nonlocal index
+            if nodes[index] == "N":
+                index += 1
+                return None
+            node = TreeNode(int(nodes[index]))
+            index += 1
+            node.left = preorder()
+            node.right = preorder()
+            return node
+        return preorder()
+            
