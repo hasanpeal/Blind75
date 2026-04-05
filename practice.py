@@ -1,18 +1,22 @@
-from collections import defaultdict
 from typing import List
 
-
-class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # We need this instead of {} because if we directly use res[count].append(s)
-        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
-        # initialize an empty list key first then appends so no key error !!
-        res = defaultdict(list) 
-        for s in strs:
-            count = [0] * 26 # Array of length 26, initialized each index's value to 0
-            for c in s:
-                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
-            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
-            res[tuple(count)].append(s) 
-        return list(res.values()) # map.values() returns group of values in list form
-            
+def search(nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        res = -1
+        while l <= r:
+            m = (l+r)//2
+            if nums[m] == target:
+                return m
+            if nums[m] >= nums[l]:
+                if target > nums[m] or target < nums[l]:
+                    l = m + 1
+                else:
+                    r = m - 1
+            else:
+                if target < nums[m] or target > nums[r]:
+                    r = m - 1
+                else:
+                    l = m + 1
+        return -1
+    
+print(search([3,4,5,6,1,2], 1))
