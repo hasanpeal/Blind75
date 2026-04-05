@@ -1,28 +1,30 @@
-import heapq
+from typing import List
 
-class MedianFinder:
 
-    def __init__(self):
-        # Store approximate equal values in 2 heap for accessing max and min in O(1)
-        self.maxHeap, self.minHeap =[], []
+class Solution:
 
-    def addNum(self, num: int) -> None:
-        heapq.heappush(self.maxHeap, -1 * num)
-        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
-        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
-        if len(self.maxHeap) > len(self.minHeap) + 1:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > len(self.maxHeap) + 1:
-            val = 1 * heapq.heappop(self.minHeap)
-            heapq.heappush(self.maxHeap, -1 * val)
+    def encode(self, strs: List[str]) -> str:
+        res = ""
+        # Numerical length + '#' + string itself
+        for s in strs:
+            res += str(len(s)) + '#' + s
+        return res
 
-    def findMedian(self) -> float:
-        if len(self.maxHeap) > len(self.minHeap):
-            return -1 * self.maxHeap[0]
-        if len(self.minHeap) > len(self.maxHeap):
-            return self.minHeap[0]
-        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
+    # Ex. 3#abc4#abcd
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
+        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
+        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
+        while i < len(s):
+            j = i
+            while s[j] != '#':
+                j += 1
+            length = int(s[i:j])
+            i = j + 1
+            j = i + length
+            res.append(s[i:j])
+            i = j
+        return res
+    print(decode(s='3#abc4#abcd'))
