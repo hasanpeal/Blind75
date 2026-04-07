@@ -1,20 +1,20 @@
 from typing import List
-
-def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
+class Solution:
+    def max_area(self, heights: List[int]):
+        if not heights:
             return 0
-        res = 1
-        has = set()
-        for num in nums:
-            has.add(num)
-        for i in range(len(nums)):
-            curr = nums[i]
-            longest = 1
-            if curr - 1 in has:
-                continue
-            while curr + 1 in has:
-                curr += 1
-                longest += 1
-            res = max(res, longest)
-        return res
-            
+        maxArea = 0
+        left = 0
+        right = len(heights) - 1
+        while left < right:
+            height = min(heights[left], heights[right])
+            width = right - left
+            maxArea = max(maxArea, height*width)
+            if heights[right] < heights[left]:
+                right -= 1
+            else:
+                left += 1
+        return maxArea
+    
+    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
+    print("Max area:", max_area(max_area, heights))
