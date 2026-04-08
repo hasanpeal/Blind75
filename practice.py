@@ -1,22 +1,20 @@
-from typing import List, Optional
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
+from typing import List
 class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        if not preorder or not inorder:
-            
-            
-            
-            return None
-        # Root is always in preorder[0]
-        root = TreeNode(preorder[0])
-        # Finding root in inorder array
-        mid = inorder.index(preorder[0])
-        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
-        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
-        return root
+    def max_area(self, heights: List[int]):
+        if not heights:
+            return 0
+        maxArea = 0
+        left = 0
+        right = len(heights) - 1
+        while left < right:
+            height = min(heights[left], heights[right])
+            width = right - left
+            maxArea = max(maxArea, height*width)
+            if heights[right] < heights[left]:
+                right -= 1
+            else:
+                left += 1
+        return maxArea
+    
+    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
+    print("Max area:", max_area(max_area, heights))
