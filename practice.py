@@ -1,23 +1,14 @@
-from typing import List
+from typing import Optional
 
-def numIslands(self, grid: List[List[str]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        count = 0
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-        def dfs(r,c):
-            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
-                return
-            grid[r][c] = "0"
-            dfs(r + 1, c)
-            dfs(r - 1, c)
-            dfs(r, c + 1)
-            dfs(r, c - 1)
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
         
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1":
-                    count += 1
-                    dfs(r,c)
-                    
-        return count
