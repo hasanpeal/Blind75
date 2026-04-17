@@ -1,14 +1,20 @@
 from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.next = next
 
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-        return max((1 + self.maxDepth(root.left)), ((1 + self.maxDepth(root.right))))
-        
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
+        while n > 0 and right:
+            right = right.next
+            n -= 1
+        while right:
+            left = left.next
+            right = right.next
+        left.next = left.next.next
+        return dummy.next
