@@ -1,27 +1,19 @@
-import collections
-from typing import List, Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+def threeSum(nums: List[int]) -> List[List[int]]:
         res = []
-        q = collections.deque()
-        q.append(root)
-
-        while q:
-            length = len(q)
-            nodes = []
-            for i in range(length):
-                node = q.popleft()
-                if node:
-                    nodes.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if nodes:
-                res.append(nodes)
+        has = {}
+        for i, v in enumerate(nums):
+            has[v] = i
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums), 1):
+                key = -nums[i] - nums[j]
+                if key in has and has.get(key) != i and has.get(key) != j:
+                    triplet = [nums[i], nums[j], key]
+                    triplet.sort()
+                    if triplet not in res:
+                        res.append(triplet)
+                        
+        print(has)
         return res
+print(threeSum([-1,0,1,2,-1,-4]))
