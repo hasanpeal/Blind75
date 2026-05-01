@@ -1,20 +1,40 @@
+from collections import defaultdict
 from typing import List
+
 class Solution:
-    def max_area(self, heights: List[int]):
-        if not heights:
-            return 0
-        maxArea = 0
-        left = 0
-        right = len(heights) - 1
-        while left < right:
-            height = min(heights[left], heights[right])
-            width = right - left
-            maxArea = max(maxArea, height*width)
-            if heights[right] < heights[left]:
-                right -= 1
-            else:
-                left += 1
-        return maxArea
-    
-    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
-    print("Max area:", max_area(max_area, heights))
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        # Step 1: Build the adjacency list to represent the graph
+        # The graph is represented as a dictionary where each node maps to a list of its neighbors
+        adj = defaultdict(list)
+        for a, b in edges:
+            # Add both directions for the undirected graph
+            adj[a].append(b)
+            adj[b].append(a)
+        
+        # Step 2: Initialize a set to keep track of visited nodes
+        visited = set()
+
+        # Step 3: Define a DFS function to traverse the graph
+        def dfs(node):
+            # Mark the current node as visited
+            visited.add(node)
+            # Traverse all unvisited neighbors of the current node
+            for nei in adj[node]:
+                if nei not in visited:
+                    dfs(nei)
+        
+        # Step 4: Initialize a counter for the number of connected components
+        count = 0
+        
+        # Step 5: Iterate through all nodes
+        for i in range(n):
+            # If a node is not visited, it's part of a new connected component
+            if i not in visited:
+                count += 1  # Increment the count for a new component
+                # Perform DFS to mark all nodes in this component as visited
+                dfs(i)
+                
+                
+        
+        # Step 6: Return the total number of connected components
+        return count
