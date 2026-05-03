@@ -1,18 +1,91 @@
-from collections import defaultdict
-from typing import List
-
-
-class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # We need this instead of {} because if we directly use res[count].append(s)
-        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
-        # initialize an empty list key first then appends so no key error !!
-        res = defaultdict(list) 
-        for s in strs:
-            count = [0] * 26 # Array of length 26, initialized each index's value to 0
-            for c in s:
-                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
-            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
-            res[tuple(count)].append(s) 
-        return list(res.values()) # map.values() returns group of values in list form
-            
+[main 0d642ab] Daily practice: 2026-04-26 14:00:50
+ 2 files changed, 14 insertions(+), 24 deletions(-)
+ create mode 100644 cron.log
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: InvertBinaryTree.py at 2026-04-26 14:00:50
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 8b71c3a] Daily practice: 2026-04-26 20:00:01
+ 1 file changed, 6 insertions(+)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: InvertBinaryTree.py at 2026-04-26 20:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 5079fb7] Daily practice: 2026-04-27 09:00:01
+ 2 files changed, 18 insertions(+), 18 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ValidParenthesis.py at 2026-04-27 09:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main b6db1e2] Daily practice: 2026-04-27 14:00:01
+ 2 files changed, 27 insertions(+), 13 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: TopKFrequentElements.py at 2026-04-27 14:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main abc82e4] Daily practice: 2026-04-27 20:00:01
+ 2 files changed, 18 insertions(+), 21 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ReverseLinkedList.py at 2026-04-27 20:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 15f6dc1] Daily practice: 2026-04-28 09:00:01
+ 1 file changed, 24 insertions(+), 10 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: BinaryTreeLevelOrderTraversal.py at 2026-04-28 09:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main c987304] Daily practice: 2026-04-28 14:00:01
+ 2 files changed, 17 insertions(+), 25 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ReverseLinkedList.py at 2026-04-28 14:00:00
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 6eaffc2] Daily practice: 2026-04-28 20:04:05
+ 2 files changed, 30 insertions(+), 12 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: BinaryTreeLevelOrderTraversal.py at 2026-04-28 20:04:04
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main fa63876] Daily practice: 2026-04-29 14:00:01
+ 2 files changed, 21 insertions(+), 24 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: 3Sum.py at 2026-04-29 14:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main c68ab57] Daily practice: 2026-04-30 14:00:02
+ 1 file changed, 11 insertions(+), 30 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: LongestRepeatingCharReplacement.py at 2026-04-30 14:00:02
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 1e4dcbf] Daily practice: 2026-05-01 09:00:02
+ 2 files changed, 30 insertions(+), 11 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ValidBST.py at 2026-05-01 09:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 3749db1] Daily practice: 2026-05-01 14:00:00
+ 1 file changed, 38 insertions(+), 18 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: NumberOfConnectedCompDAG.py at 2026-05-01 14:00:00
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 21037f0] Daily practice: 2026-05-02 20:00:01
+ 2 files changed, 36 insertions(+), 38 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   bb6a3e9..21037f0  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-02 20:00:01
+[main 21694e6] Daily practice: 2026-05-03 09:00:01
+ 2 files changed, 33 insertions(+), 30 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   21037f0..21694e6  main -> main
+Selected file: ValidSudoku.py at 2026-05-03 09:00:01
+[main 70d59d6] Daily practice: 2026-05-03 14:00:01
+ 2 files changed, 23 insertions(+), 29 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   21694e6..70d59d6  main -> main
+Selected file: LongestConsecutiveSequence.py at 2026-05-03 14:00:01
+[main 2871ba3] Daily practice: 2026-05-03 14:30:00
+ 2 files changed, 20 insertions(+), 16 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   70d59d6..2871ba3  main -> main
+Selected file: 3Sum.py at 2026-05-03 14:30:00
+[main e93d1cf] Daily practice: 2026-05-03 15:00:00
+ 2 files changed, 32 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   2871ba3..e93d1cf  main -> main
+Selected file: FindMedianFromDataStream.py at 2026-05-03 15:00:00
+[main a7f5ed0] Daily practice: 2026-05-03 15:30:00
+ 2 files changed, 21 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   e93d1cf..a7f5ed0  main -> main
+Selected file: GroupAnagram.py at 2026-05-03 15:30:00
