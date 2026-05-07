@@ -280,3 +280,191 @@ Selected file: ReorderLinkedList.py at 2026-05-05 13:00:00
 To github.com:hasanpeal/Blind75.git
    32704d9..cfc0bcf  main -> main
 Selected file: EncodeDecodeString.py at 2026-05-05 13:30:00
+[main 4e6be2c] Daily practice: 2026-05-05 14:00:02
+ 2 files changed, 20 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   cfc0bcf..4e6be2c  main -> main
+Selected file: 3Sum.py at 2026-05-05 14:00:02
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: InvertBinaryTree.py at 2026-05-05 14:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MinimumInRotatedSortedArray.py at 2026-05-05 15:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: GroupAnagram.py at 2026-05-05 15:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidBST.py at 2026-05-05 16:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: NumberOfIslands.py at 2026-05-05 16:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LinkedListCycle.py at 2026-05-05 17:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SerializeDeserializeBinaryTree.py at 2026-05-05 17:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SameBinaryTree.py at 2026-05-05 18:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: BinaryTreeLevelOrderTraversal.py at 2026-05-05 18:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: RemoveNodeEndOfList.py at 2026-05-05 19:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ImplementTriePrefixTree.py at 2026-05-05 19:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SearchInRotatedArray.py at 2026-05-05 20:01:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: EncodeDecodeString.py at 2026-05-05 20:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContainerWithMostWater.py at 2026-05-05 21:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MaxDepthOfBinaryTree.py at 2026-05-05 21:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: FindMedianFromDataStream.py at 2026-05-05 22:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: CombinationSum.py at 2026-05-05 22:30:30
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSumII.py at 2026-05-05 23:00:09
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContainsDuplicate.py at 2026-05-05 23:30:02
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LinkedListCycle.py at 2026-05-06 00:00:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContainsDuplicate.py at 2026-05-06 00:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidAnagram.py at 2026-05-06 01:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MergeK-SortedLinkedList.py at 2026-05-06 01:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MinimumInRotatedSortedArray.py at 2026-05-06 02:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSum.py at 2026-05-06 02:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidSudoku.py at 2026-05-06 03:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidParenthesis.py at 2026-05-06 03:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ProductOfArrayItself.py at 2026-05-06 04:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LowestCommonAncestorBST.py at 2026-05-06 04:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: BinaryTreeMaxPathSum.py at 2026-05-06 05:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: FindMedianFromDataStream.py at 2026-05-06 05:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: CloneGraph.py at 2026-05-06 06:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidBST.py at 2026-05-06 06:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: KthSmallestIntegerBST.py at 2026-05-06 07:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ReverseLinkedList.py at 2026-05-06 11:32:52
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: KthSmallestIntegerBST.py at 2026-05-06 12:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidAnagram.py at 2026-05-06 12:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidParenthesis.py at 2026-05-06 13:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: cron.log at 2026-05-06 13:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MaxDepthOfBinaryTree.py at 2026-05-06 14:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: EncodeDecodeString.py at 2026-05-06 14:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: gitscript.log at 2026-05-06 15:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: PacificAtlanticWaterFlow.py at 2026-05-06 15:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SameBinaryTree.py at 2026-05-06 17:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ImplementTriePrefixTree.py at 2026-05-06 18:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidParenthesis.py at 2026-05-06 18:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LowestCommonAncestorBST.py at 2026-05-06 19:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-06 19:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: cron.log at 2026-05-06 20:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-06 20:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: cron.log at 2026-05-06 21:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SearchInRotatedArray.py at 2026-05-06 21:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSum.py at 2026-05-06 22:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SameBinaryTree.py at 2026-05-07 05:03:26
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MergeTwoSortedLinkedList.py at 2026-05-07 07:00:19
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-07 07:38:09
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MergeK-SortedLinkedList.py at 2026-05-07 09:00:26
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSum.py at 2026-05-07 09:31:09
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-07 10:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: RemoveNodeEndOfList.py at 2026-05-07 11:33:41
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: BinaryTreeMaxPathSum.py at 2026-05-07 13:00:26
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
