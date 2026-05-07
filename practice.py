@@ -1,40 +1,31 @@
-from collections import defaultdict
 from typing import List
 
-class Solution:
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        # Step 1: Build the adjacency list to represent the graph
-        # The graph is represented as a dictionary where each node maps to a list of its neighbors
-        adj = defaultdict(list)
-        for a, b in edges:
-            # Add both directions for the undirected graph
-            adj[a].append(b)
-            adj[b].append(a)
-        
-        # Step 2: Initialize a set to keep track of visited nodes
-        visited = set()
+def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        rows = len(heights)
+        cols = len(heights[0])
+        pac, atl = set(), set()
+        res = []
 
-        # Step 3: Define a DFS function to traverse the graph
-        def dfs(node):
-            # Mark the current node as visited
-            visited.add(node)
-            # Traverse all unvisited neighbors of the current node
-            for nei in adj[node]:
-                if nei not in visited:
-                    dfs(nei)
+        def dfs(r, c, visited, minFlow):
+            if r < 0 or c < 0 or r >= rows or c >= cols or heights[r][c] < minFlow or (r,c) in visited:
+                return
+            visited.add((r,c))
+            dfs(r + 1, c, visited, heights[r][c])
+            dfs(r - 1, c, visited, heights[r][c])
+            dfs(r, c + 1, visited, heights[r][c])
+            dfs(r, c - 1, visited, heights[r][c])
         
-        # Step 4: Initialize a counter for the number of connected components
-        count = 0
+        for c in range(cols):
+            dfs(0, c, pac, heights[0][c])
+            dfs(rows - 1, c, atl, heights[rows - 1][c])
         
-        # Step 5: Iterate through all nodes
-        for i in range(n):
-            # If a node is not visited, it's part of a new connected component
-            if i not in visited:
-                count += 1  # Increment the count for a new component
-                # Perform DFS to mark all nodes in this component as visited
-                dfs(i)
-                
-                
+        for r in range(rows):
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, cols - 1, atl, heights[r][cols-1])
         
-        # Step 6: Return the total number of connected components
-        return count
+        for r in range(rows):
+            for c in range(cols):
+                if (r,c) in pac and (r,c) in atl:
+                    res.append([r,c])
+        
+        return res
