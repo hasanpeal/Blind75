@@ -1,13 +1,13 @@
 from typing import List
 
-
-class Solution:
-    def hasDuplicate(self, nums: List[int]) -> bool:
-        seen = set()
-        for num in nums:
-            if num in seen:
-                return True
+def maxProfit(self, prices: List[int]) -> int:
+        pointer1, pointer2, res = 0, 1, 0
+        while(pointer2 < len(prices)):
+            profit = prices[pointer2] - prices[pointer1]
+            res = max(res, profit)
+            if(pointer2 == len(prices) - 1):
+                pointer1 += 1
+                pointer2 = pointer1 + 1
             else:
-                seen.add(num)
-                
-        return False
+                pointer2 += 1
+        return res
