@@ -1,16 +1,13 @@
-from typing import Optional
+from typing import List
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        if not p and not q:
-            return True
-        elif ((p and q) and (p.val == q.val)):
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        else:
-            return False
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        has = {}
+        for i in range(len(nums)):
+            has[nums[i]] = i
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in has and has.get(diff) != i:
+                return [i, has.get(diff)]
+        return []
