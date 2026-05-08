@@ -1,30 +1,31 @@
-def minWindow(self, s: str, t: str) -> str:
-        if t == "":
-            return ""
-        haveMap, needMap = {}, {}
-        # res stores the indices of l, f for substring
-        l, r, res, resLength = 0, 0, [-1, -1], float("inf")
-        for c in t:
-            needMap[c] = 1 + needMap.get(c, 0)
-        have = 0
-        # Need here is the total character. We only increment have if total count of a character is meet
-        need = len(needMap)
-        while r < len(s):
-            curr = s[r]
-            # Adding character on right to the hashmap
-            haveMap[curr] = 1 + haveMap.get(curr, 0)
-            # If we meet the total required number of certain character, we increment have
-            if curr in needMap and haveMap[curr] == needMap[curr]:
-                have += 1
-            while have == need:
-                if (r - l + 1) < resLength:
-                    res = [l, r]
-                    resLength = r - l + 1
-                haveMap[s[l]] -= 1
-                # If character of left is in need map and doesn't meet the total occurence then have -1
-                if s[l] in needMap and haveMap.get(s[l]) < needMap.get(s[l]):
-                    have -= 1
-                l += 1
-            r += 1
-        l, r = res
-        return s[l:r+1] if resLength != float("inf") else ""
+from typing import List
+
+def isValidSudoku(board: List[List[str]]) -> bool:
+        seen = set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                curr = board[i][j]
+                if curr != ".":
+                    row = f"{curr} in row {i}"
+                    col = f"{curr} in col {j}"
+                    box = f"{curr} in box {(i//3 * 3) + j//3}"
+                    print(box)
+                    if row in seen or col in seen or box in seen:
+                        return False
+                    else:
+                        seen.add(row)
+                        seen.add(col)
+                        seen.add(box)
+        return True
+
+board = [["1","2",".",".","3",".",".",".","."],
+        ["4",".",".","5",".",".",".",".","."],
+        [".","9","8",".",".",".",".",".","3"],
+        ["5",".",".",".","6",".",".",".","4"],
+        [".",".",".","8",".","3",".",".","5"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".",".",".",".",".",".","2",".","."],
+        [".",".",".","4","1","9",".",".","8"],
+        [".",".",".",".","8",".",".","7","9"]]
+
+isValidSudoku(board)
