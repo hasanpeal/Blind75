@@ -1,14 +1,814 @@
-from typing import Optional
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+[main 0d642ab] Daily practice: 2026-04-26 14:00:50
+ 2 files changed, 14 insertions(+), 24 deletions(-)
+ create mode 100644 cron.log
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: InvertBinaryTree.py at 2026-04-26 14:00:50
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 8b71c3a] Daily practice: 2026-04-26 20:00:01
+ 1 file changed, 6 insertions(+)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: InvertBinaryTree.py at 2026-04-26 20:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 5079fb7] Daily practice: 2026-04-27 09:00:01
+ 2 files changed, 18 insertions(+), 18 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ValidParenthesis.py at 2026-04-27 09:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main b6db1e2] Daily practice: 2026-04-27 14:00:01
+ 2 files changed, 27 insertions(+), 13 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: TopKFrequentElements.py at 2026-04-27 14:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main abc82e4] Daily practice: 2026-04-27 20:00:01
+ 2 files changed, 18 insertions(+), 21 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ReverseLinkedList.py at 2026-04-27 20:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 15f6dc1] Daily practice: 2026-04-28 09:00:01
+ 1 file changed, 24 insertions(+), 10 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: BinaryTreeLevelOrderTraversal.py at 2026-04-28 09:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main c987304] Daily practice: 2026-04-28 14:00:01
+ 2 files changed, 17 insertions(+), 25 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ReverseLinkedList.py at 2026-04-28 14:00:00
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 6eaffc2] Daily practice: 2026-04-28 20:04:05
+ 2 files changed, 30 insertions(+), 12 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: BinaryTreeLevelOrderTraversal.py at 2026-04-28 20:04:04
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main fa63876] Daily practice: 2026-04-29 14:00:01
+ 2 files changed, 21 insertions(+), 24 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: 3Sum.py at 2026-04-29 14:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main c68ab57] Daily practice: 2026-04-30 14:00:02
+ 1 file changed, 11 insertions(+), 30 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: LongestRepeatingCharReplacement.py at 2026-04-30 14:00:02
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 1e4dcbf] Daily practice: 2026-05-01 09:00:02
+ 2 files changed, 30 insertions(+), 11 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: ValidBST.py at 2026-05-01 09:00:01
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 3749db1] Daily practice: 2026-05-01 14:00:00
+ 1 file changed, 38 insertions(+), 18 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+Selected file: NumberOfConnectedCompDAG.py at 2026-05-01 14:00:00
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 21037f0] Daily practice: 2026-05-02 20:00:01
+ 2 files changed, 36 insertions(+), 38 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   bb6a3e9..21037f0  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-02 20:00:01
+[main 21694e6] Daily practice: 2026-05-03 09:00:01
+ 2 files changed, 33 insertions(+), 30 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   21037f0..21694e6  main -> main
+Selected file: ValidSudoku.py at 2026-05-03 09:00:01
+[main 70d59d6] Daily practice: 2026-05-03 14:00:01
+ 2 files changed, 23 insertions(+), 29 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   21694e6..70d59d6  main -> main
+Selected file: LongestConsecutiveSequence.py at 2026-05-03 14:00:01
+[main 2871ba3] Daily practice: 2026-05-03 14:30:00
+ 2 files changed, 20 insertions(+), 16 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   70d59d6..2871ba3  main -> main
+Selected file: 3Sum.py at 2026-05-03 14:30:00
+[main e93d1cf] Daily practice: 2026-05-03 15:00:00
+ 2 files changed, 32 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   2871ba3..e93d1cf  main -> main
+Selected file: FindMedianFromDataStream.py at 2026-05-03 15:00:00
+[main a7f5ed0] Daily practice: 2026-05-03 15:30:00
+ 2 files changed, 21 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   e93d1cf..a7f5ed0  main -> main
+Selected file: GroupAnagram.py at 2026-05-03 15:30:00
+[main d732ed1] Daily practice: 2026-05-03 16:00:00
+ 2 files changed, 96 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   a7f5ed0..d732ed1  main -> main
+Selected file: cron.log at 2026-05-03 16:00:00
+[main 09ca5bc] Daily practice: 2026-05-03 16:30:00
+ 2 files changed, 253 insertions(+), 91 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   d732ed1..09ca5bc  main -> main
+Selected file: gitscript.log at 2026-05-03 16:30:00
+[main 4028120] Daily practice: 2026-05-03 17:00:01
+ 2 files changed, 33 insertions(+), 248 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   09ca5bc..4028120  main -> main
+Selected file: MergeK-SortedLinkedList.py at 2026-05-03 17:00:00
+[main db08295] Daily practice: 2026-05-03 20:00:01
+ 2 files changed, 30 insertions(+), 25 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   4028120..db08295  main -> main
+Selected file: FindMedianFromDataStream.py at 2026-05-03 20:00:01
+[main 87f2984] Daily practice: 2026-05-03 20:30:01
+ 2 files changed, 26 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   db08295..87f2984  main -> main
+Selected file: SubtreeOfAnotherTree.py at 2026-05-03 20:30:01
+[main b2bf16d] Daily practice: 2026-05-03 21:00:00
+ 2 files changed, 36 insertions(+), 21 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   87f2984..b2bf16d  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-03 21:00:00
+[main a484ece] Daily practice: 2026-05-03 21:30:01
+ 2 files changed, 18 insertions(+), 33 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   b2bf16d..a484ece  main -> main
+Selected file: ValidParenthesis.py at 2026-05-03 21:30:01
+[main 9a2f3ce] Daily practice: 2026-05-04 10:00:00
+ 2 files changed, 16 insertions(+), 13 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   a484ece..9a2f3ce  main -> main
+Selected file: LongestRepeatingCharReplacement.py at 2026-05-04 10:00:00
+[main b039169] Daily practice: 2026-05-04 12:31:34
+ 2 files changed, 35 insertions(+), 11 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   9a2f3ce..b039169  main -> main
+Selected file: EncodeDecodeString.py at 2026-05-04 12:31:34
+[main 3c995fa] Daily practice: 2026-05-04 13:00:01
+ 2 files changed, 27 insertions(+), 27 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   b039169..3c995fa  main -> main
+Selected file: CourseSchedule.py at 2026-05-04 13:00:01
+[main 46827ea] Daily practice: 2026-05-04 13:30:00
+ 2 files changed, 33 insertions(+), 22 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   3c995fa..46827ea  main -> main
+Selected file: ValidSudoku.py at 2026-05-04 13:30:00
+[main 20fc39a] Daily practice: 2026-05-04 14:00:01
+ 2 files changed, 16 insertions(+), 30 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   46827ea..20fc39a  main -> main
+Selected file: LongestSubstringWithoutRepeatingCharacter.py at 2026-05-04 14:00:01
+[main 60ef93e] Daily practice: 2026-05-04 14:30:00
+ 2 files changed, 18 insertions(+), 12 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   20fc39a..60ef93e  main -> main
+Selected file: TwoSum.py at 2026-05-04 14:30:00
+[main 05a2e26] Daily practice: 2026-05-04 15:00:01
+ 2 files changed, 23 insertions(+), 11 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   60ef93e..05a2e26  main -> main
+Selected file: ContainerWithMostWater.py at 2026-05-04 15:00:01
+[main 73ba77d] Daily practice: 2026-05-04 15:30:01
+ 2 files changed, 24 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   05a2e26..73ba77d  main -> main
+Selected file: ProductOfArrayItself.py at 2026-05-04 15:30:01
+[main d3079c7] Daily practice: 2026-05-04 16:00:00
+ 2 files changed, 16 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   73ba77d..d3079c7  main -> main
+Selected file: MaxDepthOfBinaryTree.py at 2026-05-04 16:00:00
+[main 91677a3] Daily practice: 2026-05-04 16:32:06
+ 2 files changed, 21 insertions(+), 9 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   d3079c7..91677a3  main -> main
+Selected file: MergeTwoSortedLinkedList.py at 2026-05-04 16:32:06
+[main 5b7785c] Daily practice: 2026-05-04 18:02:56
+ 2 files changed, 29 insertions(+), 15 deletions(-)
+Connection to github.com closed by remote host.
+To github.com:hasanpeal/Blind75.git
+   91677a3..5b7785c  main -> main
+Selected file: ReorderLinkedList.py at 2026-05-04 18:02:56
+[main b01bc28] Daily practice: 2026-05-04 18:30:00
+ 2 files changed, 44 insertions(+), 28 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   5b7785c..b01bc28  main -> main
+Selected file: NumberOfConnectedCompDAG.py at 2026-05-04 18:30:00
+[main 6f50acb] Daily practice: 2026-05-04 19:00:01
+ 2 files changed, 30 insertions(+), 34 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   b01bc28..6f50acb  main -> main
+Selected file: PacificAtlanticWaterFlow.py at 2026-05-04 19:00:01
+[main bbd0eae] Daily practice: 2026-05-04 19:37:13
+ 2 files changed, 23 insertions(+), 29 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   6f50acb..bbd0eae  main -> main
+Selected file: LongestConsecutiveSequence.py at 2026-05-04 19:37:13
+[main 5d18253] Daily practice: 2026-05-04 20:00:00
+ 2 files changed, 54 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   bbd0eae..5d18253  main -> main
+Selected file: WordSearch.py at 2026-05-04 20:00:00
+[main 4f036a9] Daily practice: 2026-05-04 20:30:01
+ 2 files changed, 16 insertions(+), 51 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   5d18253..4f036a9  main -> main
+Selected file: LongestRepeatingCharReplacement.py at 2026-05-04 20:30:01
+[main 8b5b646] Daily practice: 2026-05-04 21:00:01
+ 2 files changed, 30 insertions(+), 11 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   4f036a9..8b5b646  main -> main
+Selected file: CourseSchedule.py at 2026-05-04 21:00:00
+[main 90d6f33] Daily practice: 2026-05-04 21:30:01
+ 2 files changed, 17 insertions(+), 25 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   8b5b646..90d6f33  main -> main
+Selected file: LongestSubstringWithoutRepeatingCharacter.py at 2026-05-04 21:30:00
+[main f23a632] Daily practice: 2026-05-04 22:01:31
+ 2 files changed, 57 insertions(+), 12 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   90d6f33..f23a632  main -> main
+Selected file: GraphValidTree.py at 2026-05-04 22:01:31
+[main 0518a45] Daily practice: 2026-05-04 23:00:09
+ 2 files changed, 25 insertions(+), 50 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   f23a632..0518a45  main -> main
+Selected file: SearchInRotatedArray.py at 2026-05-04 23:00:09
+[main 940482a] Daily practice: 2026-05-04 23:32:53
+ 1 file changed, 5 insertions(+)
+To github.com:hasanpeal/Blind75.git
+   0518a45..940482a  main -> main
+Selected file: SearchInRotatedArray.py at 2026-05-04 23:32:53
+[main 499a47e] Daily practice: 2026-05-05 09:00:00
+ 2 files changed, 22 insertions(+), 20 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   940482a..499a47e  main -> main
+Selected file: 3Sum.py at 2026-05-05 09:00:00
+[main f7685d8] Daily practice: 2026-05-05 09:30:00
+ 2 files changed, 37 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   499a47e..f7685d8  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-05 09:30:00
+[main 22bacd1] Daily practice: 2026-05-05 10:00:00
+ 2 files changed, 25 insertions(+), 31 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   f7685d8..22bacd1  main -> main
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-05 10:00:00
+[main 97c6e38] Daily practice: 2026-05-05 10:30:01
+ 2 files changed, 16 insertions(+), 21 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   22bacd1..97c6e38  main -> main
+Selected file: ValidAnagram.py at 2026-05-05 10:30:00
+[main 52eb34b] Daily practice: 2026-05-05 11:00:00
+ 2 files changed, 65 insertions(+), 11 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   97c6e38..52eb34b  main -> main
+Selected file: CombinationSum.py at 2026-05-05 11:00:00
+[main 2fb0510] Daily practice: 2026-05-05 11:30:00
+ 2 files changed, 24 insertions(+), 58 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   52eb34b..2fb0510  main -> main
+Selected file: SearchInRotatedArray.py at 2026-05-05 11:30:00
+[main 007e814] Daily practice: 2026-05-05 12:00:00
+ 2 files changed, 21 insertions(+), 20 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   2fb0510..007e814  main -> main
+Selected file: LowestCommonAncestorBST.py at 2026-05-05 12:00:00
+[main c861c53] Daily practice: 2026-05-05 12:30:01
+ 2 files changed, 64 insertions(+), 16 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   007e814..c861c53  main -> main
+Selected file: CombinationSum.py at 2026-05-05 12:30:01
+[main 32704d9] Daily practice: 2026-05-05 13:00:00
+ 2 files changed, 33 insertions(+), 59 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   c861c53..32704d9  main -> main
+Selected file: ReorderLinkedList.py at 2026-05-05 13:00:00
+[main cfc0bcf] Daily practice: 2026-05-05 13:30:00
+ 2 files changed, 32 insertions(+), 27 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   32704d9..cfc0bcf  main -> main
+Selected file: EncodeDecodeString.py at 2026-05-05 13:30:00
+[main 4e6be2c] Daily practice: 2026-05-05 14:00:02
+ 2 files changed, 20 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   cfc0bcf..4e6be2c  main -> main
+Selected file: 3Sum.py at 2026-05-05 14:00:02
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: InvertBinaryTree.py at 2026-05-05 14:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MinimumInRotatedSortedArray.py at 2026-05-05 15:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: GroupAnagram.py at 2026-05-05 15:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidBST.py at 2026-05-05 16:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: NumberOfIslands.py at 2026-05-05 16:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LinkedListCycle.py at 2026-05-05 17:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SerializeDeserializeBinaryTree.py at 2026-05-05 17:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SameBinaryTree.py at 2026-05-05 18:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: BinaryTreeLevelOrderTraversal.py at 2026-05-05 18:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: RemoveNodeEndOfList.py at 2026-05-05 19:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ImplementTriePrefixTree.py at 2026-05-05 19:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SearchInRotatedArray.py at 2026-05-05 20:01:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: EncodeDecodeString.py at 2026-05-05 20:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContainerWithMostWater.py at 2026-05-05 21:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MaxDepthOfBinaryTree.py at 2026-05-05 21:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: FindMedianFromDataStream.py at 2026-05-05 22:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: CombinationSum.py at 2026-05-05 22:30:30
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSumII.py at 2026-05-05 23:00:09
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContainsDuplicate.py at 2026-05-05 23:30:02
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LinkedListCycle.py at 2026-05-06 00:00:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContainsDuplicate.py at 2026-05-06 00:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidAnagram.py at 2026-05-06 01:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MergeK-SortedLinkedList.py at 2026-05-06 01:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MinimumInRotatedSortedArray.py at 2026-05-06 02:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSum.py at 2026-05-06 02:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidSudoku.py at 2026-05-06 03:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidParenthesis.py at 2026-05-06 03:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ProductOfArrayItself.py at 2026-05-06 04:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LowestCommonAncestorBST.py at 2026-05-06 04:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: BinaryTreeMaxPathSum.py at 2026-05-06 05:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: FindMedianFromDataStream.py at 2026-05-06 05:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: CloneGraph.py at 2026-05-06 06:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidBST.py at 2026-05-06 06:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: KthSmallestIntegerBST.py at 2026-05-06 07:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ReverseLinkedList.py at 2026-05-06 11:32:52
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: KthSmallestIntegerBST.py at 2026-05-06 12:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidAnagram.py at 2026-05-06 12:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidParenthesis.py at 2026-05-06 13:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: cron.log at 2026-05-06 13:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MaxDepthOfBinaryTree.py at 2026-05-06 14:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: EncodeDecodeString.py at 2026-05-06 14:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: gitscript.log at 2026-05-06 15:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: PacificAtlanticWaterFlow.py at 2026-05-06 15:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SameBinaryTree.py at 2026-05-06 17:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ImplementTriePrefixTree.py at 2026-05-06 18:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ValidParenthesis.py at 2026-05-06 18:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: LowestCommonAncestorBST.py at 2026-05-06 19:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-06 19:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: cron.log at 2026-05-06 20:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-06 20:30:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: cron.log at 2026-05-06 21:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SearchInRotatedArray.py at 2026-05-06 21:30:01
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSum.py at 2026-05-06 22:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: SameBinaryTree.py at 2026-05-07 05:03:26
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MergeTwoSortedLinkedList.py at 2026-05-07 07:00:19
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-07 07:38:09
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: MergeK-SortedLinkedList.py at 2026-05-07 09:00:26
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: TwoSum.py at 2026-05-07 09:31:09
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-07 10:00:00
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: RemoveNodeEndOfList.py at 2026-05-07 11:33:41
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+You have not agreed to the Xcode license agreements. Please run 'sudo xcodebuild -license' from within a Terminal window to review and agree to the Xcode and Apple SDKs license.
+Selected file: BinaryTreeMaxPathSum.py at 2026-05-07 13:00:26
+Git operation failed: Command '['git', 'add', '.']' returned non-zero exit status 69.
+[main 679c817] Daily practice: 2026-05-07 13:30:00
+ 2 files changed, 210 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   4e6be2c..679c817  main -> main
+Selected file: CloneGraph.py at 2026-05-07 13:30:00
+[main 4eda747] Daily practice: 2026-05-07 14:00:01
+ 2 files changed, 41 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   679c817..4eda747  main -> main
+Selected file: NumberOfConnectedCompDAG.py at 2026-05-07 14:00:00
+[main 62b956d] Daily practice: 2026-05-07 14:30:00
+ 2 files changed, 30 insertions(+), 34 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   4eda747..62b956d  main -> main
+Selected file: PacificAtlanticWaterFlow.py at 2026-05-07 14:30:00
+[main 692ea90] Daily practice: 2026-05-07 15:00:00
+ 2 files changed, 28 insertions(+), 29 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   62b956d..692ea90  main -> main
+Selected file: ValidBST.py at 2026-05-07 15:00:00
+[main 218d2b8] Daily practice: 2026-05-07 15:30:01
+ 2 files changed, 29 insertions(+), 21 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   692ea90..218d2b8  main -> main
+Selected file: MergeK-SortedLinkedList.py at 2026-05-07 15:30:01
+[main 3610052] Daily practice: 2026-05-07 16:00:01
+ 2 files changed, 16 insertions(+), 21 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   218d2b8..3610052  main -> main
+Selected file: LinkedListCycle.py at 2026-05-07 16:00:01
+[main d5e9ad2] Daily practice: 2026-05-07 16:30:00
+ 2 files changed, 13 insertions(+), 13 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   3610052..d5e9ad2  main -> main
+Selected file: ContainsDuplicate.py at 2026-05-07 16:30:00
+[main 0381187] Daily practice: 2026-05-07 17:00:00
+ 2 files changed, 14 insertions(+), 11 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   d5e9ad2..0381187  main -> main
+Selected file: TwoSumII.py at 2026-05-07 17:00:00
+[main a0a5871] Daily practice: 2026-05-07 17:30:00
+ 2 files changed, 64 insertions(+), 9 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   0381187..a0a5871  main -> main
+Selected file: CombinationSum.py at 2026-05-07 17:30:00
+[main 905c947] Daily practice: 2026-05-07 18:00:00
+ 2 files changed, 24 insertions(+), 58 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   a0a5871..905c947  main -> main
+Selected file: TopKFrequentElements.py at 2026-05-07 18:00:00
+[main 9089706] Daily practice: 2026-05-07 18:30:00
+ 2 files changed, 37 insertions(+), 21 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   905c947..9089706  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-07 18:30:00
+[main e9787c8] Daily practice: 2026-05-07 19:00:00
+ 2 files changed, 7 insertions(+), 33 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   9089706..e9787c8  main -> main
+Selected file: .gitignore at 2026-05-07 19:00:00
+[main 1858506] Daily practice: 2026-05-07 19:30:01
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   e9787c8..1858506  main -> main
+Selected file: ContainsDuplicate.py at 2026-05-07 19:30:00
+[main 2c9eac8] Daily practice: 2026-05-07 20:00:00
+ 2 files changed, 15 insertions(+), 10 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   1858506..2c9eac8  main -> main
+Selected file: BestTimeBuySellStock.py at 2026-05-07 20:00:00
+[main aa35966] Daily practice: 2026-05-07 20:30:00
+ 2 files changed, 18 insertions(+), 12 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   2c9eac8..aa35966  main -> main
+Selected file: ReverseLinkedList.py at 2026-05-07 20:30:00
+[main 3a77ed8] Daily practice: 2026-05-07 21:30:01
+ 2 files changed, 253 insertions(+), 14 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   aa35966..3a77ed8  main -> main
+Selected file: gitscript.log at 2026-05-07 21:30:01
+[main 96b66d7] Daily practice: 2026-05-07 23:00:01
+ 2 files changed, 38 insertions(+), 248 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   3a77ed8..96b66d7  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-07 23:00:01
+[main cee12c2] Daily practice: 2026-05-07 23:30:00
+ 2 files changed, 23 insertions(+), 31 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   96b66d7..cee12c2  main -> main
+Selected file: RemoveNodeEndOfList.py at 2026-05-07 23:30:00
+[main 75a59fe] Daily practice: 2026-05-08 00:00:00
+ 2 files changed, 16 insertions(+), 15 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   cee12c2..75a59fe  main -> main
+Selected file: SameBinaryTree.py at 2026-05-08 00:00:00
+[main 432b462] Daily practice: 2026-05-08 01:00:00
+ 2 files changed, 15 insertions(+), 13 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   75a59fe..432b462  main -> main
+Selected file: TwoSum.py at 2026-05-08 01:00:00
+[main d7090ed] Daily practice: 2026-05-08 01:30:00
+ 2 files changed, 23 insertions(+), 9 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   432b462..d7090ed  main -> main
+Selected file: TopKFrequentElements.py at 2026-05-08 01:30:00
+[main c68566a] Daily practice: 2026-05-08 02:30:00
+ 2 files changed, 42 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   d7090ed..c68566a  main -> main
+Selected file: NumberOfConnectedCompDAG.py at 2026-05-08 02:30:00
+[main d06f8f0] Daily practice: 2026-05-08 03:00:00
+ 2 files changed, 253 insertions(+), 40 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   c68566a..d06f8f0  main -> main
+Selected file: gitscript.log at 2026-05-08 03:00:00
+[main 8fe5911] Daily practice: 2026-05-08 03:30:01
+ 2 files changed, 23 insertions(+), 248 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   d06f8f0..8fe5911  main -> main
+Selected file: InvertBinaryTree.py at 2026-05-08 03:30:01
+[main cfebed5] Daily practice: 2026-05-08 04:00:00
+ 2 files changed, 21 insertions(+), 9 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   8fe5911..cfebed5  main -> main
+Selected file: ValidBST.py at 2026-05-08 04:00:00
+[main a257474] Daily practice: 2026-05-08 04:30:00
+ 2 files changed, 19 insertions(+), 17 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   cfebed5..a257474  main -> main
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-08 04:30:00
+[main 00c46bc] Daily practice: 2026-05-08 05:00:00
+ 2 files changed, 32 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   a257474..00c46bc  main -> main
+Selected file: EncodeDecodeString.py at 2026-05-08 05:00:00
+[main 05342f8] Daily practice: 2026-05-08 05:30:00
+ 2 files changed, 24 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   00c46bc..05342f8  main -> main
+Selected file: CloneGraph.py at 2026-05-08 05:30:00
+[main b39cedd] Daily practice: 2026-05-08 06:00:00
+ 2 files changed, 31 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   05342f8..b39cedd  main -> main
+Selected file: EncodeDecodeString.py at 2026-05-08 06:00:00
+[main 0b593ff] Daily practice: 2026-05-08 06:30:00
+ 2 files changed, 34 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   b39cedd..0b593ff  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-08 06:30:00
+[main 1b25983] Daily practice: 2026-05-08 07:30:00
+ 2 files changed, 42 insertions(+), 31 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   0b593ff..1b25983  main -> main
+Selected file: SerializeDeserializeBinaryTree.py at 2026-05-08 07:30:00
+[main a707466] Daily practice: 2026-05-08 08:00:00
+ 2 files changed, 16 insertions(+), 37 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   1b25983..a707466  main -> main
+Selected file: TwoSum.py at 2026-05-08 08:00:00
+[main 1783b5b] Daily practice: 2026-05-08 08:30:00
+ 2 files changed, 7 insertions(+), 13 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   a707466..1783b5b  main -> main
+Selected file: .gitignore at 2026-05-08 08:30:00
+[main 51524f7] Daily practice: 2026-05-08 09:00:01
+ 2 files changed, 44 insertions(+), 2 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   1783b5b..51524f7  main -> main
+Selected file: SerializeDeserializeBinaryTree.py at 2026-05-08 09:00:01
+[main c7228ef] Daily practice: 2026-05-08 12:00:00
+ 2 files changed, 57 insertions(+), 39 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   51524f7..c7228ef  main -> main
+Selected file: GraphValidTree.py at 2026-05-08 12:00:00
+[main 9f3f614] Daily practice: 2026-05-08 12:30:00
+ 2 files changed, 34 insertions(+), 50 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   c7228ef..9f3f614  main -> main
+Selected file: PacificAtlanticWaterFlow.py at 2026-05-08 12:30:00
+[main 28f8e52] Daily practice: 2026-05-08 13:00:00
+ 2 files changed, 21 insertions(+), 28 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   9f3f614..28f8e52  main -> main
+Selected file: 3Sum.py at 2026-05-08 13:00:00
+[main 4ae845e] Daily practice: 2026-05-08 14:00:01
+ 2 files changed, 31 insertions(+), 15 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   28f8e52..4ae845e  main -> main
+Selected file: EncodeDecodeString.py at 2026-05-08 14:00:00
+[main 88e27f0] Daily practice: 2026-05-08 14:30:00
+ 2 files changed, 7 insertions(+), 30 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   4ae845e..88e27f0  main -> main
+Selected file: .gitignore at 2026-05-08 14:30:00
+[main a4fe556] Daily practice: 2026-05-08 15:00:00
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   88e27f0..a4fe556  main -> main
+Selected file: TwoSumII.py at 2026-05-08 15:00:00
+[main 8196a6d] Daily practice: 2026-05-08 15:30:01
+ 2 files changed, 35 insertions(+), 11 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   a4fe556..8196a6d  main -> main
+Selected file: MinimumWindowSubs.py at 2026-05-08 15:30:01
+[main 5497642] Daily practice: 2026-05-08 16:00:01
+ 2 files changed, 36 insertions(+), 30 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   8196a6d..5497642  main -> main
+Selected file: ValidSudoku.py at 2026-05-08 16:00:00
+[main 7bc8787] Daily practice: 2026-05-08 16:30:00
+ 2 files changed, 27 insertions(+), 28 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   5497642..7bc8787  main -> main
+Selected file: CourseSchedule.py at 2026-05-08 16:30:00
+[main fca3de3] Daily practice: 2026-05-08 17:00:00
+ 2 files changed, 17 insertions(+), 24 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   7bc8787..fca3de3  main -> main
+Selected file: ValidParenthesis.py at 2026-05-08 17:00:00
+[main d1d8af2] Daily practice: 2026-05-08 20:30:00
+ 2 files changed, 22 insertions(+), 12 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   fca3de3..d1d8af2  main -> main
+Selected file: LowestCommonAncestorBST.py at 2026-05-08 20:30:00
+[main 85036c3] Daily practice: 2026-05-08 21:00:01
+ 2 files changed, 16 insertions(+), 17 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   d1d8af2..85036c3  main -> main
+Selected file: LongestSubstringWithoutRepeatingCharacter.py at 2026-05-08 21:00:01
+[main 09491a5] Daily practice: 2026-05-08 23:00:01
+ 2 files changed, 27 insertions(+), 12 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   85036c3..09491a5  main -> main
+Selected file: TopKFrequentElements.py at 2026-05-08 23:00:01
+[main 0b3a17b] Daily practice: 2026-05-10 07:30:50
+ 2 files changed, 33 insertions(+), 20 deletions(-)
+Connection closed by 140.82.114.4 port 22
+fatal: Could not read from remote repository.
 
-def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        prev, curr = None, head
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        return prev
+Please make sure you have the correct access rights
+and the repository exists.
+Selected file: ReorderLinkedList.py at 2026-05-10 07:30:50
+Git operation failed: Command '['git', 'push']' returned non-zero exit status 128.
+[main 29b1d72] Daily practice: 2026-05-10 09:30:00
+ 2 files changed, 28 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   09491a5..29b1d72  main -> main
+Selected file: SubtreeOfAnotherTree.py at 2026-05-10 09:30:00
+[main 15aa736] Daily practice: 2026-05-10 10:00:00
+ 2 files changed, 21 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   29b1d72..15aa736  main -> main
+Selected file: RemoveNodeEndOfList.py at 2026-05-10 10:00:00
+[main 53bc253] Daily practice: 2026-05-10 10:30:00
+ 2 files changed, 16 insertions(+), 15 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   15aa736..53bc253  main -> main
+Selected file: SameBinaryTree.py at 2026-05-10 10:30:00
+[main 379c6ad] Daily practice: 2026-05-10 11:00:00
+ 2 files changed, 54 insertions(+), 13 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   53bc253..379c6ad  main -> main
+Selected file: GraphValidTree.py at 2026-05-10 11:00:00
+[main 3eef29d] Daily practice: 2026-05-10 11:30:00
+ 2 files changed, 19 insertions(+), 48 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   379c6ad..3eef29d  main -> main
+Selected file: GroupAnagram.py at 2026-05-10 11:30:00
+[main df6f7a6] Daily practice: 2026-05-10 12:00:00
+ 2 files changed, 24 insertions(+), 15 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   3eef29d..df6f7a6  main -> main
+Selected file: ContructTreeFromPreorderInorder.py at 2026-05-10 12:00:00
+[main b7d3ea9] Daily practice: 2026-05-10 12:30:00
+ 2 files changed, 21 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   df6f7a6..b7d3ea9  main -> main
+Selected file: RemoveNodeEndOfList.py at 2026-05-10 12:30:00
+[main 3996e93] Daily practice: 2026-05-10 13:00:01
+ 2 files changed, 36 insertions(+), 18 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   b7d3ea9..3996e93  main -> main
+Selected file: ImplementTriePrefixTree.py at 2026-05-10 13:00:01
+[main bcee852] Daily practice: 2026-05-10 13:30:00
+ 2 files changed, 55 insertions(+), 31 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   3996e93..bcee852  main -> main
+Selected file: GraphValidTree.py at 2026-05-10 13:30:00
+[main 18b1234] Daily practice: 2026-05-10 14:00:01
+ 2 files changed, 763 insertions(+), 51 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   bcee852..18b1234  main -> main
+Selected file: cron.log at 2026-05-10 14:00:01
+[main cde91e7] Daily practice: 2026-05-10 14:30:00
+ 2 files changed, 32 insertions(+), 758 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   18b1234..cde91e7  main -> main
+Selected file: MergeK-SortedLinkedList.py at 2026-05-10 14:30:00
+[main 33a242b] Daily practice: 2026-05-10 15:00:00
+ 2 files changed, 16 insertions(+), 26 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   cde91e7..33a242b  main -> main
+Selected file: BestTimeBuySellStock.py at 2026-05-10 15:00:00
+[main 4bba131] Daily practice: 2026-05-10 15:30:00
+ 2 files changed, 15 insertions(+), 10 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   33a242b..4bba131  main -> main
+Selected file: ContainsDuplicate.py at 2026-05-10 15:30:00
+[main 4eae1ec] Daily practice: 2026-05-10 16:00:00
+ 2 files changed, 22 insertions(+), 10 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   4bba131..4eae1ec  main -> main
+Selected file: ContainerWithMostWater.py at 2026-05-10 16:00:00
+[main 08f9613] Daily practice: 2026-05-10 16:30:00
+ 2 files changed, 24 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   4eae1ec..08f9613  main -> main
+Selected file: RemoveNodeEndOfList.py at 2026-05-10 16:30:00
+[main 7e1124e] Daily practice: 2026-05-10 17:00:00
+ 2 files changed, 24 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   08f9613..7e1124e  main -> main
+Selected file: LongestConsecutiveSequence.py at 2026-05-10 17:00:00
+[main c17d547] Daily practice: 2026-05-10 17:30:00
+ 2 files changed, 22 insertions(+), 19 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   7e1124e..c17d547  main -> main
+Selected file: LinkedListCycle.py at 2026-05-10 17:30:00
+[main c343c6c] Daily practice: 2026-05-10 18:00:00
+ 2 files changed, 33 insertions(+), 15 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   c17d547..c343c6c  main -> main
+Selected file: ValidSudoku.py at 2026-05-10 18:00:00
+[main 5666cbb] Daily practice: 2026-05-10 18:30:00
+ 2 files changed, 25 insertions(+), 28 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   c343c6c..5666cbb  main -> main
+Selected file: NumberOfIslands.py at 2026-05-10 18:30:00
+[main 5928620] Daily practice: 2026-05-10 19:00:00
+ 2 files changed, 18 insertions(+), 22 deletions(-)
+To github.com:hasanpeal/Blind75.git
+   5666cbb..5928620  main -> main
+Selected file: ReverseLinkedList.py at 2026-05-10 19:00:00
