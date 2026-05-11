@@ -1,28 +1,51 @@
-import heapq
+from typing import List
 
-class MedianFinder:
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        # Get the dimensions of the board
+        row = len(board)  # Number of rows
+        col = len(board[0])  # Number of columns
+        
+        # A set to track the cells visited in the current path
+        path = set()
 
-    def __init__(self):
-        # Store approximate equal values in 2 heap for accessing max and min in O(1)
-        self.maxHeap, self.minHeap =[], []
+        # Define the recursive Depth-First Search (DFS) function
+        def dfs(r, c, i):
+            # Base case: If the entire word is matched, return True
+            if i == len(word):
+                return True
+            
+            # Check for invalid moves:
+            # 1. Out of bounds (r or c is outside the board)
+            # 2. Current cell does not match the corresponding character in the word
+            # 3. Current cell is already visited in the current path
+            if (r < 0 or c < 0 or r >= row or c >= col or 
+                board[r][c] != word[i] or (r, c) in path):
+                return False
+            
+            # Add the current cell to the path (mark it as visited)
+            path.add((r, c))
+            
+            # Recursively search in all four directions
+            # Must wrap the expression in parentheses to avoid syntax errors
+            res = (dfs(r + 1, c, i + 1) or  # Down
+                   dfs(r - 1, c, i + 1) or  # Up
+                   dfs(r, c - 1, i + 1) or  # Left
+                   dfs(r, c + 1, i + 1))    # Right
+            
+            # Backtrack: Remove the current cell from the path
+            # This ensures other paths can reuse this cell
+            path.remove((r, c))
+            
+            # Return whether any direction found a valid path
+            return res
+        
+        # Iterate through every cell in the board as a starting point
+        for r in range(row):  # Iterate over all rows
+            for c in range(col):  # Iterate over all columns
+                # Start DFS from the current cell
+                if dfs(r, c, 0):  # If DFS finds a valid path for the word, return True
+                    return True
 
-    def addNum(self, num: int) -> None:
-        heapq.heappush(self.maxHeap, -1 * num)
-        # Make sure values in heap are there then if highest val of maxHeap greater than minHeaps min then swap
-        if (self.maxHeap and self.minHeap) and -1 * self.maxHeap[0] > self.minHeap[0]:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        # The length of both heaps difference can't be greater than 1 if it's then swap to equalize
-        if len(self.maxHeap) > len(self.minHeap) + 1:
-            val = -1 * heapq.heappop(self.maxHeap)
-            heapq.heappush(self.minHeap, val)
-        if len(self.minHeap) > len(self.maxHeap) + 1:
-            val = 1 * heapq.heappop(self.minHeap)
-            heapq.heappush(self.maxHeap, -1 * val)
-
-    def findMedian(self) -> float:
-        if len(self.maxHeap) > len(self.minHeap):
-            return -1 * self.maxHeap[0]
-        if len(self.minHeap) > len(self.maxHeap):
-            return self.minHeap[0]
-        return ((-1 * self.maxHeap[0]) + self.minHeap[0])/2
+        # If no valid path is found after exploring all cells, return False
+        return False
