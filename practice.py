@@ -1,21 +1,23 @@
-from typing import Optional
+from typing import List
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+def numIslands(self, grid: List[List[str]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        count = 0
 
-class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode()
-        curr = dummy
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
-            else:
-                curr.next = list2
-                list2 = list2.next
-            curr = curr.next
-        curr.next = list1 or list2
-        return dummy.next
+        def dfs(r,c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == "0":
+                return
+            grid[r][c] = "0"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(r,c)
+                    
+        return count
