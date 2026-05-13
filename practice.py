@@ -1,16 +1,33 @@
-from typing import List
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
 
-def findMin(self, nums: List[int]) -> int:
-        l, r, res = 0, len(nums) - 1, nums[0]
-        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
-        while l <= r:
-            if nums[l] < nums[r]:
-                res = min(res, nums[l])
-                break
-            m = (l + r) // 2
-            res = min(res, nums[m])
-            if nums[m] >= nums[l]:
-                l = m + 1
-            else:
-                r = m - 1
-        return res
+class PrefixTree:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+        curr.endOfWord = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return curr.endOfWord
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for char in prefix:
+            if char not in curr.children:
+                return False
+            curr = curr.children[char]
+        return True
+        
