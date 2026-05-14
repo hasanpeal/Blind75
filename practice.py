@@ -1,13 +1,18 @@
-from typing import List
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-def maxProfit(self, prices: List[int]) -> int:
-        pointer1, pointer2, res = 0, 1, 0
-        while(pointer2 < len(prices)):
-            profit = prices[pointer2] - prices[pointer1]
-            res = max(res, profit)
-            if(pointer2 == len(prices) - 1):
-                pointer1 += 1
-                pointer2 = pointer1 + 1
+class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        curr = root
+        while curr:
+            if p.val < curr.val and q.val < curr.val:
+                curr = curr.left
+            elif p.val > curr.val and q.val > curr.val:
+                curr = curr.right
             else:
-                pointer2 += 1
-        return res
+                return curr
