@@ -1,30 +1,25 @@
 from typing import List
 
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        preq = {i : [] for i in range(numCourses)}
+        for c, p in prerequisites:
+            preq[c].append(p)
+        visited = set()
 
-class Solution:
-
-    def encode(self, strs: List[str]) -> str:
-        res = ""
-        # Numerical length + '#' + string itself
-        for s in strs:
-            res += str(len(s)) + '#' + s
-        return res
-
-    # Ex. 3#abc4#abcd
-    def decode(self, s: str) -> List[str]:
-        res = []
-        i = 0
-        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
-        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
-        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
-        while i < len(s):
-            j = i
-            while s[j] != '#':
-                j += 1
-            length = int(s[i:j])
-            i = j + 1
-            j = i + length
-            res.append(s[i:j])
-            i = j
-        return res
-    print(decode(s='3#abc4#abcd'))
+        def dfsCycleDetect(c):
+            if c in visited:
+                return False
+            if preq[c] == []:
+                return True
+            visited.add(c)
+            for pre in preq[c]:
+                if not dfsCycleDetect(pre):
+                    return False
+            visited.remove(c)
+            preq[c] = []
+            return True
+        
+        for p in range(numCourses):
+            if not dfsCycleDetect(p):
+                return False
+        return True
