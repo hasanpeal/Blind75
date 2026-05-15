@@ -1,27 +1,18 @@
-import collections
-from typing import List, Optional
+from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.next = next
 
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        res = []
-        q = collections.deque()
-        q.append(root)
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
 
-        while q:
-            length = len(q)
-            nodes = []
-            for i in range(length):
-                node = q.popleft()
-                if node:
-                    nodes.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if nodes:
-                res.append(nodes)
-        return res
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
