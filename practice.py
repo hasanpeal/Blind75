@@ -1,22 +1,16 @@
 from typing import List
 
-def search(nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
-        res = -1
+def findMin(self, nums: List[int]) -> int:
+        l, r, res = 0, len(nums) - 1, nums[0]
+        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
         while l <= r:
-            m = (l+r)//2
-            if nums[m] == target:
-                return m
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r) // 2
+            res = min(res, nums[m])
             if nums[m] >= nums[l]:
-                if target > nums[m] or target < nums[l]:
-                    l = m + 1
-                else:
-                    r = m - 1
+                l = m + 1
             else:
-                if target < nums[m] or target > nums[r]:
-                    r = m - 1
-                else:
-                    l = m + 1
-        return -1
-    
-print(search([3,4,5,6,1,2], 1))
+                r = m - 1
+        return res
