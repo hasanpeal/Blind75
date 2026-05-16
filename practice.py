@@ -7,14 +7,20 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        nodes = []
-        # Inorder traversal sorted the BST
-        def dfs(node):
-            if not node:
-                return
-            dfs(node.left)
-            nodes.append(node.val)
-            dfs(node.right)
-        dfs(root)
-        return nodes[k - 1]
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = float("-inf")
+        def postorder(root):
+            # Use nonlocal to access global variable res
+            nonlocal res
+            if not root:
+                return 0
+            # Max in left sub tree, if negative then 0
+            leftMax = max(postorder(root.left), 0)
+            # Max in right sub tree, if negative then 0
+            rightMax = max(postorder(root.right), 0)
+            # Adjacent node check if max then update global res
+            res = max(res, root.val + leftMax + rightMax)
+            # Pass single path max sum for each recursive call
+            return root.val + max(leftMax, rightMax)
+        postorder(root)
+        return res
