@@ -1,30 +1,22 @@
-from typing import Optional
-from LinkedListCycle import ListNode
+from typing import List, Optional
 
-def __init__(self, val=0, next=None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.next = next
+        self.left = left
+        self.right = right
 
 class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        curr = slow.next
-        slow.next = None
-        prev = None
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        slow = head
-        fast = prev
-        while fast:
-            temp1 = slow.next
-            temp2 = fast.next
-            slow.next = fast
-            fast.next = temp1
-            slow = temp1
-            fast = temp2
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            
+            
+            
+            return None
+        # Root is always in preorder[0]
+        root = TreeNode(preorder[0])
+        # Finding root in inorder array
+        mid = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        return root
