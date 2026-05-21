@@ -1,20 +1,23 @@
 from typing import Optional
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+class Node:
+    def __init__(self, val = 0, neighbors = None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.neighbors = neighbors if neighbors is not None else []
 
 class Solution:
-    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        nodes = []
-        # Inorder traversal sorted the BST
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
+            
+        oldToNew = {}
+
         def dfs(node):
-            if not node:
-                return
-            dfs(node.left)
-            nodes.append(node.val)
-            dfs(node.right)
-        dfs(root)
-        return nodes[k - 1]
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
