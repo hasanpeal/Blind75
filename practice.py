@@ -1,28 +1,27 @@
+import collections
 from typing import List, Optional
 
-class ListNode:
-    def __init__(self, val=0, next=None):
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.next = next
+        self.left = left
+        self.right = right
 
-class Solution:    
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if len(lists) == 0:
-            return None
-        for i in range(1, len(lists)):
-            lists[i] = self.merge(lists[i-1], lists[i])
-        return lists[-1]
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        q = collections.deque()
+        q.append(root)
 
-    def merge(self, list1, list2):
-        dummy = ListNode()
-        curr = dummy
-        while list1 and list2:
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next
-            else:
-                curr.next = list2
-                list2 = list2.next
-            curr = curr.next
-        curr.next = list1 or list2
-        return dummy.next
+        while q:
+            length = len(q)
+            nodes = []
+            for i in range(length):
+                node = q.popleft()
+                if node:
+                    nodes.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if nodes:
+                res.append(nodes)
+        return res
