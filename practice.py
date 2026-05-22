@@ -1,11 +1,20 @@
-def characterReplacement(self, s: str, k: int) -> int:
-        seen = {}
-        l,r,m = 0, 0, 0
-        while r < len(s):
-            seen[s[r]] = 1 + seen.get(s[r], 0)
-            while ((r - l + 1) - max(seen.values())) > k:
-                seen[s[l]] -= 1
-                l += 1
-            m = max(m, r - l + 1)
-            r += 1
-        return m
+from typing import List
+class Solution:
+    def max_area(self, heights: List[int]):
+        if not heights:
+            return 0
+        maxArea = 0
+        left = 0
+        right = len(heights) - 1
+        while left < right:
+            height = min(heights[left], heights[right])
+            width = right - left
+            maxArea = max(maxArea, height*width)
+            if heights[right] < heights[left]:
+                right -= 1
+            else:
+                left += 1
+        return maxArea
+    
+    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
+    print("Max area:", max_area(max_area, heights))
