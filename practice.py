@@ -1,33 +1,30 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.endOfWord = False
+from typing import Optional
+from LinkedListCycle import ListNode
 
-class PrefixTree:
-    def __init__(self):
-        self.root = TrieNode()
+def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-    def insert(self, word: str) -> None:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                curr.children[char] = TrieNode()
-            curr = curr.children[char]
-        curr.endOfWord = True
-
-    def search(self, word: str) -> bool:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return curr.endOfWord
-
-    def startsWith(self, prefix: str) -> bool:
-        curr = self.root
-        for char in prefix:
-            if char not in curr.children:
-                return False
-            curr = curr.children[char]
-        return True
-        
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        curr = slow.next
+        slow.next = None
+        prev = None
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        slow = head
+        fast = prev
+        while fast:
+            temp1 = slow.next
+            temp2 = fast.next
+            slow.next = fast
+            fast.next = temp1
+            slow = temp1
+            fast = temp2
