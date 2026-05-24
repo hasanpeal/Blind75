@@ -1,18 +1,16 @@
-from collections import defaultdict
 from typing import List
 
-
-class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # We need this instead of {} because if we directly use res[count].append(s)
-        # then it will give key error because no res[count] exist to append, using defaultdict(list) 
-        # initialize an empty list key first then appends so no key error !!
-        res = defaultdict(list) 
-        for s in strs:
-            count = [0] * 26 # Array of length 26, initialized each index's value to 0
-            for c in s:
-                count[ord(c) - ord('a')] += 1 # ord gives the ASCCI and the difference gives the index
-            # We need to convert key from list to tuple the key must be IMMUTABLE, tuple is immutable
-            res[tuple(count)].append(s) 
-        return list(res.values()) # map.values() returns group of values in list form
-            
+def findMin(self, nums: List[int]) -> int:
+        l, r, res = 0, len(nums) - 1, nums[0]
+        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
+            else:
+                r = m - 1
+        return res
