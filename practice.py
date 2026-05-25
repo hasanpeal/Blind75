@@ -1,30 +1,20 @@
-from typing import Optional
-from LinkedListCycle import ListNode
-
-def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
+from typing import List
 class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        curr = slow.next
-        slow.next = None
-        prev = None
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        slow = head
-        fast = prev
-        while fast:
-            temp1 = slow.next
-            temp2 = fast.next
-            slow.next = fast
-            fast.next = temp1
-            slow = temp1
-            fast = temp2
+    def max_area(self, heights: List[int]):
+        if not heights:
+            return 0
+        maxArea = 0
+        left = 0
+        right = len(heights) - 1
+        while left < right:
+            height = min(heights[left], heights[right])
+            width = right - left
+            maxArea = max(maxArea, height*width)
+            if heights[right] < heights[left]:
+                right -= 1
+            else:
+                left += 1
+        return maxArea
+    
+    heights = [3, 4, 1, 2, 2, 4, 1, 3, 2]
+    print("Max area:", max_area(max_area, heights))
