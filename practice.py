@@ -1,11 +1,16 @@
-def characterReplacement(self, s: str, k: int) -> int:
-        seen = {}
-        l,r,m = 0, 0, 0
-        while r < len(s):
-            seen[s[r]] = 1 + seen.get(s[r], 0)
-            while ((r - l + 1) - max(seen.values())) > k:
-                seen[s[l]] -= 1
-                l += 1
-            m = max(m, r - l + 1)
-            r += 1
-        return m
+from typing import List
+
+def findMin(self, nums: List[int]) -> int:
+        l, r, res = 0, len(nums) - 1, nums[0]
+        # It's '<=' because what if we have [2] here l val = 2 r val = 2, it would skip loop for '<'
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
+            else:
+                r = m - 1
+        return res
