@@ -1,30 +1,28 @@
-from typing import List
+from typing import List, Optional
 
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-class Solution:
+class Solution:    
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0:
+            return None
+        for i in range(1, len(lists)):
+            lists[i] = self.merge(lists[i-1], lists[i])
+        return lists[-1]
 
-    def encode(self, strs: List[str]) -> str:
-        res = ""
-        # Numerical length + '#' + string itself
-        for s in strs:
-            res += str(len(s)) + '#' + s
-        return res
-
-    # Ex. 3#abc4#abcd
-    def decode(self, s: str) -> List[str]:
-        res = []
-        i = 0
-        # Outer loop runs from 0 to n, inside each iteration we use another var and set it equal to current index
-        # Increment j until we see the character '#', then we can slice s[i:j] to get the length of the string then
-        # reassign i to index of '#' + 1 which is start of the string, and set j to i + length.
-        while i < len(s):
-            j = i
-            while s[j] != '#':
-                j += 1
-            length = int(s[i:j])
-            i = j + 1
-            j = i + length
-            res.append(s[i:j])
-            i = j
-        return res
-    print(decode(s='3#abc4#abcd'))
+    def merge(self, list1, list2):
+        dummy = ListNode()
+        curr = dummy
+        while list1 and list2:
+            if list1.val < list2.val:
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            curr = curr.next
+        curr.next = list1 or list2
+        return dummy.next
