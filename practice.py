@@ -1,13 +1,11 @@
 from typing import List
 
-
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+def twoSum(self, numbers: List[int], target: int) -> List[int]:
         has = {}
-        for i in range(len(nums)):
-            has[nums[i]] = i
-        for i in range(len(nums)):
-            diff = target - nums[i]
-            if diff in has and has.get(diff) != i:
-                return [i, has.get(diff)]
-        return []
+        for i, v in enumerate(numbers):
+            has[v] = i
+        for i in range(len(numbers)):
+            key = target - numbers[i]
+            if key in has and has.get(key) != i:
+                return [min(i+1, has.get(key) + 1), max(i+1, has.get(key) + 1)]
+        
