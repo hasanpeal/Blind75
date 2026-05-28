@@ -1,20 +1,13 @@
 from typing import List
 
-def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
-        res = 1
-        has = set()
-        for num in nums:
-            has.add(num)
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        has = {}
         for i in range(len(nums)):
-            curr = nums[i]
-            longest = 1
-            if curr - 1 in has:
-                continue
-            while curr + 1 in has:
-                curr += 1
-                longest += 1
-            res = max(res, longest)
-        return res
-            
+            has[nums[i]] = i
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in has and has.get(diff) != i:
+                return [i, has.get(diff)]
+        return []
