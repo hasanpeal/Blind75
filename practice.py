@@ -1,31 +1,28 @@
-from typing import List
+from typing import List, Optional
 
-def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        rows = len(heights)
-        cols = len(heights[0])
-        pac, atl = set(), set()
-        res = []
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-        def dfs(r, c, visited, minFlow):
-            if r < 0 or c < 0 or r >= rows or c >= cols or heights[r][c] < minFlow or (r,c) in visited:
-                return
-            visited.add((r,c))
-            dfs(r + 1, c, visited, heights[r][c])
-            dfs(r - 1, c, visited, heights[r][c])
-            dfs(r, c + 1, visited, heights[r][c])
-            dfs(r, c - 1, visited, heights[r][c])
-        
-        for c in range(cols):
-            dfs(0, c, pac, heights[0][c])
-            dfs(rows - 1, c, atl, heights[rows - 1][c])
-        
-        for r in range(rows):
-            dfs(r, 0, pac, heights[r][0])
-            dfs(r, cols - 1, atl, heights[r][cols-1])
-        
-        for r in range(rows):
-            for c in range(cols):
-                if (r,c) in pac and (r,c) in atl:
-                    res.append([r,c])
-        
-        return res
+class Solution:    
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0:
+            return None
+        for i in range(1, len(lists)):
+            lists[i] = self.merge(lists[i-1], lists[i])
+        return lists[-1]
+
+    def merge(self, list1, list2):
+        dummy = ListNode()
+        curr = dummy
+        while list1 and list2:
+            if list1.val < list2.val:
+                curr.next = list1
+                list1 = list1.next
+            else:
+                curr.next = list2
+                list2 = list2.next
+            curr = curr.next
+        curr.next = list1 or list2
+        return dummy.next
