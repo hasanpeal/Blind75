@@ -1,21 +1,23 @@
-from typing import List
+from typing import Optional
 
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
 
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [0] * len(nums)
-        left = [0] * len(nums)
-        right = [0] * len(nums)
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
+            
+        oldToNew = {}
 
-        left[0] = 1
-        right[len(nums) - 1] = 1
-
-
-        for i in range(1, len(nums)):
-            left[i] = nums[i-1] * left[i-1]
-        for i in range(len(nums) - 2, -1, -1): # Middle val is -1 which represent 0 !!
-            right[i] = nums[i+1] * right[i+1]
-        for i in range(len(nums)):
-            res[i] = left[i] * right[i]
-
-        return res
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
