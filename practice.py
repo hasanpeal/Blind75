@@ -1,13 +1,18 @@
-from typing import List
+from typing import Optional
 
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class Solution:
-    def hasDuplicate(self, nums: List[int]) -> bool:
-        seen = set()
-        for num in nums:
-            if num in seen:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            if slow == fast:
                 return True
-            else:
-                seen.add(num)
-                
+            slow = slow.next
+            fast = fast.next.next
         return False
