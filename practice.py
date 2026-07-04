@@ -1,22 +1,26 @@
-from typing import List
+from typing import Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        map = {}
-        for i in range(len(nums)):
-            map[nums[i]] = 1 + map.get(nums[i], 0)
-        # Creating [[],[],[],[]........]
-        # Where each index represent the occurence and each [] holds the values with that occurence
-        # This is similar to bucket sort, however in bucket sort each index represent the [], and val
-        # is the occurence
-        count = [[] for i in range(len(nums) + 1)] # +1 because len ignore 0 index
-        for key, val in map.items():
-            count[val].append(key)
-        res = []
-        for i in range(len(count) - 1, -1, -1): # Loop depends on len of count not nums!
-            for n in count[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
-        # Running time O(n), we could have used sorting or heap but runtime would be O(nlogn), 0(nlogk)
-                
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = float("-inf")
+        def postorder(root):
+            # Use nonlocal to access global variable res
+            nonlocal res
+            if not root:
+                return 0
+            # Max in left sub tree, if negative then 0
+            leftMax = max(postorder(root.left), 0)
+            # Max in right sub tree, if negative then 0
+            rightMax = max(postorder(root.right), 0)
+            # Adjacent node check if max then update global res
+            res = max(res, root.val + leftMax + rightMax)
+            # Pass single path max sum for each recursive call
+            return root.val + max(leftMax, rightMax)
+        postorder(root)
+        return res
