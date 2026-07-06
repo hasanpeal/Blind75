@@ -1,31 +1,18 @@
-from typing import List
+from typing import Optional
 
-def isValidSudoku(board: List[List[str]]) -> bool:
-        seen = set()
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                curr = board[i][j]
-                if curr != ".":
-                    row = f"{curr} in row {i}"
-                    col = f"{curr} in col {j}"
-                    box = f"{curr} in box {(i//3 * 3) + j//3}"
-                    print(box)
-                    if row in seen or col in seen or box in seen:
-                        return False
-                    else:
-                        seen.add(row)
-                        seen.add(col)
-                        seen.add(box)
-        return True
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-board = [["1","2",".",".","3",".",".",".","."],
-        ["4",".",".","5",".",".",".",".","."],
-        [".","9","8",".",".",".",".",".","3"],
-        ["5",".",".",".","6",".",".",".","4"],
-        [".",".",".","8",".","3",".",".","5"],
-        ["7",".",".",".","2",".",".",".","6"],
-        [".",".",".",".",".",".","2",".","."],
-        [".",".",".","4","1","9",".",".","8"],
-        [".",".",".",".","8",".",".","7","9"]]
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head.next
 
-isValidSudoku(board)
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
