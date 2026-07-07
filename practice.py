@@ -6,34 +6,20 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class Codec:
-    
-    # Encodes a tree to a single string.
-    def serialize(self, root: Optional[TreeNode]) -> str:
-        res = []
-        def preorder(node):
-            if not node:
-                res.append("N")
-                return
-            res.append(str(node.val))
-            preorder(node.left)
-            preorder(node.right)
-        preorder(root)
-        return ",".join(res)
-        
-    # Decodes your encoded data to tree.
-    def deserialize(self, data: str) -> Optional[TreeNode]:
-        nodes = data.split(",")
-        index = 0
-        def preorder():
-            nonlocal index
-            if nodes[index] == "N":
-                index += 1
-                return None
-            node = TreeNode(int(nodes[index]))
-            index += 1
-            node.left = preorder()
-            node.right = preorder()
-            return node
-        return preorder()
-            
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, float("-inf"), float("inf"))
+
+    def valid(self, node, left, right):
+        if not node:
+            return True
+        if not (left < node.val < right):
+            return False
+        #                            5
+        #                           / \
+        #        -inf < 3 < 5      3   7     5 < 7 < inf
+        #                             / \
+        #                            4   8
+        # For left child our low bound is alway -inf, upper bound is the parents value
+        # For right child low bound parents value, upper bound is +inf
+        return self.valid(node.left, left, node.val) and self.valid(node.right, node.val, right)
